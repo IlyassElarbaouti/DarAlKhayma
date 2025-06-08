@@ -1,0 +1,25 @@
+import Header from "@/components/layout/Header";
+import HeroSection from "@/components/common/HeroSection";
+import FeaturedProperties from "@/components/property/FeaturedProperties";
+import VideoDestinationsSection from "@/components/common/VideoDestinationsSection";
+import WhyChooseUsSection from "@/components/common/WhyChooseUsSection";
+import TestimonialsSection from "@/components/common/TestimonialsSection";
+import NewsletterSection from "@/components/common/NewsletterSection";
+import Footer from "@/components/layout/Footer";
+
+export default function Home() {
+  return (
+    <div className="min-h-screen bg-white">
+      <Header />
+      <main>
+        <HeroSection />
+        <FeaturedProperties />
+        <WhyChooseUsSection />
+        <VideoDestinationsSection />
+        <TestimonialsSection />
+        <NewsletterSection />
+      </main>
+      <Footer />
+    </div>
+  );
+}
