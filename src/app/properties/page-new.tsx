@@ -36,7 +36,7 @@ export default async function PropertiesPage() {
       "position": index + 1,
       "item": {
         "@type": "Accommodation",
-        "@id": `${process.env.NEXT_PUBLIC_SITE_URL}/properties/${property.slug}`,
+        "@id": `${process.env.NEXT_PUBLIC_SITE_URL || 'https://daralkhaima.com'}/properties/${property.slug}`,
         "name": property.title,
         "description": property.shortDescription,
         "image": property.images[0]?.url,
