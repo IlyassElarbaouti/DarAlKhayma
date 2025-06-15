@@ -52,8 +52,7 @@ export default function Footer() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
               viewport={{ once: true }}
-            >
-              <h4 className="font-semibold text-lg mb-6">Quick Links</h4>
+            >              <h4 className="font-semibold text-lg mb-6">Quick Links</h4>
               <ul className="space-y-3">
                 <li>
                   <Link href="/properties" className="text-neutral-400 hover:text-white transition-colors duration-200">
@@ -66,6 +65,16 @@ export default function Footer() {
                   </Link>
                 </li>
                 <li>
+                  <Link href="/corporate" className="text-neutral-400 hover:text-white transition-colors duration-200">
+                    Corporate Rentals
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/join-us" className="text-neutral-400 hover:text-white transition-colors duration-200">
+                    List Your Property
+                  </Link>
+                </li>
+                <li>
                   <Link href="/about" className="text-neutral-400 hover:text-white transition-colors duration-200">
                     About Us
                   </Link>
@@ -73,11 +82,6 @@ export default function Footer() {
                 <li>
                   <Link href="/contact" className="text-neutral-400 hover:text-white transition-colors duration-200">
                     Contact
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/blog" className="text-neutral-400 hover:text-white transition-colors duration-200">
-                    Travel Blog
                   </Link>
                 </li>
               </ul>

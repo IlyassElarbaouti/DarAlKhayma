@@ -5,8 +5,8 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: ['/api/', '/admin/', '/_next/', '/private/'],
+      disallow: ['/api/', '/admin/', '/_next/', '/private/', '/studio/'],
     },
-    sitemap: 'https://dar-al-khayma.com/sitemap.xml',
+    sitemap: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://dar-al-khayma.com'}/sitemap.xml`,
   }
 }

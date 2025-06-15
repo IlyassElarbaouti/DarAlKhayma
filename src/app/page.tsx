@@ -3,6 +3,7 @@ import HeroSection from "@/components/common/HeroSection";
 import FeaturedProperties from "@/components/property/FeaturedProperties";
 import VideoDestinationsSection from "@/components/common/VideoDestinationsSection";
 import WhyChooseUsSection from "@/components/common/WhyChooseUsSection";
+import ServicesSection from "@/components/common/ServicesSection";
 import TestimonialsSection from "@/components/common/TestimonialsSection";
 import NewsletterSection from "@/components/common/NewsletterSection";
 import Footer from "@/components/layout/Footer";
@@ -16,6 +17,7 @@ export default function Home() {
         <FeaturedProperties />
         <WhyChooseUsSection />
         <VideoDestinationsSection />
+        <ServicesSection />
         <TestimonialsSection />
         <NewsletterSection />
       </main>

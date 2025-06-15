@@ -10,17 +10,18 @@ export const metadata = {
 };
 
 export default async function PropertiesPage() {
-  // Fetch properties from Sanity
+  // Fetch properties from Sanity with error handling
   let properties: Property[] = [];
   try {
     properties = await getAllProperties();
   } catch (error) {
     console.error('Failed to fetch properties from Sanity:', error);
+    // Return empty array to prevent build failure
     properties = [];
   }
 
-  // Generate structured data for SEO
-  const structuredData = {
+  // Generate structured data for SEO only if properties exist
+  const structuredData = properties.length > 0 ? {
     "@context": "https://schema.org",
     "@type": "ItemList",
     "name": "Premium Properties",
@@ -31,41 +32,44 @@ export default async function PropertiesPage() {
       "position": index + 1,
       "item": {
         "@type": "Accommodation",
-        "@id": `${process.env.NEXT_PUBLIC_SITE_URL}/properties/${property.slug}`,
+        "@id": `${process.env.NEXT_PUBLIC_SITE_URL || 'https://dar-al-khayma.com'}/properties/${property.slug}`,
         "name": property.title,
-        "description": property.shortDescription,
-        "image": property.images[0]?.url,
+        "description": property.shortDescription || property.description,
+        "image": property.images?.[0]?.url,
         "address": {
           "@type": "PostalAddress",
-          "addressLocality": property.location.city,
-          "addressRegion": property.location.region,
-          "addressCountry": property.location.country
+          "addressLocality": property.location?.city,
+          "addressRegion": property.location?.region,
+          "addressCountry": property.location?.country || "Morocco"
         },
-        "geo": {
-          "@type": "GeoCoordinates",
-          "latitude": property.location.coordinates.lat,
-          "longitude": property.location.coordinates.lng
-        },
-        "priceRange": `${property.price.amount} ${property.price.currency} per ${property.price.period}`,
-        "amenityFeature": property.amenities.map((amenity) => ({
+        ...(property.location?.coordinates && {
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": property.location.coordinates.lat,
+            "longitude": property.location.coordinates.lng
+          }
+        }),
+        "priceRange": property.price ? `${property.price.amount} ${property.price.currency} per ${property.price.period}` : "Contact for pricing",
+        "amenityFeature": property.amenities?.map((amenity) => ({
           "@type": "LocationFeatureSpecification",
           "name": amenity.name
-        }))
+        })) || []
       }
     }))
-  };
-  return (
+  } : null;  return (
     <PageWithHeaderPadding>
       <PropertiesClient properties={properties} />
 
-      {/* Structured Data */}
-      <Script
-        id="properties-structured-data"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(structuredData),
-        }}
-      />
+      {/* Structured Data - only render if we have properties */}
+      {structuredData && (
+        <Script
+          id="properties-structured-data"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(structuredData),
+          }}
+        />
+      )}
     </PageWithHeaderPadding>
   );
 }

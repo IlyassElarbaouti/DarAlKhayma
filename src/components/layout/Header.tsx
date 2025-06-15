@@ -11,6 +11,7 @@ import Logo from "@/components/ui/Logo";
 const navigation = [
   { name: "Properties", href: "/properties" },
   { name: "Destinations", href: "/destinations" },
+  { name: "Corporate", href: "/corporate" },
   { name: "About", href: "/about" },
   { name: "Contact", href: "/contact" },
 ];
