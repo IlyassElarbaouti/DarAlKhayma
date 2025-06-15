@@ -40,12 +40,7 @@ export default function NewsletterSection() {
     <section className="relative py-20 overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0">
-        <Image
-          src="https://images.unsplash.com/photo-1570026517541-a9e832bdd2ee?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
-          alt="Morocco landscape"
-          fill
-          className="object-cover"
-        />
+
         <div className="absolute inset-0 bg-gradient-to-r from-primary-900/90 to-primary-800/80" />
       </div>
 
