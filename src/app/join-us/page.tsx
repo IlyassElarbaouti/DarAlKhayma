@@ -542,39 +542,7 @@ export default function JoinUsPage() {
                 Email Partners Team
               </a>
             </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Contact Section */}
-      <div className="py-20">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">          <div className="bg-gradient-to-r from-primary-50 to-accent-50 rounded-2xl p-12 text-center">
-            <h2 className="text-3xl font-display font-bold text-neutral-900 mb-6">
-              Questions About Listing Your Property?
-            </h2>
-            <p className="text-neutral-600 mb-8 max-w-2xl mx-auto">
-              Our property partnerships team is here to help. Contact us to learn more 
-              about our requirements, commission structure, and support services.
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                href="/contact"
-                className="inline-flex items-center px-8 py-4 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition-colors shadow-lg hover:shadow-xl"
-              >
-                Contact Our Team
-                <ArrowRight className="w-5 h-5 ml-2" />
-              </Link>
-              <a
-                href="mailto:partners@daralkhayma.com"
-                className="inline-flex items-center px-8 py-4 border-2 border-primary-600 text-primary-600 font-semibold rounded-lg hover:bg-primary-600 hover:text-white transition-colors"
-              >
-                <Send className="w-5 h-5 mr-2" />
-                Email Partners Team
-              </a>
-            </div>
-          </div>
-        </div>
+          </div>        </div>
       </div>
 
       {/* Why Choose Dar Al Khayma Section */}

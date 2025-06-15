@@ -5,6 +5,7 @@ import VideoDestinationsSection from "@/components/common/VideoDestinationsSecti
 import WhyChooseUsSection from "@/components/common/WhyChooseUsSection";
 import ServicesSection from "@/components/common/ServicesSection";
 import TestimonialsSection from "@/components/common/TestimonialsSection";
+import FAQSection from "@/components/common/FAQSection";
 import NewsletterSection from "@/components/common/NewsletterSection";
 import Footer from "@/components/layout/Footer";
 
@@ -19,6 +20,7 @@ export default function Home() {
         <VideoDestinationsSection />
         <ServicesSection />
         <TestimonialsSection />
+        <FAQSection />
         <NewsletterSection />
       </main>
       <Footer />
