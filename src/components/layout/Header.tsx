@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Search, User } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Logo from "@/components/ui/Logo";
 
@@ -40,7 +40,6 @@ export default function Header() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-
   // Determine header styling based on context
   const getHeaderStyling = () => {
     if (isHomepage) {
@@ -51,9 +50,6 @@ export default function Header() {
           : "bg-transparent",
         logoVariant: isScrolled ? "black" : "white",
         textColor: isScrolled ? "text-neutral-700" : "text-white/90",
-        actionColor: isScrolled
-          ? "text-neutral-600 hover:bg-neutral-100"
-          : "text-white/90 hover:bg-white/10",
         mobileButtonColor: isScrolled
           ? "text-neutral-600 hover:bg-neutral-100"
           : "text-white hover:bg-white/10"
@@ -64,7 +60,6 @@ export default function Header() {
         background: "bg-white/95 backdrop-blur-lg shadow-lg border-b border-primary-100/20",
         logoVariant: "black",
         textColor: "text-neutral-700",
-        actionColor: "text-neutral-600 hover:bg-neutral-100",
         mobileButtonColor: "text-neutral-600 hover:bg-neutral-100"
       };
     }
@@ -77,19 +72,19 @@ export default function Header() {
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         headerStyle.background
       )}
-    >
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    >      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 lg:h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center z-10">
+          <Link href="/" className="flex items-center z-10 flex-shrink-0">
             <Logo 
               variant={headerStyle.logoVariant as "black" | "white"} 
               size="md"
             />
           </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-8">
+          {/* Desktop Navigation - Centered */}
+          <div className="hidden lg:flex items-center justify-center flex-1">
+            <div className="flex items-center space-x-8">
             {navigation.map((item) => (
               <Link
                 key={item.name}
@@ -111,38 +106,19 @@ export default function Header() {
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.3 }}
                   />
-                )}
-              </Link>
+                )}              </Link>
             ))}
+            </div>
           </div>
 
-          {/* Desktop Actions */}
-          <div className="hidden lg:flex items-center space-x-4">
-            <button
-              className={cn(
-                "p-2 rounded-full transition-all duration-300",
-                headerStyle.actionColor
-              )}
-              title="Search properties"
-            >
-              <Search className="w-5 h-5" />
-            </button>
-            <button
-              className={cn(
-                "p-2 rounded-full transition-all duration-300",
-                headerStyle.actionColor
-              )}
-              title="Account"
-            >
-              <User className="w-5 h-5" />
-            </button>
-          </div>
-
-          {/* Mobile Menu Button */}
+          {/* Spacer for balanced layout */}
+          <div className="hidden lg:block flex-shrink-0 w-16">
+            {/* This div balances the logo on the other side */}
+          </div>          {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className={cn(
-              "lg:hidden p-2 rounded-md transition-all duration-300 z-10",
+              "lg:hidden p-2 rounded-md transition-all duration-300 z-10 flex-shrink-0",
               headerStyle.mobileButtonColor
             )}
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
@@ -175,24 +151,7 @@ export default function Header() {
                     onClick={() => setIsMenuOpen(false)}
                   >
                     {item.name}
-                  </Link>
-                ))}
-                <div className="border-t border-primary-100 pt-4 mt-4">
-                  <button 
-                    className="w-full px-6 py-3 text-left text-neutral-700 hover:bg-primary-50 hover:text-primary-700 transition-all duration-200 flex items-center gap-3"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    <Search className="w-4 h-4" />
-                    Search Properties
-                  </button>
-                  <button 
-                    className="w-full px-6 py-3 text-left text-neutral-700 hover:bg-primary-50 hover:text-primary-700 transition-all duration-200 flex items-center gap-3"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    <User className="w-4 h-4" />
-                    Account
-                  </button>
-                </div>
+                  </Link>                ))}
               </div>
             </motion.div>
           )}
