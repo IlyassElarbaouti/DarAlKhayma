@@ -547,10 +547,9 @@ export default function CorporatePage() {
                 </div>
               </div>
               <div className="flex items-center justify-center space-x-3">
-                <Phone className="w-6 h-6 text-primary-600" />
-                <div>
+                <Phone className="w-6 h-6 text-primary-600" />                <div>
                   <div className="font-semibold text-neutral-900">Phone</div>
-                  <div className="text-neutral-600">+212 524 123 500</div>
+                  <div className="text-neutral-600">+212774214018</div>
                 </div>
               </div>
             </div>

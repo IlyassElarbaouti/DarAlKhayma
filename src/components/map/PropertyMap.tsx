@@ -3,6 +3,7 @@
 import { useState, useCallback, useEffect } from "react";
 import { MapPin, Home, Eye, Maximize2 } from "lucide-react";
 import dynamic from "next/dynamic";
+import Image from "next/image";
 
 // Import leaflet only on client side
 let L: any;
@@ -289,16 +290,14 @@ export default function PropertyMap({
                       {property.title}
                     </h3>
                   </div>
-                  
-                  <div className="flex space-x-4">
+                    <div className="flex space-x-4">
                     <div className="relative">
-                      <img
-                        src={property.images[0]?.url || ''}
+                      <Image
+                        src={property.images[0]?.url || 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiBmaWxsPSIjRjVFNkQzIi8+CjxwYXRoIGQ9Ik0yNCAzMkMyOC40MTgzIDMyIDMyIDI4LjQxODMgMzIgMjRDMzIgMTkuNTgxNyAyOC40MTgzIDE2IDI0IDE2QzE5LjU4MTcgMTYgMTYgMTkuNTgxNyAxNiAyNEMxNiAyOC40MTgzIDE5LjU4MTcgMzIgMjQgMzJaIiBzdHJva2U9IiMyRDVBNUEiIHN0cm9rZS13aWR0aD0iMyIvPgo8L3N2Zz4K'}
                         alt={property.images[0]?.alt || property.title}
+                        width={64}
+                        height={64}
                         className="w-16 h-16 object-cover rounded-xl flex-shrink-0 border-2 border-accent-200"
-                        onError={(e) => {
-                          e.currentTarget.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiBmaWxsPSIjRjVFNkQzIi8+CjxwYXRoIGQ9Ik0yNCAzMkMyOC40MTgzIDMyIDMyIDI4LjQxODMgMzIgMjRDMzIgMTkuNTgxNyAyOC40MTgzIDE2IDI0IDE2QzE5LjU4MTcgMTYgMTYgMTkuNTgxNyAxNiAyNEMxNiAyOC40MTgzIDE5LjU4MTcgMzIgMjQgMzJaIiBzdHJva2U9IiMyRDVBNUEiIHN0cm9rZS13aWR0aD0iMyIvPgo8L3N2Zz4K';
-                        }}
                       />
                       <div className="absolute -top-1 -right-1 w-4 h-4 bg-accent-500 rounded-full border-2 border-white"></div>
                     </div>

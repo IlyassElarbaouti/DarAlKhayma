@@ -2,6 +2,7 @@
 
 import { useState, useCallback } from "react";
 import { MapPin, X } from "lucide-react";
+import Image from "next/image";
 
 // Note: MapboxMap import temporarily removed to fix build issues
 
@@ -88,15 +89,13 @@ export default function PropertyMap({
                     className={`flex items-center space-x-3 p-2 bg-neutral-50 rounded cursor-pointer hover:bg-neutral-100 transition-colors ${
                       selectedMarker === property.id || selectedProperty === property.id ? 'bg-blue-50 border-blue-200 border' : ''
                     }`}
-                    onClick={() => handleMarkerClick(property.id)}
-                  >
-                    <img
+                    onClick={() => handleMarkerClick(property.id)}                  >
+                    <Image
                       src={property.image}
                       alt={property.title}
+                      width={32}
+                      height={32}
                       className="w-8 h-8 object-cover rounded"
-                      onError={(e) => {
-                        e.currentTarget.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiBmaWxsPSIjRjNGNEY2Ii8+CjxwYXRoIGQ9Ik0xMiAxNkMxNS4zMTM3IDE2IDE4IDEzLjMxMzcgMTggMTBDMTggNi42ODYyOSAxNS4zMTM3IDQgMTIgNEM4LjY4NjI5IDQgNiA2LjY4NjI5IDYgMTBDNiAxMy4zMTM3IDguNjg2MjkgMTYgMTIgMTZaIiBzdHJva2U9IiM5Q0EzQUYiIHN0cm9rZS13aWR0aD0iMSIvPgo8L3N2Zz4K';
-                      }}
                     />
                     <div className="flex-1 min-w-0">
                       <p className="text-sm font-medium text-neutral-800 truncate">{property.title}</p>
@@ -135,15 +134,13 @@ export default function PropertyMap({
                         <X className="w-4 h-4 text-neutral-500" />
                       </button>
                     </div>
-                    
-                    <div className="flex space-x-3">
-                      <img
+                      <div className="flex space-x-3">
+                      <Image
                         src={property.image}
                         alt={property.title}
+                        width={64}
+                        height={64}
                         className="w-16 h-16 object-cover rounded-lg flex-shrink-0"
-                        onError={(e) => {
-                          e.currentTarget.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiBmaWxsPSIjRjNGNEY2Ii8+CjxwYXRoIGQ9Ik0yNCAzMkMzMC42Mjc0IDMyIDM2IDI2LjYyNzQgMzYgMjBDMzYgMTMuMzcyNiAzMC42Mjc0IDggMjQgOEMxNy4zNzI2IDggMTIgMTMuMzcyNiAxMiAyMEMxMiAyNi42Mjc0IDE3LjM3MjYgMzIgMjQgMzJaIiBzdHJva2U9IiM5Q0EzQUYiIHN0cm9rZS13aWR0aD0iMiIvPgo8L3N2Zz4K';
-                        }}
                       />
                       <div className="flex-1 min-w-0">
                         <p className="text-sm text-neutral-600 mb-1">

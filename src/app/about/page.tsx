@@ -1,5 +1,6 @@
 import { PageWithHeaderPadding } from "@/components/layout/PageLayout";
 import { Shield, Heart, Globe, Award, Users, MapPin } from "lucide-react";
+import Image from "next/image";
 
 const values = [
   {
@@ -94,11 +95,12 @@ export default function AboutPage() {
                     and authentic experiences that showcase the best of Moroccan culture.
                   </p>
                 </div>
-              </div>
-              <div className="relative">
-                <img
+              </div>              <div className="relative">
+                <Image
                   src="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
                   alt="Traditional Moroccan riad"
+                  width={2070}
+                  height={1380}
                   className="rounded-2xl shadow-xl"
                 />
                 <div className="absolute -bottom-6 -right-6 bg-white p-6 rounded-xl shadow-lg">
@@ -190,11 +192,12 @@ export default function AboutPage() {
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {team.map((member, index) => (
-                <div key={index} className="bg-white rounded-2xl p-8 shadow-lg text-center">
-                  <img
+              {team.map((member, index) => (                <div key={index} className="bg-white rounded-2xl p-8 shadow-lg text-center">
+                  <Image
                     src={member.image}
                     alt={member.name}
+                    width={96}
+                    height={96}
                     className="w-24 h-24 rounded-full mx-auto mb-6"
                   />
                   <h3 className="text-xl font-display font-semibold text-neutral-900 mb-2">

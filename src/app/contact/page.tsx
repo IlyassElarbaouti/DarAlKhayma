@@ -65,12 +65,11 @@ export default function ContactPage() {
                   <div className="flex items-start space-x-4">
                     <div className="bg-primary-100 p-3 rounded-full">
                       <MapPin className="w-6 h-6 text-primary-600" />
-                    </div>
-                    <div>
+                    </div>                    <div>
                       <h4 className="font-semibold text-gray-900 mb-1">Address</h4>
                       <p className="text-gray-600">
-                        Gueliz, Marrakech<br />
-                        Morocco 40000
+                        Agadir<br />
+                        Morocco
                       </p>
                     </div>
                   </div>
@@ -78,10 +77,9 @@ export default function ContactPage() {
                   <div className="flex items-start space-x-4">
                     <div className="bg-primary-100 p-3 rounded-full">
                       <Phone className="w-6 h-6 text-primary-600" />
-                    </div>
-                    <div>
+                    </div>                    <div>
                       <h4 className="font-semibold text-gray-900 mb-1">Phone</h4>
-                      <p className="text-gray-600">+212 524 123 456</p>
+                      <p className="text-gray-600">+212774214018</p>
                     </div>
                   </div>
 
@@ -121,10 +119,9 @@ export default function ContactPage() {
                 <h3 className="text-xl font-bold mb-4">Need Immediate Assistance?</h3>
                 <p className="text-primary-100 mb-6">
                   Our team is ready to help you with your booking or property listing questions.
-                </p>
-                <div className="flex items-center space-x-3">
+                </p>                <div className="flex items-center space-x-3">
                   <Phone className="w-5 h-5 text-primary-200" />
-                  <span className="font-semibold">+212 524 123 456</span>
+                  <span className="font-semibold">+212774214018</span>
                 </div>
               </motion.div>
             </div>

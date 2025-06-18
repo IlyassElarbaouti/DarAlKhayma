@@ -6,21 +6,21 @@ import { Award, Users, Camera, ExternalLink } from "lucide-react";
 const features = [
   {
     icon: Award,
-    title: "Curated Selection",
-    description: "Hand-picked luxury properties across Morocco",
-    detail: "Every property is personally vetted for quality, authenticity, and exceptional guest experience."
+    title: "Quality ",
+    description: "Professionally curated homes, styled and maintained to perfection",
+    detail: "What you see is what you get — no surprises Every detail checked for design, comfort, and location."
   },
   {
     icon: Users,
-    title: "Local Expertise", 
-    description: "Native insights and authentic experiences",
-    detail: "Our local team provides insider knowledge and 24/7 support throughout your stay."
+    title: "PROPERTIES WITH SIGNATURE", 
+    description: "Distinctive design, unified by the Dar Al Khayma aesthetic",
+    detail: "Fully equipped  — no extras needed Everything ready for a seamless stay."
   },
   {
     icon: Camera,
-    title: "Professional Standards",
-    description: "High-quality photography and detailed descriptions",
-    detail: "Professional photography and comprehensive property details ensure no surprises upon arrival."
+    title: "EQUIPEMENT",
+    description: "Hand-selected homes with exacting standards",
+    detail: "What you see is what you get — no surprises Every detail checked for design, comfort, and location"
   },
   {
     icon: ExternalLink,
@@ -47,8 +47,9 @@ export default function WhyChooseUsSection() {
             <span className="block text-primary-600">Dar Al Khayma?</span>
           </h2>
           <p className="text-lg text-neutral-600 max-w-3xl mx-auto">
-            We&apos;re more than a property platform - we&apos;re your gateway to authentic Moroccan experiences, 
-            combining luxury accommodations with local expertise and trusted service.
+            At Dar Al Khayma we take care to select each of our homes according to high standards of quality and design to ensure a unique stay in any property and any destination where we are present.
+
+
           </p>
         </motion.div>
 

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useParams } from "next/navigation";
 import { PageWithHeaderPadding } from "@/components/layout/PageLayout";
+import Image from "next/image";
 import { 
   MapPin, 
   Users, 
@@ -111,12 +112,12 @@ export default function PropertyPage() {
   };
   return (
     <PageWithHeaderPadding>
-      {/* Image Gallery */}
-      <div className="relative h-96 md:h-[500px] bg-gray-900">
-          <img
+      {/* Image Gallery */}      <div className="relative h-96 md:h-[500px] bg-gray-900">
+          <Image
             src={mockProperty.images[currentImageIndex].url}
             alt={mockProperty.images[currentImageIndex].alt}
-            className="w-full h-full object-cover"
+            fill
+            className="object-cover"
           />
           
           {/* Gallery Controls */}
@@ -255,11 +256,12 @@ export default function PropertyPage() {
               <div className="border border-neutral-200 rounded-lg p-6">
                 <h2 className="text-xl font-display font-semibold text-neutral-900 mb-4">
                   Meet your host
-                </h2>
-                <div className="flex items-center space-x-4">
-                  <img
+                </h2>                <div className="flex items-center space-x-4">
+                  <Image
                     src={mockProperty.host.avatar}
                     alt={mockProperty.host.name}
+                    width={64}
+                    height={64}
                     className="w-16 h-16 rounded-full"
                   />
                   <div>

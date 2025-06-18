@@ -21,23 +21,23 @@ import Image from "next/image";
 const benefits = [
   {
     icon: TrendingUp,
-    title: "Maximize Revenue",
-    description: "Our premium positioning and marketing reach the highest-paying guests, optimizing your property's earning potential."
+    title: "Flexibility",
+    description: "Our hosts enjoy their home whenever they like, but make income from it when it suits them best by taking bookings ranging from three days to three months or more ."
   },
   {
     icon: Shield,
-    title: "Quality Assurance",
-    description: "We thoroughly vet guests and provide comprehensive insurance coverage to protect your investment."
+    title: "Tailored care",
+    description: "We take a personal approach to partnering with our hosts. TheBenefits of Partnering with Us."
   },
   {
     icon: Users,
-    title: "Professional Management",
-    description: "Full property management services including guest communication, cleaning, maintenance, and key exchanges."
+    title: "Peace-of-mind",
+    description: "We are hospitality professionals who ensure the short term rental experience is as simple and rewarding as possible. We attract the most discerning guests, people who choose Dar Al Khayma  because they want to stay somewhere comfortable with style, character and service. We have a support team available 24/7. We know the homes inside and out which means we match each guest to the perfect home for their needs."
   },
   {
     icon: Globe,
     title: "Global Reach",
-    description: "Access to international markets through our partnerships with Airbnb, Booking.com, and premium travel networks."
+    description: "Global Reach Access to international markets through our partnerships with Airbnb, Booking.com, and premium travel networks."
   }
 ];
 
@@ -46,17 +46,17 @@ const managementServices = [
     icon: Camera,
     title: "Professional Photography & Virtual Tours",
     description: "High-quality photography and 360° virtual tours to showcase your property's unique features and increase visibility.",
-    features: ["Professional photography", "360° virtual tours", "Drone footage for exteriors", "Staging consultation"]
+    features: ["Ultra HD 4K Photos – Premium quality that attracts high-paying guests instantly.", "Wide-Angle Professional Lens – Makes your property look bigger, brighter, and more luxurious.", "Lifestyle & Detail Shots – We capture emotion, not just spaces — this is what makes people book.", "Optimized for Airbnb & Booking Algorithms – More views, more clicks, more bookings — guaranteed."]
   },
   {
     icon: Globe,
-    title: "Marketing & Online Presence",
+    title: "Check-In / Check-Out",
     description: "Complete digital marketing strategy across multiple platforms to maximize your property's exposure.",
-    features: ["Multi-platform listing", "SEO optimization", "Social media marketing", "Professional descriptions"]
+    features: ["100% Automated Smart Locks – No keys, no delays. Guests enter with secure digital codes.", "Separate Cleaning Staff Access – Unique codes for housekeeping teams to enter after checkout, keeping everything secure and efficient.", "Real-Time Notifications – We track every check-in and check-out in real time — you’re always informed, always in control.", "Stress-Free Guest Experience – No waiting, no confusion. Guests arrive smoothly, and leave on time — boosting reviews and preventing damage."]
   },
   {
     icon: Users,
-    title: "Guest Services & Support",
+    title: "Listing Creation",
     description: "24/7 multilingual guest support and concierge services to ensure exceptional guest experiences.",
     features: ["24/7 guest support", "Check-in/check-out services", "Concierge recommendations", "Issue resolution"]
   },
@@ -145,10 +145,10 @@ const testimonials = [
 ];
 
 const stats = [
-  { label: "Average Revenue Increase", value: "45%" },
-  { label: "Guest Satisfaction Rate", value: "98%" },
-  { label: "Property Partners", value: "150+" },
-  { label: "Cities Covered", value: "12" }
+  { label: "Full Flexibility", value: "100%" },
+  { label: "Guest Satisfaction Rate", value: "90%" },
+  { label: "Tailored Care", value: "100%" },
+  { label: "Cities Covered", value: "6" }
 ];
 
 export default function JoinUsPage() {
@@ -264,8 +264,8 @@ export default function JoinUsPage() {
               <span className="text-primary-600"> with Us</span>
             </h2>
             <p className="text-xl text-neutral-600 max-w-3xl mx-auto leading-relaxed">
-              We provide comprehensive support to help you succeed in the luxury rental market
-              with our proven strategies and dedicated service.
+              There are many unique benefits to our one-of-a-kind service. Our hosts tell us that they particularly enjoy.
+
             </p>
           </motion.div>
           

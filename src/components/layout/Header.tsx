@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
 import Logo from "@/components/ui/Logo";
 
 const navigation = [
-  { name: "Join Us", href: "/join-us" },
+  { name: "List Your Proptry", href: "/join-us" },
   { name: "Properties", href: "/properties" },
   { name: "Destinations", href: "/destinations" },
   { name: "Corporate", href: "/corporate" },

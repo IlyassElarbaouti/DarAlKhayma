@@ -5,6 +5,7 @@ import { PageWithHeaderPadding } from "@/components/layout/PageLayout";
 import { MapPin, Users, Star, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 
 // Mock destinations data
 const destinations = [
@@ -158,12 +159,12 @@ export default function DestinationsPage() {
               >
                 <Link href={`/destinations/${destination.id}`}>
                   <div className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 group-hover:-translate-y-2">
-                    {/* Image */}
-                    <div className="relative h-64 overflow-hidden">
-                      <img
+                    {/* Image */}                    <div className="relative h-64 overflow-hidden">
+                      <Image
                         src={destination.image}
                         alt={destination.name}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                        fill
+                        className="object-cover group-hover:scale-110 transition-transform duration-300"
                       />
                       <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full">
                         <div className="flex items-center space-x-1">

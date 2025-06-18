@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
+import Image from "next/image";
 
 interface ImageGalleryProps {
   images: string[];
@@ -64,16 +65,21 @@ export default function ImageGallery({
           {/* Main Image */}
           <div className="flex-1 relative overflow-hidden">
             <AnimatePresence mode="wait">
-              <motion.img
+              <motion.div
                 key={currentIndex}
-                src={images[currentIndex]}
-                alt={`${title || 'Image'} ${currentIndex + 1}`}
-                className="w-full h-full object-contain"
+                className="w-full h-full relative"
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.3 }}
-              />
+              >
+                <Image
+                  src={images[currentIndex]}
+                  alt={`${title || 'Image'} ${currentIndex + 1}`}
+                  fill
+                  className="object-contain"
+                />
+              </motion.div>
             </AnimatePresence>
 
             {/* Navigation Buttons */}
@@ -107,16 +113,17 @@ export default function ImageGallery({
                   <button
                     key={index}
                     onClick={() => goToImage(index)}
-                    className={`flex-shrink-0 w-16 h-12 rounded-lg overflow-hidden border-2 transition-all ${
+                    className={`flex-shrink-0 w-16 h-12 rounded-lg overflow-hidden border-2 transition-all relative ${
                       index === currentIndex 
                         ? 'border-white scale-110' 
                         : 'border-white/30 hover:border-white/60'
                     }`}
                   >
-                    <img
+                    <Image
                       src={image}
                       alt={`Thumbnail ${index + 1}`}
-                      className="w-full h-full object-cover"
+                      fill
+                      className="object-cover"
                     />
                   </button>
                 ))}

@@ -58,11 +58,11 @@ export default function ServicesSection() {
                   <div className="flex items-start justify-between mb-4">
                     <div>
                       <h3 className="font-display text-2xl font-bold text-neutral-800 mb-3">
-                        Corporate Rentals
+                        DAR AL KHAYMA FOR COMPANIES
                       </h3>
                       <p className="text-neutral-600 mb-4 leading-relaxed">
-                        Extended stays, business travel, and corporate housing solutions 
-                        with professional service and flexible terms.
+                        Tailored solutions for business stays.
+
                       </p>
                     </div>
                   </div>
@@ -71,15 +71,16 @@ export default function ServicesSection() {
                   <div className="space-y-2 mb-6">
                     <div className="flex items-center text-sm text-neutral-600">
                       <div className="w-1.5 h-1.5 bg-primary-500 rounded-full mr-3" />
-                      Extended stay packages
+                      Short & long-term corporate rentals
                     </div>
                     <div className="flex items-center text-sm text-neutral-600">
                       <div className="w-1.5 h-1.5 bg-primary-500 rounded-full mr-3" />
-                      Team accommodations
+                      Personalized relocation support
+
                     </div>
                     <div className="flex items-center text-sm text-neutral-600">
                       <div className="w-1.5 h-1.5 bg-primary-500 rounded-full mr-3" />
-                      Business services included
+                      360° guest services — from laundry  to chauffeur
                     </div>
                   </div>
 
@@ -129,8 +130,8 @@ export default function ServicesSection() {
                         List Your Property
                       </h3>
                       <p className="text-neutral-600 mb-4 leading-relaxed">
-                        Join Morocco's premier luxury rental platform. Professional 
-                        marketing, management, and maximum revenue potential.
+                        Want to rent your exceptional property? 
+We would love to know more
                       </p>
                     </div>
                   </div>
@@ -139,15 +140,15 @@ export default function ServicesSection() {
                   <div className="space-y-2 mb-6">
                     <div className="flex items-center text-sm text-neutral-600">
                       <div className="w-1.5 h-1.5 bg-accent-500 rounded-full mr-3" />
-                      Professional photography
+                      Renovation & interior design included
                     </div>
                     <div className="flex items-center text-sm text-neutral-600">
                       <div className="w-1.5 h-1.5 bg-accent-500 rounded-full mr-3" />
-                      Global marketing reach
+                      Online marketing & multilingual guest support
                     </div>
                     <div className="flex items-center text-sm text-neutral-600">
                       <div className="w-1.5 h-1.5 bg-accent-500 rounded-full mr-3" />
-                      Full property management
+                      Pro cleaning, check-in/out, and full maintenance
                     </div>
                   </div>
 
