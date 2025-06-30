@@ -5,7 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { MapPin, Users, Bed, Bath, Star, Heart, Camera } from "lucide-react";
 import { Property } from "@/types";
-import { cn, formatPrice } from "@/lib/utils";
+import { cn, formatPrice, formatRating } from "@/lib/utils";
 import { useState } from "react";
 import ImageGallery from "@/components/common/ImageGallery";
 
@@ -18,6 +18,9 @@ export default function PropertyCard({ property, index = 0 }: PropertyCardProps)
   const [currentImage, setCurrentImage] = useState(0);
   const [isLiked, setIsLiked] = useState(false);
   const [showGallery, setShowGallery] = useState(false);
+
+  // Safe rating handling
+  const ratingInfo = formatRating(property.rating);
 
   // Debug logging for images
   console.log(`PropertyCard for ${property.title}:`, {
@@ -156,15 +159,14 @@ export default function PropertyCard({ property, index = 0 }: PropertyCardProps)
           <div className="flex items-center text-neutral-600">
             <MapPin className="w-4 h-4 mr-1" />
             <span className="text-sm">{property.location.city}, {property.location.region}</span>
-          </div>
-          {property.rating && (
+          </div>          {ratingInfo.hasRating && (
             <div className="flex items-center">
               <Star className="w-4 h-4 text-yellow-400 fill-current" />
               <span className="text-sm font-medium ml-1">
-                {property.rating.average.toFixed(1)}
+                {ratingInfo.average}
               </span>
               <span className="text-sm text-neutral-500 ml-1">
-                ({property.rating.count})
+                ({ratingInfo.count})
               </span>
             </div>
           )}

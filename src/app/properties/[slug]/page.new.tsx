@@ -118,13 +118,12 @@ export default function PropertyPage() {
                   {property.location.neighborhood && `${property.location.neighborhood}, `}
                   {property.location.city}, {property.location.region}
                 </span>
-              </div>
-              {property.rating && (
+              </div>              {property.rating && property.rating.average && (
                 <div className="flex items-center">
                   <Star className="w-5 h-5 text-yellow-400 fill-current mr-1" />
-                  <span className="font-semibold">{property.rating.average}</span>
+                  <span className="font-semibold">{property.rating.average.toFixed(1)}</span>
                   <span className="text-neutral-600 ml-1">
-                    ({property.rating.count} reviews)
+                    ({property.rating.count || 0} reviews)
                   </span>
                 </div>
               )}

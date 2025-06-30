@@ -1,0 +1,159 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "retry": "Retry",
+    "close": "Close",
+    "save": "Save",
+    "cancel": "Cancel",
+    "submit": "Submit",
+    "search": "Search",
+    "filter": "Filter",
+    "clear": "Clear",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "home": "Home",
+    "contact": "Contact",
+    "about": "About",
+    "more": "More"
+  },
+  "navigation": {
+    "properties": "Properties",
+    "destinations": "Destinations",
+    "about": "About Us",
+    "contact": "Contact",
+    "join": "Join Us",
+    "corporate": "Corporate"
+  },
+  "hero": {
+    "title": "Discover Authentic Moroccan Experiences",
+    "subtitle": "Premium riads, villas, and unique properties across Morocco's most beautiful destinations",
+    "searchPlaceholder": "Where would you like to stay?",
+    "searchButton": "Search Properties"
+  },
+  "search": {
+    "where": "Where",
+    "checkIn": "Check In",
+    "checkOut": "Check Out",
+    "guests": "Guests",
+    "guest": "Guest",
+    "searchProperties": "Search Properties",
+    "filters": "Filters",
+    "clearFilters": "Clear All",
+    "applyFilters": "Apply Filters",
+    "priceRange": "Price Range",
+    "propertyType": "Property Type",
+    "amenities": "Amenities",
+    "bedrooms": "Bedrooms",
+    "bathrooms": "Bathrooms",
+    "rating": "Minimum Rating",
+    "any": "Any"
+  },
+  "property": {
+    "types": {
+      "riad": "Riad",
+      "villa": "Villa",
+      "apartment": "Apartment",
+      "house": "House",
+      "chalet": "Chalet",
+      "guesthouse": "Guesthouse"
+    },
+    "amenities": {
+      "pool": "Swimming Pool",
+      "wifi": "WiFi",
+      "kitchen": "Kitchen",
+      "parking": "Parking",
+      "ac": "Air Conditioning",
+      "terrace": "Terrace",
+      "garden": "Garden",
+      "beachfront": "Beachfront",
+      "spa": "Spa",
+      "gym": "Gym",
+      "petfriendly": "Pet Friendly",
+      "hammam": "Hammam"
+    },
+    "details": {
+      "perNight": "per night",
+      "bedrooms": "bedrooms",
+      "bathrooms": "bathrooms",
+      "guests": "guests",
+      "viewDetails": "View Details",
+      "bookNow": "Book Now",
+      "fromPrice": "From",
+      "rating": "Rating",
+      "reviews": "reviews",
+      "review": "review"
+    }
+  },
+  "contact": {
+    "title": "Get in Touch",
+    "subtitle": "We're here to help you find your perfect Moroccan getaway",
+    "form": {
+      "name": "Full Name",
+      "email": "Email Address",
+      "phone": "Phone Number",
+      "subject": "Subject",
+      "message": "Message",
+      "inquiryType": "Inquiry Type",
+      "send": "Send Message",
+      "sending": "Sending...",
+      "success": "Thank you for your message. We will get back to you soon!",
+      "error": "Failed to send message. Please try again."
+    },
+    "inquiryTypes": {
+      "general": "General Inquiry",
+      "propertyInquiry": "Property Information",
+      "booking": "Booking Inquiry",
+      "propertyApplication": "Property Application",
+      "support": "Support"
+    }
+  },
+  "newsletter": {
+    "title": "Stay Updated",
+    "subtitle": "Subscribe to our newsletter for the latest properties and exclusive offers",
+    "placeholder": "Enter your email address",
+    "subscribe": "Subscribe",
+    "subscribing": "Subscribing...",
+    "success": "Thank you for subscribing!",
+    "error": "Failed to subscribe. Please try again.",
+    "alreadySubscribed": "You're already subscribed to our newsletter."
+  },
+  "footer": {
+    "description": "Discover authentic Moroccan experiences with our premium collection of riads, villas, and unique properties.",
+    "quickLinks": "Quick Links",
+    "destinations": "Popular Destinations",
+    "support": "Support",
+    "followUs": "Follow Us",
+    "newsletter": "Newsletter",
+    "newsletterText": "Subscribe to get updates on new properties and exclusive offers",
+    "copyright": "© 2025 Dar Al Khayma. All rights reserved."
+  },
+  "destinations": {
+    "title": "Explore Morocco",
+    "subtitle": "Discover the magic of Morocco through our carefully selected destinations",
+    "properties": "properties",
+    "property": "property",
+    "viewAll": "View All Properties",
+    "explore": "Explore"
+  },
+  "about": {
+    "title": "About Dar Al Khayma",
+    "subtitle": "Your gateway to authentic Moroccan hospitality",
+    "story": "Our Story",
+    "mission": "Our Mission",
+    "values": "Our Values"
+  },
+  "errors": {
+    "404": {
+      "title": "Page Not Found",
+      "message": "The page you're looking for doesn't exist.",
+      "backHome": "Back to Home"
+    },
+    "500": {
+      "title": "Something went wrong",
+      "message": "We're experiencing technical difficulties. Please try again later.",
+      "refresh": "Refresh Page"
+    }
+  }
+}

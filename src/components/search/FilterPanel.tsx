@@ -4,31 +4,51 @@ import { useState } from "react";
 import { SlidersHorizontal, X, MapPin, Calendar, Users, Home } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
-interface FilterPanelProps {
-  onFiltersChange?: (filters: any) => void;
-  className?: string;
+export interface FilterOptions {
+  location: string;
+  checkIn: string;
+  checkOut: string;
+  guests: number;
+  propertyType: string[];
+  priceRange: [number, number];
+  amenities: string[];
+  bedrooms: string;
+  bathrooms: string;
+  rating: number;
 }
 
-export default function FilterPanel({ onFiltersChange, className = "" }: FilterPanelProps) {
+interface FilterPanelProps {
+  onFiltersChange?: (filters: FilterOptions) => void;
+  className?: string;
+  initialFilters?: Partial<FilterOptions>;
+}
+
+export default function FilterPanel({ 
+  onFiltersChange, 
+  className = "", 
+  initialFilters = {} 
+}: FilterPanelProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const [filters, setFilters] = useState({
+  const [filters, setFilters] = useState<FilterOptions>({
     location: "",
     checkIn: "",
     checkOut: "",
     guests: 1,
-    propertyType: "",
+    propertyType: [],
     priceRange: [0, 5000],
-    amenities: [] as string[],
+    amenities: [],
     bedrooms: "",
     bathrooms: "",
+    rating: 0,
+    ...initialFilters
   });
-
   const propertyTypes = [
     { id: "riad", label: "Riad", icon: "🏛️" },
     { id: "villa", label: "Villa", icon: "🏖️" },
     { id: "apartment", label: "Apartment", icon: "🏢" },
     { id: "house", label: "House", icon: "🏠" },
     { id: "chalet", label: "Chalet", icon: "🏔️" },
+    { id: "guesthouse", label: "Guesthouse", icon: "🏘️" },
   ];
 
   const amenities = [
@@ -40,12 +60,24 @@ export default function FilterPanel({ onFiltersChange, className = "" }: FilterP
     { id: "terrace", label: "Terrace", icon: "🌅" },
     { id: "garden", label: "Garden", icon: "🌳" },
     { id: "beachfront", label: "Beachfront", icon: "🏖️" },
+    { id: "spa", label: "Spa", icon: "🧘" },
+    { id: "gym", label: "Gym", icon: "💪" },
+    { id: "petfriendly", label: "Pet Friendly", icon: "🐕" },
+    { id: "hammam", label: "Hammam", icon: "🛁" },
   ];
 
-  const handleFilterChange = (key: string, value: any) => {
+  const handleFilterChange = (key: keyof FilterOptions, value: any) => {
     const newFilters = { ...filters, [key]: value };
     setFilters(newFilters);
     onFiltersChange?.(newFilters);
+  };
+
+  const handlePropertyTypeToggle = (typeId: string) => {
+    const newTypes = filters.propertyType.includes(typeId)
+      ? filters.propertyType.filter(id => id !== typeId)
+      : [...filters.propertyType, typeId];
+    
+    handleFilterChange("propertyType", newTypes);
   };
 
   const handleAmenityToggle = (amenityId: string) => {
@@ -57,19 +89,31 @@ export default function FilterPanel({ onFiltersChange, className = "" }: FilterP
   };
 
   const clearFilters = () => {
-    const defaultFilters = {
+    const defaultFilters: FilterOptions = {
       location: "",
       checkIn: "",
       checkOut: "",
       guests: 1,
-      propertyType: "",
+      propertyType: [],
       priceRange: [0, 5000],
       amenities: [],
       bedrooms: "",
       bathrooms: "",
+      rating: 0,
     };
     setFilters(defaultFilters);
     onFiltersChange?.(defaultFilters);
+  };
+
+  const getActiveFilterCount = () => {
+    let count = 0;
+    if (filters.propertyType.length > 0) count++;
+    if (filters.amenities.length > 0) count++;
+    if (filters.priceRange[0] > 0 || filters.priceRange[1] < 5000) count++;
+    if (filters.bedrooms) count++;
+    if (filters.bathrooms) count++;
+    if (filters.rating > 0) count++;
+    return count;
   };
 
   return (
@@ -81,8 +125,10 @@ export default function FilterPanel({ onFiltersChange, className = "" }: FilterP
       >
         <SlidersHorizontal className="w-5 h-5 text-neutral-600" />
         <span className="text-neutral-700 font-medium">Filters</span>
-        {(filters.propertyType || filters.amenities.length > 0) && (
-          <div className="w-2 h-2 bg-primary-500 rounded-full"></div>
+        {getActiveFilterCount() > 0 && (
+          <div className="flex items-center justify-center w-5 h-5 bg-primary-500 text-white text-xs font-bold rounded-full">
+            {getActiveFilterCount()}
+          </div>
         )}
       </button>
 
@@ -193,12 +239,10 @@ export default function FilterPanel({ onFiltersChange, className = "" }: FilterP
                     {propertyTypes.map((type) => (
                       <button
                         key={type.id}
-                        onClick={() => handleFilterChange("propertyType", 
-                          filters.propertyType === type.id ? "" : type.id
-                        )}
+                        onClick={() => handlePropertyTypeToggle(type.id)}
                         className={`
                           p-3 border rounded-lg text-left transition-colors
-                          ${filters.propertyType === type.id
+                          ${filters.propertyType.includes(type.id)
                             ? "border-primary-500 bg-primary-50 text-primary-700"
                             : "border-neutral-200 hover:bg-neutral-50"
                           }

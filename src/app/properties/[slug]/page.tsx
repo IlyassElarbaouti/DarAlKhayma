@@ -171,11 +171,10 @@ export default function PropertyPage() {
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center space-x-2">
                     <div className="flex items-center">
-                      {[...Array(5)].map((_, i) => (
-                        <Star
+                      {[...Array(5)].map((_, i) => (                        <Star
                           key={i}
                           className={`w-4 h-4 ${
-                            i < Math.floor(mockProperty.rating.average)
+                            i < Math.floor(mockProperty.rating?.average || 0)
                               ? "text-yellow-400 fill-current"
                               : "text-gray-300"
                           }`}
@@ -183,7 +182,7 @@ export default function PropertyPage() {
                       ))}
                     </div>
                     <span className="text-sm font-medium text-neutral-700">
-                      {mockProperty.rating.average} ({mockProperty.rating.count} reviews)
+                      {mockProperty.rating?.average || 0} ({mockProperty.rating?.count || 0} reviews)
                     </span>
                   </div>
                   <div className="text-right">

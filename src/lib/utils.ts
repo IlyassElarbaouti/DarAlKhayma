@@ -57,3 +57,31 @@ export function truncateText(text: string, maxLength: number): string {
   if (text.length <= maxLength) return text;
   return text.substring(0, maxLength).replace(/\s+\S*$/, '') + '...';
 }
+
+// Safe rating utilities
+export function formatRating(rating?: { average: number; count: number }): {
+  average: string;
+  count: number;
+  hasRating: boolean;
+} {
+  if (!rating || typeof rating.average !== 'number') {
+    return {
+      average: "0.0",
+      count: 0,
+      hasRating: false
+    };
+  }
+
+  return {
+    average: rating.average.toFixed(1),
+    count: rating.count || 0,
+    hasRating: true
+  };
+}
+
+export function getRatingStars(rating?: { average: number; count: number }): number {
+  if (!rating || typeof rating.average !== 'number') {
+    return 0;
+  }
+  return Math.floor(rating.average);
+}

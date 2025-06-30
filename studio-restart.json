@@ -1,0 +1,10 @@
+{
+  "name": "restart-sanity-studio",
+  "version": "1.0.0",
+  "scripts": {
+    "restart": "rm -rf node_modules/.cache && npm run dev",
+    "clear-cache": "rm -rf node_modules/.cache && rm -rf .next",
+    "studio": "npm run dev",
+    "studio-clean": "npm run clear-cache && npm run dev"
+  }
+}

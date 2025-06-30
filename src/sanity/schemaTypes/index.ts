@@ -1,10 +1,11 @@
 import { type SchemaTypeDefinition } from 'sanity'
 
-// Import our custom schemas
-import property from '../../../sanity/schemas/property'
-import location from '../../../sanity/schemas/location'
-import amenity from '../../../sanity/schemas/amenity'
-import destination from '../../../sanity/schemas/destination'
+// Import our custom schemas from the main schemas directory
+import property from '../schemas/property'
+import location from '../schemas/location'
+import amenity from '../schemas/amenity'
+import destination from '../schemas/destination'
+import contact from '../schemas/contact'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -12,5 +13,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     location,
     amenity,
     destination,
+    contact,
   ],
 }

@@ -1,0 +1,159 @@
+{
+  "common": {
+    "loading": "Chargement...",
+    "error": "Une erreur s'est produite",
+    "retry": "Réessayer",
+    "close": "Fermer",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "submit": "Soumettre",
+    "search": "Rechercher",
+    "filter": "Filtrer",
+    "clear": "Effacer",
+    "back": "Retour",
+    "next": "Suivant",
+    "previous": "Précédent",
+    "home": "Accueil",
+    "contact": "Contact",
+    "about": "À propos",
+    "more": "Plus"
+  },
+  "navigation": {
+    "properties": "Propriétés",
+    "destinations": "Destinations",
+    "about": "À Propos",
+    "contact": "Contact",
+    "join": "Nous Rejoindre",
+    "corporate": "Entreprise"
+  },
+  "hero": {
+    "title": "Découvrez des Expériences Marocaines Authentiques",
+    "subtitle": "Riads de prestige, villas et propriétés uniques dans les plus belles destinations du Maroc",
+    "searchPlaceholder": "Où souhaitez-vous séjourner ?",
+    "searchButton": "Rechercher des Propriétés"
+  },
+  "search": {
+    "where": "Où",
+    "checkIn": "Arrivée",
+    "checkOut": "Départ",
+    "guests": "Invités",
+    "guest": "Invité",
+    "searchProperties": "Rechercher des Propriétés",
+    "filters": "Filtres",
+    "clearFilters": "Tout Effacer",
+    "applyFilters": "Appliquer les Filtres",
+    "priceRange": "Gamme de Prix",
+    "propertyType": "Type de Propriété",
+    "amenities": "Équipements",
+    "bedrooms": "Chambres",
+    "bathrooms": "Salles de Bain",
+    "rating": "Note Minimale",
+    "any": "Tout"
+  },
+  "property": {
+    "types": {
+      "riad": "Riad",
+      "villa": "Villa",
+      "apartment": "Appartement",
+      "house": "Maison",
+      "chalet": "Chalet",
+      "guesthouse": "Maison d'Hôtes"
+    },
+    "amenities": {
+      "pool": "Piscine",
+      "wifi": "WiFi",
+      "kitchen": "Cuisine",
+      "parking": "Parking",
+      "ac": "Climatisation",
+      "terrace": "Terrasse",
+      "garden": "Jardin",
+      "beachfront": "Front de Mer",
+      "spa": "Spa",
+      "gym": "Salle de Sport",
+      "petfriendly": "Animaux Acceptés",
+      "hammam": "Hammam"
+    },
+    "details": {
+      "perNight": "par nuit",
+      "bedrooms": "chambres",
+      "bathrooms": "salles de bain",
+      "guests": "invités",
+      "viewDetails": "Voir les Détails",
+      "bookNow": "Réserver Maintenant",
+      "fromPrice": "À partir de",
+      "rating": "Note",
+      "reviews": "avis",
+      "review": "avis"
+    }
+  },
+  "contact": {
+    "title": "Nous Contacter",
+    "subtitle": "Nous sommes là pour vous aider à trouver votre escapade marocaine parfaite",
+    "form": {
+      "name": "Nom Complet",
+      "email": "Adresse Email",
+      "phone": "Numéro de Téléphone",
+      "subject": "Sujet",
+      "message": "Message",
+      "inquiryType": "Type de Demande",
+      "send": "Envoyer le Message",
+      "sending": "Envoi en cours...",
+      "success": "Merci pour votre message. Nous vous répondrons bientôt !",
+      "error": "Échec de l'envoi du message. Veuillez réessayer."
+    },
+    "inquiryTypes": {
+      "general": "Demande Générale",
+      "propertyInquiry": "Information sur une Propriété",
+      "booking": "Demande de Réservation",
+      "propertyApplication": "Candidature de Propriété",
+      "support": "Support"
+    }
+  },
+  "newsletter": {
+    "title": "Restez Informé",
+    "subtitle": "Abonnez-vous à notre newsletter pour les dernières propriétés et offres exclusives",
+    "placeholder": "Entrez votre adresse email",
+    "subscribe": "S'abonner",
+    "subscribing": "Abonnement en cours...",
+    "success": "Merci de vous être abonné !",
+    "error": "Échec de l'abonnement. Veuillez réessayer.",
+    "alreadySubscribed": "Vous êtes déjà abonné à notre newsletter."
+  },
+  "footer": {
+    "description": "Découvrez des expériences marocaines authentiques avec notre collection de riads, villas et propriétés uniques de prestige.",
+    "quickLinks": "Liens Rapides",
+    "destinations": "Destinations Populaires",
+    "support": "Support",
+    "followUs": "Suivez-nous",
+    "newsletter": "Newsletter",
+    "newsletterText": "Abonnez-vous pour recevoir des mises à jour sur les nouvelles propriétés et offres exclusives",
+    "copyright": "© 2025 Dar Al Khayma. Tous droits réservés."
+  },
+  "destinations": {
+    "title": "Explorer le Maroc",
+    "subtitle": "Découvrez la magie du Maroc à travers nos destinations soigneusement sélectionnées",
+    "properties": "propriétés",
+    "property": "propriété",
+    "viewAll": "Voir Toutes les Propriétés",
+    "explore": "Explorer"
+  },
+  "about": {
+    "title": "À Propos de Dar Al Khayma",
+    "subtitle": "Votre porte d'entrée vers l'hospitalité marocaine authentique",
+    "story": "Notre Histoire",
+    "mission": "Notre Mission",
+    "values": "Nos Valeurs"
+  },
+  "errors": {
+    "404": {
+      "title": "Page Non Trouvée",
+      "message": "La page que vous recherchez n'existe pas.",
+      "backHome": "Retour à l'Accueil"
+    },
+    "500": {
+      "title": "Quelque chose s'est mal passé",
+      "message": "Nous rencontrons des difficultés techniques. Veuillez réessayer plus tard.",
+      "refresh": "Actualiser la Page"
+    }
+  }
+}
