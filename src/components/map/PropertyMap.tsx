@@ -224,7 +224,7 @@ export default function PropertyMap({
               </div>
             </div>
             <p className="text-lg font-medium font-playfair">Chargement de la carte...</p>
-            <p className="text-sm text-primary-600 mt-2">Découvrez nos propriétés exceptionnelles</p>
+            <p className="text-sm text-primary-600 mt-2">Discover our exceptional properties</p>
           </div>
         </div>
         {/* Decorative elements */}

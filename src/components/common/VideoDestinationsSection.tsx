@@ -7,14 +7,17 @@ import { getFeaturedDestinations } from "@/lib/sanityService";
 import { SanityDestination } from "@/types/sanity";
 import { urlFor } from "@/lib/sanity";
 
-// Mock video URLs for destinations (using placeholder videos that should work)
+// Drone video URLs for destinations from customer requirements
 const destinationVideos: { [key: string]: string } = {
-  'marrakech': 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-  'casablanca': 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
-  'fes': 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
-  'essaouira': 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
-  'agadir': 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4',
-  'chefchaouen': 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4'
+  'tetouane': 'https://www.youtube.com/watch?v=SszOg1IdlJw',
+  'tetouan': 'https://www.youtube.com/watch?v=37xHRY8Mrkw',
+  'casablanca': 'https://www.youtube.com/watch?v=0FVMoUD9x-Y',
+  'casa': 'https://www.youtube.com/watch?v=d9E1llJlMh4',
+  'agadir': 'https://www.youtube.com/watch?v=LpINTfhki-w',
+  'marrakech': 'https://www.youtube.com/watch?v=6udF6NeUeac',
+  'essaouira': 'https://www.youtube.com/watch?v=6dmz1bIpQHk',
+  'tanger': 'https://www.youtube.com/watch?v=WfEN8wxkJLc',
+  'rabat': 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4' // Placeholder for Rabat
 };
 
 export default function VideoDestinationsSection() {

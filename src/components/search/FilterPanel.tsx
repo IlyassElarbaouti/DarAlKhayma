@@ -107,12 +107,16 @@ export default function FilterPanel({
 
   const getActiveFilterCount = () => {
     let count = 0;
+    if (filters.location.trim()) count++;
     if (filters.propertyType.length > 0) count++;
     if (filters.amenities.length > 0) count++;
     if (filters.priceRange[0] > 0 || filters.priceRange[1] < 5000) count++;
     if (filters.bedrooms) count++;
     if (filters.bathrooms) count++;
     if (filters.rating > 0) count++;
+    if (filters.guests > 1) count++;
+    if (filters.checkIn) count++;
+    if (filters.checkOut) count++;
     return count;
   };
 
@@ -121,12 +125,12 @@ export default function FilterPanel({
       {/* Filter Toggle Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center space-x-2 px-4 py-2 bg-white border border-neutral-200 rounded-lg hover:bg-neutral-50 transition-colors"
+        className="flex items-center space-x-2 px-4 py-2 bg-white border border-neutral-200 rounded-lg hover:bg-neutral-50 transition-colors shadow-sm"
       >
         <SlidersHorizontal className="w-5 h-5 text-neutral-600" />
         <span className="text-neutral-700 font-medium">Filters</span>
         {getActiveFilterCount() > 0 && (
-          <div className="flex items-center justify-center w-5 h-5 bg-primary-500 text-white text-xs font-bold rounded-full">
+          <div className="flex items-center justify-center w-5 h-5 bg-primary-600 text-white text-xs font-bold rounded-full">
             {getActiveFilterCount()}
           </div>
         )}
@@ -263,18 +267,48 @@ export default function FilterPanel({
                     Price Range (MAD per night)
                   </label>
                   <div className="px-3">
-                    <input
-                      type="range"
-                      min="0"
-                      max="5000"
-                      step="100"
-                      value={filters.priceRange[1]}
-                      onChange={(e) => handleFilterChange("priceRange", [0, parseInt(e.target.value)])}
-                      className="w-full"
-                    />
-                    <div className="flex justify-between text-sm text-neutral-600 mt-1">
-                      <span>0 MAD</span>
-                      <span>{filters.priceRange[1]} MAD</span>
+                    <div className="mb-4">
+                      <input
+                        type="range"
+                        min="0"
+                        max="5000"
+                        step="100"
+                        value={filters.priceRange[1]}
+                        onChange={(e) => handleFilterChange("priceRange", [0, parseInt(e.target.value)])}
+                        className="w-full h-2 bg-neutral-200 rounded-lg appearance-none cursor-pointer slider"
+                        style={{
+                          background: `linear-gradient(to right, #e5e7eb 0%, #e5e7eb ${(filters.priceRange[1] / 5000) * 100}%, #d97706 ${(filters.priceRange[1] / 5000) * 100}%, #d97706 100%)`
+                        }}
+                      />
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <div className="flex items-center space-x-2">
+                        <input
+                          type="number"
+                          min="0"
+                          max="5000"
+                          step="100"
+                          value={filters.priceRange[0]}
+                          onChange={(e) => handleFilterChange("priceRange", [parseInt(e.target.value) || 0, filters.priceRange[1]])}
+                          className="w-20 px-2 py-1 text-xs border border-neutral-200 rounded"
+                          placeholder="Min"
+                        />
+                        <span className="text-xs text-neutral-500">MAD</span>
+                      </div>
+                      <span className="text-xs text-neutral-400">to</span>
+                      <div className="flex items-center space-x-2">
+                        <input
+                          type="number"
+                          min="0"
+                          max="5000"
+                          step="100"
+                          value={filters.priceRange[1]}
+                          onChange={(e) => handleFilterChange("priceRange", [filters.priceRange[0], parseInt(e.target.value) || 5000])}
+                          className="w-20 px-2 py-1 text-xs border border-neutral-200 rounded"
+                          placeholder="Max"
+                        />
+                        <span className="text-xs text-neutral-500">MAD</span>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -339,6 +373,30 @@ export default function FilterPanel({
                           <span className="text-sm">{amenity.icon}</span>
                           <span className="text-xs font-medium">{amenity.label}</span>
                         </div>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Rating Filter */}
+                <div className="space-y-3">
+                  <label className="text-sm font-medium text-neutral-700">
+                    Minimum Rating
+                  </label>
+                  <div className="flex gap-2">
+                    {[0, 3, 4, 4.5, 5].map((rating) => (
+                      <button
+                        key={rating}
+                        onClick={() => handleFilterChange("rating", rating)}
+                        className={`
+                          px-3 py-2 border rounded-lg text-sm font-medium transition-colors
+                          ${filters.rating === rating
+                            ? "border-primary-500 bg-primary-50 text-primary-700"
+                            : "border-neutral-200 hover:bg-neutral-50"
+                          }
+                        `}
+                      >
+                        {rating === 0 ? "Any" : `${rating}+`}
                       </button>
                     ))}
                   </div>

@@ -17,7 +17,7 @@ export default function ServicesSection() {
           className="text-center mb-16"
         >
           <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-neutral-800 mb-6">
-            More Than Just Bookings
+            OUR SERVICES
           </h2>
           <p className="text-lg text-neutral-600 max-w-3xl mx-auto">
             We offer comprehensive solutions for both business travelers and property owners 
@@ -61,8 +61,7 @@ export default function ServicesSection() {
                         DAR AL KHAYMA FOR COMPANIES
                       </h3>
                       <p className="text-neutral-600 mb-4 leading-relaxed">
-                        Tailored solutions for business stays.
-
+                        Short & long-term corporate rentals and personalized relocation support.
                       </p>
                     </div>
                   </div>
@@ -76,18 +75,17 @@ export default function ServicesSection() {
                     <div className="flex items-center text-sm text-neutral-600">
                       <div className="w-1.5 h-1.5 bg-primary-500 rounded-full mr-3" />
                       Personalized relocation support
-
                     </div>
                     <div className="flex items-center text-sm text-neutral-600">
                       <div className="w-1.5 h-1.5 bg-primary-500 rounded-full mr-3" />
-                      360° guest services — from laundry  to chauffeur
+                      Prime properties in exclusive city locations
                     </div>
                   </div>
 
                   {/* CTA */}
                   <div className="flex items-center justify-between">
                     <span className="text-primary-600 font-semibold">
-                      Learn More
+                      → Learn More
                     </span>
                     <ArrowRight className="w-5 h-5 text-neutral-400 group-hover:text-primary-600 group-hover:translate-x-1 transition-all duration-300" />
                   </div>
@@ -127,11 +125,10 @@ export default function ServicesSection() {
                   <div className="flex items-start justify-between mb-4">
                     <div>
                       <h3 className="font-display text-2xl font-bold text-neutral-800 mb-3">
-                        List Your Property
+                        MANAGEMENT OF HIGH-VALUE PROPERTIES
                       </h3>
                       <p className="text-neutral-600 mb-4 leading-relaxed">
-                        Want to rent your exceptional property? 
-We would love to know more
+                        Online marketing & multilingual guest support with professional maintenance services.
                       </p>
                     </div>
                   </div>
@@ -140,16 +137,19 @@ We would love to know more
                   <div className="space-y-2 mb-6">
                     <div className="flex items-center text-sm text-neutral-600">
                       <div className="w-1.5 h-1.5 bg-accent-500 rounded-full mr-3" />
-                      Renovation & interior design included
-                    </div>
-                    <div className="flex items-center text-sm text-neutral-600">
-                      <div className="w-1.5 h-1.5 bg-accent-500 rounded-full mr-3" />
                       Online marketing & multilingual guest support
                     </div>
                     <div className="flex items-center text-sm text-neutral-600">
                       <div className="w-1.5 h-1.5 bg-accent-500 rounded-full mr-3" />
-                      Pro cleaning, check-in/out, and full maintenance
+                      Pro cleaning, check-in/out, and maintenance
                     </div>
+                  </div>
+
+                  {/* CTA */}
+                  <div className="flex items-center justify-between">
+                    <span className="text-accent-600 font-semibold">
+                      → Learn More
+                    </span>
                   </div>
 
                   {/* CTA */}

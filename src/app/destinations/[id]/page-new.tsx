@@ -6,14 +6,16 @@ import { getDestinationBySlug, getPropertiesByCity } from "@/lib/sanityService";
 import DestinationClient from "./DestinationClient";
 
 interface DestinationPageProps {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
 export default async function DestinationPage({ params }: DestinationPageProps) {
+  const { id } = await params;
+  
   // Fetch destination data from Sanity
-  const destination = await getDestinationBySlug(params.id);
+  const destination = await getDestinationBySlug(id);
   
   if (!destination) {
     notFound();
@@ -55,10 +57,10 @@ export default async function DestinationPage({ params }: DestinationPageProps) 
             "touristType": ["Cultural Tourism", "Luxury Travel", "Adventure Tourism"],
             "availableLanguage": ["Arabic", "French", "English"],
             "currenciesAccepted": "MAD",
-            "hasMap": `https://dar-al-khayma.com/destinations/${params.id}`,
+            "hasMap": `https://dar-al-khayma.com/destinations/${id}`,
             "sameAs": [
               `https://en.wikipedia.org/wiki/${destination.name}`,
-              `https://www.visitmorocco.com/destinations/${params.id}`
+              `https://www.visitmorocco.com/destinations/${id}`
             ],
             "containsPlace": properties.map(property => ({
               "@type": "LodgingBusiness",

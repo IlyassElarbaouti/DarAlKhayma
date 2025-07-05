@@ -7,23 +7,27 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Logo from "@/components/ui/Logo";
+import LanguageSwitcher from "@/components/ui/LanguageSwitcher";
+import { useTranslations, useLocale } from 'next-intl';
 
-export default function Header() {
+export default function LocalizedHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
+  const locale = useLocale();
+  const t = useTranslations('navigation');
 
   const navigation = [
-    { name: "Destinations", href: "/destinations" },
-    { name: "List Your Home", href: "/join-us" },
-    { name: "About Us", href: "/about" },
-    { name: "Companies", href: "/corporate" },
-    { name: "Owners", href: "/join-us" },
-    { name: "Contact", href: "/contact" },
+    { name: t('destinations'), href: `/${locale}/destinations` },
+    { name: t('listYourHome'), href: `/${locale}/join-us` },
+    { name: t('about'), href: `/${locale}/about` },
+    { name: t('corporate'), href: `/${locale}/corporate` },
+    { name: t('owners'), href: `/${locale}/join-us` },
+    { name: t('contact'), href: `/${locale}/contact` },
   ];
 
   // Determine if we're on the homepage
-  const isHomepage = pathname === '/';
+  const isHomepage = pathname === `/${locale}` || pathname === '/';
 
   // Handle scroll effect with proper cleanup
   useEffect(() => {
@@ -40,6 +44,7 @@ export default function Header() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
   // Determine header styling based on context
   const getHeaderStyling = () => {
     if (isHomepage) {
@@ -66,16 +71,18 @@ export default function Header() {
   };
 
   const headerStyle = getHeaderStyling();
+
   return (
     <header
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         headerStyle.background
       )}
-    >      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    >
+      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 lg:h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center z-10 flex-shrink-0">
+          <Link href={`/${locale}`} className="flex items-center z-10 flex-shrink-0">
             <Logo 
               variant={headerStyle.logoVariant as "black" | "white"} 
               size="md"
@@ -85,30 +92,39 @@ export default function Header() {
           {/* Desktop Navigation - Centered */}
           <div className="hidden lg:flex items-center justify-center flex-1">
             <div className="flex items-center space-x-8">
-            {navigation.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className={cn(
-                  "font-medium transition-all duration-300 hover:text-primary-600 relative",
-                  headerStyle.textColor,
-                  // Add active state styling
-                  pathname === item.href && "text-primary-600 font-semibold"
-                )}
-              >
-                {item.name}
-                {/* Active indicator */}
-                {pathname === item.href && (
-                  <motion.div
-                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary-600 rounded-full"
-                    layoutId="activeTab"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.3 }}
-                  />
-                )}              </Link>
-            ))}
+              {navigation.map((item) => (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className={cn(
+                    "font-medium transition-all duration-300 hover:text-primary-600 relative",
+                    headerStyle.textColor,
+                    // Add active state styling
+                    pathname === item.href && "text-primary-600 font-semibold"
+                  )}
+                >
+                  {item.name}
+                  {/* Active indicator */}
+                  {pathname === item.href && (
+                    <motion.div
+                      className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary-600 rounded-full"
+                      layoutId="activeTab"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 0.3 }}
+                    />
+                  )}
+                </Link>
+              ))}
             </div>
+          </div>
+
+          {/* Language Switcher */}
+          <div className="hidden lg:flex items-center space-x-2 flex-shrink-0">
+            <LanguageSwitcher 
+              variant={isScrolled || !isHomepage ? "light" : "dark"}
+              className="bg-white/10 backdrop-blur-sm"
+            />
           </div>
 
           {/* Mobile Menu Button */}
@@ -126,7 +142,9 @@ export default function Header() {
               <Menu className="w-6 h-6" />
             )}
           </button>
-        </div>        {/* Mobile Navigation */}
+        </div>
+
+        {/* Mobile Navigation */}
         <AnimatePresence>
           {isMenuOpen && (
             <motion.div
@@ -148,7 +166,14 @@ export default function Header() {
                     onClick={() => setIsMenuOpen(false)}
                   >
                     {item.name}
-                  </Link>                ))}
+                  </Link>
+                ))}
+                
+                {/* Mobile Language Switcher */}
+                <div className="px-6 py-3 border-t border-neutral-200 mt-4">
+                  <div className="text-sm font-medium text-neutral-500 mb-2">Language</div>
+                  <LanguageSwitcher variant="light" />
+                </div>
               </div>
             </motion.div>
           )}

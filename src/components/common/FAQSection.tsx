@@ -44,7 +44,7 @@ const faqData: FAQCategory[] = [
     ]
   },
   {
-    title: "Arrival & Check-in",
+    title: "ARRIVAL",
     icon: "🛬",
     items: [
       {
@@ -70,7 +70,7 @@ const faqData: FAQCategory[] = [
     ]
   },
   {
-    title: "During Your Stay",
+    title: "DURING THE STAY",
     icon: "🏠",
     items: [
       {
@@ -104,7 +104,7 @@ const faqData: FAQCategory[] = [
     ]
   },
   {
-    title: "Payments, Changes & Cancellations",
+    title: "RESERVE",
     icon: "🧾",
     items: [
       {
@@ -136,7 +136,7 @@ const faqData: FAQCategory[] = [
     ]
   },
   {
-    title: "Check-Out",
+    title: "EXIT",
     icon: "🚪",
     items: [
       {

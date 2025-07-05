@@ -1,32 +1,38 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Award, Users, Camera, ExternalLink } from "lucide-react";
+import { Award, Wrench, MapPin, Clock, Star } from "lucide-react";
 
 const features = [
   {
     icon: Award,
-    title: "Quality ",
-    description: "Professionally curated homes, styled and maintained to perfection",
-    detail: "What you see is what you get — no surprises Every detail checked for design, comfort, and location."
+    title: "QUALITY",
+    description: "Each property meets rigorous standards for quality, design and attention to detail",
+    detail: "Each property at Dar Al Khayma is selected, designed, executed and cared for with great dedication and professionalism. We continually strive to ensure that the furnishings are as shown in the photographs and that the inventory is fully complete, which is why we have a team dedicated exclusively to this. All our houses are selected and meet minimum standards in quality, features and area."
   },
   {
-    icon: Users,
-    title: "PROPERTIES WITH SIGNATURE", 
-    description: "Distinctive design, unified by the Dar Al Khayma aesthetic",
-    detail: "Fully equipped  — no extras needed Everything ready for a seamless stay."
+    icon: Clock,
+    title: "24/7 SERVICE", 
+    description: "Round-the-clock support to make your stay unforgettable",
+    detail: "We welcome you to our cities, we receive you in your accommodation and we offer you everything you need to make you feel comfortable during your stay. If you need additional services, no matter the time or day, let us know and we will make it happen. We want your stay to be unforgettable, so you can complete your experience with our additional services."
   },
   {
-    icon: Camera,
-    title: "EQUIPEMENT",
-    description: "Hand-selected homes with exacting standards",
-    detail: "What you see is what you get — no surprises Every detail checked for design, comfort, and location"
+    icon: Wrench,
+    title: "EQUIPMENT",
+    description: "High quality amenities and fully equipped kitchens for a seamless stay",
+    detail: "All our houses are provided with high quality, high thread count cotton sheets and towels, as well as a set of bathroom amenities courtesy of Dar Al Khayma. In addition, the kitchens of our apartments come with a complete inventory with everything you need to have a stay without the need to purchase any additional utensils."
   },
   {
-    icon: ExternalLink,
-    title: "Trusted Partners",
-    description: "Seamless booking through Airbnb, Booking.com",
-    detail: "Book with confidence through established platforms with secure payment and guest protection."
+    icon: Star,
+    title: "PROPERTIES WITH SIGNATURE",
+    description: "Each home designed by our team with the distinctive Dar Al Khayma style",
+    detail: "Each of our houses bears the Dar Al Khayma stamp and style, that is, it has been designed by our team of interior designers. They all follow the same line, but each one has its own personality. In this way, we ensure that the quality and aesthetics from one apartment to another is very similar so you can book any property without lowering the design or quality."
+  },
+  {
+    icon: MapPin,
+    title: "UNIQUE LOCATIONS",
+    description: "Premium properties in the best urban locations across Morocco",
+    detail: "We offer you the best destinations, urban and in the best locations, either to enjoy a vacation or to rest in a fully equipped stay when traveling for work, as we also offer corporate rentals for short or long stays."
   }
 ];
 
@@ -53,8 +59,8 @@ export default function WhyChooseUsSection() {
           </p>
         </motion.div>
 
-        {/* Features Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {/* Features - Accordion Style */}
+        <div className="max-w-4xl mx-auto space-y-6">
           {features.map((feature, index) => (
             <motion.div
               key={index}
@@ -62,24 +68,33 @@ export default function WhyChooseUsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="group"
+              className="group bg-white border border-neutral-200 rounded-2xl p-6 hover:border-primary-300 hover:shadow-lg transition-all duration-300"
             >
-              <div className="text-center p-6 rounded-2xl hover:bg-neutral-50 transition-all duration-300 hover:shadow-lg">
+              <div className="flex items-start gap-6">
                 {/* Icon */}
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-primary-100 text-primary-600 rounded-2xl mb-6 group-hover:bg-primary-600 group-hover:text-white transition-all duration-300">
-                  <feature.icon className="w-8 h-8" />
+                <div className="flex-shrink-0 w-14 h-14 bg-primary-100 text-primary-600 rounded-xl flex items-center justify-center group-hover:bg-primary-600 group-hover:text-white transition-all duration-300">
+                  <feature.icon className="w-7 h-7" />
                 </div>
 
                 {/* Content */}
-                <h3 className="font-semibold text-xl text-neutral-800 mb-3 group-hover:text-primary-600 transition-colors duration-300">
-                  {feature.title}
-                </h3>
-                <p className="text-primary-600 font-medium mb-3">
-                  {feature.description}
-                </p>
-                <p className="text-sm text-neutral-600 leading-relaxed">
-                  {feature.detail}
-                </p>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-3 mb-3">
+                    <h3 className="font-semibold text-xl text-neutral-800 group-hover:text-primary-600 transition-colors duration-300">
+                      {feature.title}
+                    </h3>
+                    <div className="h-px bg-gradient-to-r from-primary-300 to-transparent flex-1"></div>
+                  </div>
+                  
+                  <p className="text-primary-600 font-medium mb-4">
+                    {feature.description}
+                  </p>
+                  
+                  <div className="bg-neutral-50 rounded-lg p-4 border-l-4 border-primary-200">
+                    <p className="text-sm text-neutral-700 leading-relaxed">
+                      {feature.detail}
+                    </p>
+                  </div>
+                </div>
               </div>
             </motion.div>
           ))}
@@ -95,7 +110,7 @@ export default function WhyChooseUsSection() {
         >
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center text-white">
             <div>
-              <div className="font-display text-4xl md:text-5xl font-bold mb-2">50+</div>
+              <div className="font-display text-4xl md:text-5xl font-bold mb-2">+5</div>
               <div className="text-primary-100">Premium Properties</div>
             </div>
             <div>
@@ -117,11 +132,15 @@ export default function WhyChooseUsSection() {
           viewport={{ once: true }}
           className="text-center mt-16"
         >
-          <p className="text-lg text-neutral-600 mb-6">
-            Ready to experience Morocco like never before?
+          <h3 className="text-2xl md:text-3xl font-bold text-neutral-800 mb-4">
+            JOIN THE DAR AL KHAYMA CLUB
+          </h3>
+          <p className="text-lg text-neutral-600 mb-8">
+            Unlock exclusive benefits and become part of our luxury hospitality community. 
+            Experience curated properties, personalized service, and insider access to Morocco's finest accommodations.
           </p>
-          <button className="bg-accent-500 hover:bg-accent-600 text-neutral-800 px-8 py-4 rounded-lg font-semibold text-lg transition-colors duration-300 shadow-lg hover:shadow-xl">
-            Start Your Journey
+          <button className="bg-accent-500 hover:bg-accent-600 text-neutral-800 px-10 py-5 rounded-xl font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+            Join The Club
           </button>
         </motion.div>
       </div>

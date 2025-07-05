@@ -4,24 +4,29 @@ import Image from "next/image";
 
 const values = [
   {
+    icon: Award,
+    title: "QUALITY",
+    description: "Each property at Dar Al Khayma is selected, designed, executed and cared for with great dedication and professionalism. We continually strive to ensure that the furnishings are as shown in the photographs and that the inventory is fully complete, which is why we have a team dedicated exclusively to this. All our houses are selected and meet minimum standards in quality, features and area."
+  },
+  {
     icon: Shield,
-    title: "Curated Selection",
-    description: "Every property is hand-picked and verified by our local team to ensure exceptional quality and authentic experiences."
+    title: "24/7 SERVICE",
+    description: "We welcome you to our cities, we receive you in your accommodation and we offer you everything you need to make you feel comfortable during your stay. If you need additional services, no matter the time or day, let us know and we will make it happen. We want your stay to be unforgettable, so you can complete your experience with our additional services."
   },
   {
     icon: Heart,
-    title: "Local Expertise",
-    description: "Our Morocco-based team provides insider knowledge and authentic recommendations to make your stay unforgettable."
+    title: "EQUIPMENT",
+    description: "All our houses are provided with high quality, high thread count cotton sheets and towels, as well as a set of bathroom amenities courtesy of Dar Al Khayma. In addition, the kitchens of our apartments come with a complete inventory with everything you need to have a stay without the need to purchase any additional utensils."
   },
   {
     icon: Globe,
-    title: "Trusted Partners",
-    description: "We work with established platforms like Airbnb and Booking.com to ensure secure bookings and reliable service."
+    title: "PROPERTIES WITH SIGNATURE",
+    description: "Each of our houses bears the Dar Al Khayma stamp and style, that is, it has been designed by our team of interior designers. They all follow the same line, but each one has its own personality. In this way, we ensure that the quality and aesthetics from one apartment to another is very similar so you can book any property without lowering the design or quality."
   },
   {
-    icon: Award,
-    title: "Quality Standards",
-    description: "Professional photography, detailed descriptions, and verified amenities help you make informed decisions."
+    icon: MapPin,
+    title: "UNIQUE LOCATIONS",
+    description: "We offer you the best destinations, urban and in the best locations, either to enjoy a vacation or to rest in a fully equipped stay when traveling for work, as we also offer corporate rentals for short or long stays."
   }
 ];
 
@@ -47,10 +52,9 @@ const team = [
 ];
 
 const stats = [
-  { label: "Properties Curated", value: "150+" },
-  { label: "Cities Covered", value: "12" },
-  { label: "Happy Guests", value: "5,000+" },
-  { label: "Years of Experience", value: "8" }
+  { label: "Premium Properties", value: "5+" },
+  { label: "Guest Satisfaction", value: "100%" },
+  { label: "Local Support", value: "24/7" }
 ];
 
 export default function AboutPage() {

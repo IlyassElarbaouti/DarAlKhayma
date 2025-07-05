@@ -24,12 +24,14 @@
     "about": "About Us",
     "contact": "Contact",
     "join": "Join Us",
-    "corporate": "Corporate"
+    "corporate": "Companies",
+    "listYourHome": "List Your Home",
+    "owners": "Owners"
   },
   "hero": {
-    "title": "Discover Authentic Moroccan Experiences",
-    "subtitle": "Premium riads, villas, and unique properties across Morocco's most beautiful destinations",
-    "searchPlaceholder": "Where would you like to stay?",
+    "title": "Your stay deserves to be unforgettable",
+    "subtitle": "Immerse yourself in luxury accommodations across Morocco's most enchanting destinations. From traditional riads to modern villas.",
+    "searchPlaceholder": "Select a destination...",
     "searchButton": "Search Properties"
   },
   "search": {

@@ -8,39 +8,43 @@ import { useState, useEffect } from "react";
 const testimonials = [
   {
     id: 1,
-    name: "Sarah Johnson",
-    location: "London, UK",
+    name: "Marie Dubois",
+    location: "Paris, France",
     avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b147?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80",
     rating: 5,
-    text: "Morocco exceeded all expectations! The riad in Marrakech was absolutely stunning, and the local insights from Dar Al Khayma made our trip unforgettable. Every detail was perfect.",
-    property: "Traditional Riad in Marrakech Medina"
+    text: "Absolutely perfect stay! The apartment was exactly as shown in photos, impeccably clean and beautifully designed. The location in Marrakech medina was ideal for exploring. Ilyass and his team were incredibly responsive and helpful throughout our stay.",
+    property: "Luxury Riad in Marrakech Medina",
+    source: "Airbnb Guest"
   },
   {
     id: 2,
-    name: "Marco Rodriguez",
-    location: "Barcelona, Spain", 
+    name: "James Wilson",
+    location: "London, UK", 
     avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80",
     rating: 5,
-    text: "The villa in Essaouira was a dream come true. Waking up to ocean views every morning and experiencing authentic Moroccan hospitality - it&apos;s an experience we&apos;ll treasure forever.",
-    property: "Ocean View Villa in Essaouira"
+    text: "Outstanding experience from start to finish. The property exceeded all expectations - modern amenities in a traditional setting. The 24/7 support was invaluable, and the local recommendations were spot on. Will definitely return!",
+    property: "Traditional Riad with Modern Amenities",
+    source: "Airbnb Guest"
   },
   {
     id: 3,
-    name: "Amélie Dubois",
-    location: "Paris, France",
+    name: "Sofia Rodriguez",
+    location: "Madrid, Spain",
     avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80",
     rating: 5,
-    text: "From booking to checkout, everything was seamless. The property in Fez was exactly as described, and the cultural experiences recommended by the local team were incredible.",
-    property: "Historic House in Fez Medina"
+    text: "This was our first time in Morocco and Dar Al Khayma made it unforgettable. Every detail was thought of - from the welcome amenities to the perfectly equipped kitchen. The team's hospitality is unmatched. Highly recommended!",
+    property: "Boutique Apartment in Casablanca",
+    source: "Airbnb Guest"
   },
   {
     id: 4,
-    name: "David Thompson",
-    location: "New York, USA",
+    name: "Andreas Mueller",
+    location: "Berlin, Germany",
     avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80",
     rating: 5,
-    text: "Outstanding service and incredible properties. The attention to detail and local knowledge provided by Dar Al Khayma made our Moroccan adventure truly special.",
-    property: "Luxury Apartment in Casablanca"
+    text: "Professional service and stunning property. The design is simply beautiful - authentic Moroccan style with luxury finishes. Location was perfect for both business and leisure. The team went above and beyond to ensure our comfort.",
+    property: "Executive Suite in Rabat",
+    source: "Airbnb Guest"
   }
 ];
 
@@ -169,11 +173,17 @@ export default function TestimonialsSection() {
           viewport={{ once: true }}
           className="text-center mt-16"
         >
-          <p className="text-lg text-neutral-600 mb-6">
-            Ready to create your own unforgettable Morocco experience?
+          <h3 className="text-2xl md:text-3xl font-bold text-neutral-800 mb-4">
+            LIVE EVERY SECOND OF YOUR STAY TO THE FULLEST
+          </h3>
+          <p className="text-lg text-neutral-600 mb-8">
+            Ready to experience Morocco like never before? Let us help you plan the perfect stay with our premium properties and personalized service.
           </p>
-          <button className="bg-primary-600 hover:bg-primary-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-colors duration-300 shadow-lg hover:shadow-xl">
-            Book Your Stay
+          <p className="text-lg text-neutral-600 mb-8">
+            <strong>Contact us:</strong> +212 6 XX XX XX XX
+          </p>
+          <button className="bg-primary-600 hover:bg-primary-700 text-white px-10 py-5 rounded-xl font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+            Contact Us Today
           </button>
         </motion.div>
       </div>

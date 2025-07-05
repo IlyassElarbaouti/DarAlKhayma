@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { MapPin, Users, Bed, Bath, Star, Heart, Camera } from "lucide-react";
 import { Property } from "@/types";
@@ -15,6 +16,7 @@ interface PropertyCardProps {
 }
 
 export default function PropertyCard({ property, index = 0 }: PropertyCardProps) {
+  const router = useRouter();
   const [currentImage, setCurrentImage] = useState(0);
   const [isLiked, setIsLiked] = useState(false);
   const [showGallery, setShowGallery] = useState(false);
@@ -48,6 +50,10 @@ export default function PropertyCard({ property, index = 0 }: PropertyCardProps)
     setShowGallery(true);
   };
 
+  const handleCardClick = () => {
+    router.push(`/properties/${property.slug}`);
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -57,7 +63,11 @@ export default function PropertyCard({ property, index = 0 }: PropertyCardProps)
       className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300"
     >
       {/* Image Gallery */}
-      <div className="relative h-64 md:h-72 overflow-hidden">        <Link href={`/properties/${property.slug}`}>
+      <div className="relative h-64 md:h-72 overflow-hidden cursor-pointer">
+        <div 
+          onClick={handleCardClick}
+          className="w-full h-full"
+        >
           {property.images.length > 0 && property.images[currentImage]?.url ? (
             <Image
               src={property.images[currentImage].url}
@@ -78,13 +88,16 @@ export default function PropertyCard({ property, index = 0 }: PropertyCardProps)
               </div>
             </div>
           )}
-        </Link>
+        </div>
 
         {/* Image Navigation */}
         {property.images.length > 1 && (
           <>
             <button
-              onClick={() => handleImageChange("prev")}
+              onClick={(e) => {
+                e.stopPropagation();
+                handleImageChange("prev");
+              }}
               className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -92,7 +105,10 @@ export default function PropertyCard({ property, index = 0 }: PropertyCardProps)
               </svg>
             </button>
             <button
-              onClick={() => handleImageChange("next")}
+              onClick={(e) => {
+                e.stopPropagation();
+                handleImageChange("next");
+              }}
               className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -108,7 +124,10 @@ export default function PropertyCard({ property, index = 0 }: PropertyCardProps)
             {property.images.map((_, idx) => (
               <button
                 key={idx}
-                onClick={() => setCurrentImage(idx)}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setCurrentImage(idx);
+                }}
                 className={cn(
                   "w-2 h-2 rounded-full transition-all duration-200",
                   currentImage === idx ? "bg-white" : "bg-white/50"
@@ -118,7 +137,10 @@ export default function PropertyCard({ property, index = 0 }: PropertyCardProps)
           </div>
         )}        {/* Like Button */}
         <button
-          onClick={() => setIsLiked(!isLiked)}
+          onClick={(e) => {
+            e.stopPropagation();
+            setIsLiked(!isLiked);
+          }}
           className="absolute top-4 right-4 bg-white/90 hover:bg-white rounded-full p-2 transition-colors duration-200"
         >
           <Heart
@@ -132,7 +154,10 @@ export default function PropertyCard({ property, index = 0 }: PropertyCardProps)
         {/* Gallery Button */}
         {property.images.length > 1 && (
           <button
-            onClick={openGallery}
+            onClick={(e) => {
+              e.stopPropagation();
+              openGallery(e);
+            }}
             className="absolute top-4 right-16 bg-white/90 hover:bg-white rounded-full p-2 transition-colors duration-200"
           >
             <Camera className="w-4 h-4 text-neutral-600" />
@@ -173,11 +198,9 @@ export default function PropertyCard({ property, index = 0 }: PropertyCardProps)
         </div>
 
         {/* Title */}
-        <Link href={`/properties/${property.slug}`}>
-          <h3 className="font-semibold text-lg text-neutral-800 hover:text-primary-600 transition-colors duration-200 mb-2 line-clamp-2">
-            {property.title}
-          </h3>
-        </Link>
+        <h3 className="font-semibold text-lg text-neutral-800 mb-2 line-clamp-2">
+          {property.title}
+        </h3>
 
         {/* Description */}
         <p className="text-neutral-600 text-sm mb-4 line-clamp-2">
@@ -210,9 +233,10 @@ export default function PropertyCard({ property, index = 0 }: PropertyCardProps)
           </div>
           <Link
             href={`/properties/${property.slug}`}
-            className="bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 rounded-lg font-medium transition-colors duration-200"
+            className="bg-primary-600 hover:bg-primary-700 text-white px-6 py-2.5 rounded-lg font-medium transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
           >
-            View Details          </Link>
+            View Details
+          </Link>
         </div>
       </div>
 

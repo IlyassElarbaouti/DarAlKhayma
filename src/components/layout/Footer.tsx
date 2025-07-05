@@ -54,28 +54,33 @@ export default function Footer() {
             >              <h4 className="font-semibold text-lg mb-6">Quick Links</h4>
               <ul className="space-y-3">
                 <li>
-                  <Link href="/properties" className="text-neutral-400 hover:text-white transition-colors duration-200">
-                    All Properties
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/destinations" className="text-neutral-400 hover:text-white transition-colors duration-200">
-                    Destinations
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/corporate" className="text-neutral-400 hover:text-white transition-colors duration-200">
-                    Corporate Rentals
+                  <Link href="/about" className="text-neutral-400 hover:text-white transition-colors duration-200">
+                    About us
                   </Link>
                 </li>
                 <li>
                   <Link href="/join-us" className="text-neutral-400 hover:text-white transition-colors duration-200">
-                    List Your Property
+                    Property management
                   </Link>
                 </li>
                 <li>
-                  <Link href="/about" className="text-neutral-400 hover:text-white transition-colors duration-200">
-                    About Us
+                  <Link href="/corporate" className="text-neutral-400 hover:text-white transition-colors duration-200">
+                    Companies
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/contact?faq=true" className="text-neutral-400 hover:text-white transition-colors duration-200">
+                    Frequently Asked Questions
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/properties" className="text-neutral-400 hover:text-white transition-colors duration-200">
+                    Properties
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/about#interior-design" className="text-neutral-400 hover:text-white transition-colors duration-200">
+                    Interior design
                   </Link>
                 </li>
                 <li>
@@ -101,13 +106,18 @@ export default function Footer() {
                   </Link>
                 </li>
                 <li>
+                  <Link href="/destinations/agadir" className="text-neutral-400 hover:text-white transition-colors duration-200">
+                    Agadir
+                  </Link>
+                </li>
+                <li>
                   <Link href="/destinations/casablanca" className="text-neutral-400 hover:text-white transition-colors duration-200">
                     Casablanca
                   </Link>
                 </li>
                 <li>
-                  <Link href="/destinations/fez" className="text-neutral-400 hover:text-white transition-colors duration-200">
-                    Fez
+                  <Link href="/destinations/tanger" className="text-neutral-400 hover:text-white transition-colors duration-200">
+                    Tanger
                   </Link>
                 </li>
                 <li>

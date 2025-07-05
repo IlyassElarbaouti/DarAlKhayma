@@ -16,7 +16,7 @@ export default function ServerFeaturedProperties({ properties }: ServerFeaturedP
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-neutral-800 mb-4">
-              Featured Properties
+              UNIQUE AND REPRESENTATIVE HOMES
             </h2>
             <p className="text-lg text-neutral-600 max-w-2xl mx-auto mb-8">
               No featured properties available at the moment.
@@ -45,11 +45,13 @@ export default function ServerFeaturedProperties({ properties }: ServerFeaturedP
           className="text-center mb-12"
         >
           <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-neutral-800 mb-4">
-            Featured Properties
+            UNIQUE AND REPRESENTATIVE HOMES
           </h2>
           <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
-            Discover our handpicked selection of exceptional properties across Morocco&apos;s 
-            most sought-after destinations.
+            Reinventing the way of living by offering exclusive properties and high level services.
+          </p>
+          <p className="text-lg text-neutral-600 max-w-3xl mx-auto mt-4">
+            In all of our rental properties regardless of location, we guarantee an exceptional level of service. Each Dar Al Khayma property meets rigorous standards for quality, design and meticulous attention to detail.
           </p>
         </motion.div>
 

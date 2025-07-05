@@ -52,27 +52,28 @@ export default function NewsletterSection() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >            <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
-              Discover Morocco&apos;s
-              <span className="block text-accent-400">Hidden Gems</span>
+              JOIN THE DAR AL KHAYMA CLUB
             </h2>
+            <p className="text-lg text-white/90 mb-4 leading-relaxed">
+              Want to rent your exceptional property?
+            </p>
             <p className="text-lg text-white/90 mb-8 leading-relaxed">
-              Stay updated with new luxury properties, insider travel tips, and seasonal guides. 
-              Be the first to discover exclusive accommodations across Morocco&apos;s most enchanting destinations.
+              We would love to know more.
             </p>
 
             {/* Benefits */}
             <div className="space-y-4 mb-8">
               <div className="flex items-center text-white">
                 <Gift className="w-5 h-5 mr-3 text-accent-400" />
-                <span>Exclusive property previews and early access</span>
+                <span>Professional property evaluation and listing</span>
               </div>
               <div className="flex items-center text-white">
                 <Mail className="w-5 h-5 mr-3 text-accent-400" />
-                <span>Curated travel tips and local insights</span>
+                <span>Premium marketing and guest management</span>
               </div>
               <div className="flex items-center text-white">
                 <Shield className="w-5 h-5 mr-3 text-accent-400" />
-                <span>Seasonal offers and special promotions</span>
+                <span>Guaranteed property protection and maintenance</span>
               </div>
             </div>
           </motion.div>
@@ -87,9 +88,9 @@ export default function NewsletterSection() {
           >
             <div className="text-center mb-6">
               <h3 className="font-display text-2xl font-bold text-neutral-800 mb-2">
-                Join Our Community
+                REQUEST INFORMATION
               </h3>              <p className="text-neutral-600">
-                Get exclusive access to Morocco&apos;s finest properties
+                Contact us to learn more about listing your property
               </p>
             </div>            {isSubscribed ? (
               <motion.div
@@ -134,10 +135,10 @@ export default function NewsletterSection() {
                   {isLoading ? (
                     <>
                       <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                      Subscribing...
+                      Submitting Request...
                     </>
                   ) : (
-                    "Subscribe to Newsletter"
+                    "REQUEST INFORMATION"
                   )}
                 </Button>
 

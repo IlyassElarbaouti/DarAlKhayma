@@ -24,12 +24,14 @@
     "about": "À Propos",
     "contact": "Contact",
     "join": "Nous Rejoindre",
-    "corporate": "Entreprise"
+    "corporate": "Entreprises",
+    "listYourHome": "Lister Votre Propriété",
+    "owners": "Propriétaires"
   },
   "hero": {
-    "title": "Découvrez des Expériences Marocaines Authentiques",
-    "subtitle": "Riads de prestige, villas et propriétés uniques dans les plus belles destinations du Maroc",
-    "searchPlaceholder": "Où souhaitez-vous séjourner ?",
+    "title": "Votre séjour mérite d'être inoubliable",
+    "subtitle": "Plongez-vous dans des hébergements de luxe à travers les destinations les plus enchanteresses du Maroc. Des riads traditionnels aux villas modernes.",
+    "searchPlaceholder": "Sélectionnez une destination...",
     "searchButton": "Rechercher des Propriétés"
   },
   "search": {

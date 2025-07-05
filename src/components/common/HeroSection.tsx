@@ -59,8 +59,8 @@ export default function HeroSection() {
           transition={{ duration: 0.8 }}
           className="mb-8"
         >          <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6">
-            Discover Morocco&apos;s
-            <span className="block text-accent-400">Finest Properties</span>
+            <span className="block text-white">Dar Al Khayma</span>
+            <span className="block text-accent-400">YOUR STAY DESERVES TO BE UNFORGETTABLE</span>
           </h1>
           <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto leading-relaxed">
             Immerse yourself in luxury accommodations across Morocco&apos;s most 
