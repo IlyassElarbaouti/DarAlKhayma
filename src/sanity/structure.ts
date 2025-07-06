@@ -11,7 +11,6 @@ export const structure: StructureResolver = (S) =>
         .child(
           S.documentTypeList('property')
             .title('All Properties')
-            .filter('_type == "property"')
         ),
       
       // Destinations section  
@@ -20,7 +19,6 @@ export const structure: StructureResolver = (S) =>
         .child(
           S.documentTypeList('destination')
             .title('All Destinations')
-            .filter('_type == "destination"')
         ),
       
       // Support section
@@ -35,7 +33,6 @@ export const structure: StructureResolver = (S) =>
                 .child(
                   S.documentTypeList('contact')
                     .title('Contact Submissions')
-                    .filter('_type == "contact"')
                 ),
               S.listItem()
                 .title('New Submissions')
@@ -66,20 +63,22 @@ export const structure: StructureResolver = (S) =>
                 .child(
                   S.documentTypeList('location')
                     .title('All Locations')
-                    .filter('_type == "location"')
                 ),
               S.listItem()
                 .title('Amenities')
                 .child(
                   S.documentTypeList('amenity')
                     .title('All Amenities')
-                    .filter('_type == "amenity"')
                 ),
             ])
         ),
       
+      // Add a divider
+      S.divider(),
+      
       // Add remaining document types that might not be covered above
-      ...S.documentTypeListItems().filter(listItem => 
-        !['property', 'destination', 'contact', 'location', 'amenity'].includes(listItem.getId() || '')
-      ),
+      ...S.documentTypeListItems().filter(listItem => {
+        const id = listItem.getId()
+        return id && !['property', 'destination', 'contact', 'location', 'amenity'].includes(id)
+      }),
     ])
