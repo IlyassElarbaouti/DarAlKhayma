@@ -58,9 +58,9 @@ export default function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           className="mb-4 sm:mb-6 md:mb-8"
-        >          <h1 className="font-display text-xl xs:text-2xl sm:text-3xl md:text-5xl lg:text-7xl font-bold text-white mb-3 sm:mb-4 md:mb-6 leading-tight">
+        >          <h1 className="font-display text-3xl xs:text-4xl sm:text-5xl md:text-5xl lg:text-7xl font-bold text-white mb-3 sm:mb-4 md:mb-6 leading-tight">
             <span className="block text-white">Dar Al Khayma</span>
-            <span className="block text-accent-400 text-md xs:text-base sm:text-lg md:text-3xl lg:text-5xl mt-2 sm:mt-4 md:mt-6 leading-snug">YOUR STAY DESERVES TO BE UNFORGETTABLE</span>
+            <span className="block text-accent-400 text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl mt-2 sm:mt-4 md:mt-6 leading-snug">YOUR STAY DESERVES TO BE UNFORGETTABLE</span>
           </h1>
 
         </motion.div>
