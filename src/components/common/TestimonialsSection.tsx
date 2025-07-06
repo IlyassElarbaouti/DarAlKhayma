@@ -4,10 +4,12 @@ import { motion } from "framer-motion";
 import { Star, Quote } from "lucide-react";
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import { Review } from "@/types/sanity";
 
-const testimonials = [
+// Fallback testimonials in case Sanity data is not available
+const fallbackTestimonials: Review[] = [
   {
-    id: 1,
+    id: "fallback-1",
     name: "Marie Dubois",
     location: "Paris, France",
     avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b147?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80",
@@ -17,7 +19,7 @@ const testimonials = [
     source: "Airbnb Guest"
   },
   {
-    id: 2,
+    id: "fallback-2",
     name: "James Wilson",
     location: "London, UK", 
     avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80",
@@ -27,7 +29,7 @@ const testimonials = [
     source: "Airbnb Guest"
   },
   {
-    id: 3,
+    id: "fallback-3",
     name: "Sofia Rodriguez",
     location: "Madrid, Spain",
     avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80",
@@ -37,7 +39,7 @@ const testimonials = [
     source: "Airbnb Guest"
   },
   {
-    id: 4,
+    id: "fallback-4",
     name: "Andreas Mueller",
     location: "Berlin, Germany",
     avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80",
@@ -50,6 +52,33 @@ const testimonials = [
 
 export default function TestimonialsSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [testimonials, setTestimonials] = useState<Review[]>(fallbackTestimonials);
+  const [_loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchTestimonials = async () => {
+      try {
+        const response = await fetch('/api/reviews?featured=true&limit=4');
+        const data = await response.json();
+        
+        if (data.success && data.data.length > 0) {
+          // Map Sanity data to use fallback avatars since we don't have images yet
+          const testimonialsWithAvatars = data.data.map((review: any, index: number) => ({
+            ...review,
+            avatar: review.avatar || fallbackTestimonials[index]?.avatar || fallbackTestimonials[0].avatar
+          }));
+          setTestimonials(testimonialsWithAvatars);
+        }
+      } catch (error) {
+        console.error('Error fetching testimonials:', error);
+        // Keep fallback testimonials
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchTestimonials();
+  }, []);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -57,7 +86,7 @@ export default function TestimonialsSection() {
     }, 5000);
 
     return () => clearInterval(timer);
-  }, []);
+  }, [testimonials.length]);
 
   return (
     <section className="py-20 bg-gradient-to-br from-neutral-50 to-primary-50/30">
@@ -89,14 +118,14 @@ export default function TestimonialsSection() {
               {testimonials.map((testimonial) => (
                 <div key={testimonial.id} className="w-full flex-shrink-0">
                   <div className="bg-white rounded-3xl p-8 md:p-12 shadow-xl mx-4">
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                    <div className="max-w-4xl mx-auto text-center">
                       {/* Content */}
                       <div>
-                        <Quote className="w-12 h-12 text-primary-200 mb-6" />
+                        <Quote className="w-12 h-12 text-primary-200 mb-6 mx-auto" />
                         
                         {/* Rating */}
-                        <div className="flex items-center mb-6">
-                          {[...Array(testimonial.rating)].map((_, i) => (
+                        <div className="flex items-center justify-center mb-6">
+                          {[...Array(Math.max(1, Math.min(5, testimonial.rating || 5)))].map((_, i) => (
                             <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
                           ))}
                         </div>
@@ -106,12 +135,12 @@ export default function TestimonialsSection() {
                         </blockquote>
 
                         {/* Property Info */}
-                        <div className="text-sm text-primary-600 font-medium mb-4">
+                        <div className="text-sm text-primary-600 font-medium mb-6">
                           Stayed at: {testimonial.property}
                         </div>
 
                         {/* Author Info */}
-                        <div className="flex items-center">
+                        <div className="flex items-center justify-center">
                           <div className="relative w-12 h-12 rounded-full overflow-hidden mr-4">
                             <Image
                               src={testimonial.avatar}
@@ -120,7 +149,7 @@ export default function TestimonialsSection() {
                               className="object-cover"
                             />
                           </div>
-                          <div>
+                          <div className="text-center">
                             <div className="font-semibold text-neutral-800">
                               {testimonial.name}
                             </div>
@@ -128,19 +157,6 @@ export default function TestimonialsSection() {
                               {testimonial.location}
                             </div>
                           </div>
-                        </div>
-                      </div>
-
-                      {/* Visual Element */}
-                      <div className="hidden lg:flex items-center justify-center">
-                        <div className="relative w-80 h-80 rounded-3xl overflow-hidden">
-                          <Image
-                            src="https://images.unsplash.com/photo-1539650116574-75c0c6d0cf5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
-                            alt="Morocco experience"
-                            fill
-                            className="object-cover"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-primary-600/30 to-transparent" />
                         </div>
                       </div>
                     </div>

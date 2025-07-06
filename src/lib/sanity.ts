@@ -347,5 +347,71 @@ export const queries = {
     coordinates,
     neighborhood,
     description
+  }`,
+
+  // Get all reviews/testimonials
+  allReviews: `*[_type == "review"] | order(order asc, _createdAt desc) {
+    _id,
+    name,
+    location,
+    "avatar": avatar.asset->url,
+    rating,
+    text,
+    property,
+    source,
+    featured,
+    verified,
+    _createdAt
+  }`,
+
+  // Get featured reviews
+  featuredReviews: `*[_type == "review" && featured == true] | order(order asc, _createdAt desc) {
+    _id,
+    name,
+    location,
+    "avatar": avatar.asset->url,
+    rating,
+    text,
+    property,
+    source,
+    featured,
+    verified,
+    _createdAt
+  }`,
+
+  // Get all team members
+  allTeamMembers: `*[_type == "teamMember" && isActive == true] | order(order asc, name asc) {
+    _id,
+    name,
+    role,
+    "image": image.asset->url,
+    bio,
+    tip,
+    destination,
+    items,
+    itemsDescription,
+    email,
+    phone,
+    socialMedia,
+    featured,
+    _createdAt
+  }`,
+
+  // Get featured team members
+  featuredTeamMembers: `*[_type == "teamMember" && isActive == true && featured == true] | order(order asc, name asc) {
+    _id,
+    name,
+    role,
+    "image": image.asset->url,
+    bio,
+    tip,
+    destination,
+    items,
+    itemsDescription,
+    email,
+    phone,
+    socialMedia,
+    featured,
+    _createdAt
   }`
 }

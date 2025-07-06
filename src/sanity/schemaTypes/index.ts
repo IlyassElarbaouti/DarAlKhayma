@@ -6,6 +6,8 @@ import location from '../schemas/location'
 import amenity from '../schemas/amenity'
 import destination from '../schemas/destination'
 import contact from '../schemas/contact'
+import review from '../schemas/review'
+import teamMember from '../schemas/teamMember'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -14,5 +16,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     amenity,
     destination,
     contact,
+    review,
+    teamMember,
   ],
 }

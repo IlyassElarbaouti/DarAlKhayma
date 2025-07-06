@@ -5,10 +5,16 @@ import {
   SanityDestination, 
   SanityAmenity, 
   SanityLocation,
+  SanityReview,
+  SanityTeamMember,
   Property,
   Destination,
+  Review,
+  TeamMember,
   transformSanityProperty,
-  transformSanityDestination
+  transformSanityDestination,
+  transformSanityReview,
+  transformSanityTeamMember
 } from '@/types/sanity';
 
 // Property services
@@ -99,6 +105,48 @@ export async function getDestinationBySlug(slug: string): Promise<SanityDestinat
   } catch (error) {
     console.error('Error fetching destination by slug:', error);
     return null;
+  }
+}
+
+// Review/Testimonial services
+export async function getAllReviews(): Promise<Review[]> {
+  try {
+    const sanityReviews: SanityReview[] = await client.fetch(queries.allReviews);
+    return sanityReviews.map(transformSanityReview);
+  } catch (error) {
+    console.error('Error fetching reviews:', error);
+    return [];
+  }
+}
+
+export async function getFeaturedReviews(): Promise<Review[]> {
+  try {
+    const sanityReviews: SanityReview[] = await client.fetch(queries.featuredReviews);
+    return sanityReviews.map(transformSanityReview);
+  } catch (error) {
+    console.error('Error fetching featured reviews:', error);
+    return [];
+  }
+}
+
+// Team member services
+export async function getAllTeamMembers(): Promise<TeamMember[]> {
+  try {
+    const sanityTeamMembers: SanityTeamMember[] = await client.fetch(queries.allTeamMembers);
+    return sanityTeamMembers.map(transformSanityTeamMember);
+  } catch (error) {
+    console.error('Error fetching team members:', error);
+    return [];
+  }
+}
+
+export async function getFeaturedTeamMembers(): Promise<TeamMember[]> {
+  try {
+    const sanityTeamMembers: SanityTeamMember[] = await client.fetch(queries.featuredTeamMembers);
+    return sanityTeamMembers.map(transformSanityTeamMember);
+  } catch (error) {
+    console.error('Error fetching featured team members:', error);
+    return [];
   }
 }
 

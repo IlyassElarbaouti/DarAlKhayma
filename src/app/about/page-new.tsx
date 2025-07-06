@@ -1,10 +1,6 @@
-"use client";
-
 import { PageWithHeaderPadding } from "@/components/layout/PageLayout";
 import { Heart, Award, Users, MapPin, Star, Building } from "lucide-react";
 import Image from "next/image";
-import { useState, useEffect } from "react";
-import { TeamMember } from "@/types/sanity";
 
 const values = [
   {
@@ -31,7 +27,6 @@ const values = [
 
 const team = [
   {
-    id: "team-1",
     name: "Ahmed Khalil Azakoun",
     role: "Founder & CEO",
     image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
@@ -42,7 +37,6 @@ const team = [
     itemsDescription: "I'm always planning the next move."
   },
   {
-    id: "team-2",
     name: "Youssef Gouhmid",
     role: "Creative Director",
     image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
@@ -53,7 +47,6 @@ const team = [
     itemsDescription: ""
   },
   {
-    id: "team-3",
     name: "Abdelwali",
     role: "Customer Experience",
     image: "https://images.unsplash.com/photo-1494790108755-2616b612b5bc?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
@@ -74,39 +67,6 @@ const stats = [
 ];
 
 export default function AboutPage() {
-  const [teamMembers, setTeamMembers] = useState<TeamMember[]>([]);
-  const [_loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchTeamMembers = async () => {
-      try {
-        const response = await fetch('/api/team');
-        const data = await response.json();
-        
-        if (data.success && data.data.length > 0) {
-          // Map Sanity data to use fallback images since we don't have images yet
-          const teamWithImages = data.data.map((member: any, index: number) => ({
-            ...member,
-            image: member.image || team[index]?.image || team[0].image
-          }));
-          setTeamMembers(teamWithImages);
-        } else {
-          // Use fallback team data
-          setTeamMembers(team);
-        }
-      } catch (error) {
-        console.error('Error fetching team members:', error);
-        // Use fallback team data
-        setTeamMembers(team);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchTeamMembers();
-  }, []);
-
-  const displayTeam = teamMembers.length > 0 ? teamMembers : team;
   return (
     <PageWithHeaderPadding>
       {/* Hero Section */}
@@ -246,8 +206,8 @@ export default function AboutPage() {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {displayTeam.map((member, index) => (
-              <div key={member.id || index} className="bg-white rounded-2xl p-8 shadow-lg">
+            {team.map((member, index) => (
+              <div key={index} className="bg-white rounded-2xl p-8 shadow-lg">
                 <Image
                   src={member.image}
                   alt={member.name}
@@ -266,27 +226,18 @@ export default function AboutPage() {
                 </p>
                 
                 <div className="space-y-4 text-sm">
-                  {member.tip && (
-                    <div>
-                      <span className="font-semibold text-neutral-900">Top local tip: </span>
-                      <span className="text-neutral-600">{member.tip}</span>
-                    </div>
-                  )}
-                  {member.destination && (
-                    <div>
-                      <span className="font-semibold text-neutral-900">Bucket list destination: </span>
-                      <span className="text-neutral-600">{member.destination}</span>
-                    </div>
-                  )}
-                  {member.items && member.items.length > 0 && (
-                    <div>
-                      <span className="font-semibold text-neutral-900">Always packs: </span>
-                      <span className="text-neutral-600">
-                        {member.items.join(", ")}
-                        {member.itemsDescription && ` — ${member.itemsDescription}`}
-                      </span>
-                    </div>
-                  )}
+                  <div>
+                    <span className="font-semibold text-neutral-900">Top local tip: </span>
+                    <span className="text-neutral-600">{member.tip}</span>
+                  </div>
+                  <div>
+                    <span className="font-semibold text-neutral-900">Bucket list destination: </span>
+                    <span className="text-neutral-600">{member.destination}</span>
+                  </div>
+                  <div>
+                    <span className="font-semibold text-neutral-900">Always packs: </span>
+                    <span className="text-neutral-600">{member.items.join(", ")} {member.itemsDescription && `— ${member.itemsDescription}`}</span>
+                  </div>
                 </div>
               </div>
             ))}

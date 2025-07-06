@@ -285,3 +285,111 @@ export interface ApiResponse<T> {
     totalPages: number;
   };
 }
+
+// Review/Testimonial types
+export interface SanityReview {
+  _id: string;
+  name: string;
+  location: string;
+  avatar: string;
+  rating: number;
+  text: string;
+  property: string;
+  source: string;
+  featured: boolean;
+  verified: boolean;
+  _createdAt: string;
+}
+
+export interface Review {
+  id: string;
+  name: string;
+  location: string;
+  avatar: string;
+  rating: number;
+  text: string;
+  property: string;
+  source: string;
+  featured?: boolean;
+  verified?: boolean;
+  createdAt?: string;
+}
+
+// Team Member types
+export interface SanityTeamMember {
+  _id: string;
+  name: string;
+  role: string;
+  image: string;
+  bio: string;
+  tip?: string;
+  destination?: string;
+  items?: string[];
+  itemsDescription?: string;
+  email?: string;
+  phone?: string;
+  socialMedia?: {
+    linkedin?: string;
+    instagram?: string;
+    twitter?: string;
+  };
+  featured: boolean;
+  _createdAt: string;
+}
+
+export interface TeamMember {
+  id: string;
+  name: string;
+  role: string;
+  image: string;
+  bio: string;
+  tip?: string;
+  destination?: string;
+  items?: string[];
+  itemsDescription?: string;
+  email?: string;
+  phone?: string;
+  socialMedia?: {
+    linkedin?: string;
+    instagram?: string;
+    twitter?: string;
+  };
+  featured?: boolean;
+  createdAt?: string;
+}
+
+// Transform functions for new types
+export function transformSanityReview(sanityReview: SanityReview): Review {
+  return {
+    id: sanityReview._id,
+    name: sanityReview.name,
+    location: sanityReview.location,
+    avatar: sanityReview.avatar,
+    rating: sanityReview.rating,
+    text: sanityReview.text,
+    property: sanityReview.property,
+    source: sanityReview.source,
+    featured: sanityReview.featured,
+    verified: sanityReview.verified,
+    createdAt: sanityReview._createdAt
+  };
+}
+
+export function transformSanityTeamMember(sanityTeamMember: SanityTeamMember): TeamMember {
+  return {
+    id: sanityTeamMember._id,
+    name: sanityTeamMember.name,
+    role: sanityTeamMember.role,
+    image: sanityTeamMember.image,
+    bio: sanityTeamMember.bio,
+    tip: sanityTeamMember.tip,
+    destination: sanityTeamMember.destination,
+    items: sanityTeamMember.items,
+    itemsDescription: sanityTeamMember.itemsDescription,
+    email: sanityTeamMember.email,
+    phone: sanityTeamMember.phone,
+    socialMedia: sanityTeamMember.socialMedia,
+    featured: sanityTeamMember.featured,
+    createdAt: sanityTeamMember._createdAt
+  };
+}

@@ -43,6 +43,15 @@ export default {
       validation: (Rule: any) => Rule.required()
     },
     {
+      name: 'videoUrl',
+      title: 'Video URL',
+      type: 'url',
+      description: 'Optional video URL for the destination (MP4 format recommended)',
+      validation: (Rule: any) => Rule.uri({
+        scheme: ['http', 'https']
+      })
+    },
+    {
       name: 'region',
       title: 'Region',
       type: 'string',

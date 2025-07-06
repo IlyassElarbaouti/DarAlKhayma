@@ -10,6 +10,7 @@
     "migrate": "tsx src/scripts/run-migration.ts",
     "populate": "tsx src/scripts/run-populate.ts",
     "populate:clean": "tsx src/scripts/populate-sanity.ts --clean",
+    "populate:reviews-team": "tsx src/scripts/populate-reviews-team.ts",
     "studio": "sanity dev"
   },
   "dependencies": {
