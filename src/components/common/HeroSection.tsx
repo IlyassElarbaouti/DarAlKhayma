@@ -60,12 +60,9 @@ export default function HeroSection() {
           className="mb-4 sm:mb-6 md:mb-8"
         >          <h1 className="font-display text-xl xs:text-2xl sm:text-3xl md:text-5xl lg:text-7xl font-bold text-white mb-3 sm:mb-4 md:mb-6 leading-tight">
             <span className="block text-white">Dar Al Khayma</span>
-            <span className="block text-accent-400 text-sm xs:text-base sm:text-lg md:text-3xl lg:text-5xl mt-1 sm:mt-2 md:mt-0 leading-snug">YOUR STAY DESERVES TO BE UNFORGETTABLE</span>
+            <span className="block text-accent-400 text-md xs:text-base sm:text-lg md:text-3xl lg:text-5xl mt-2 sm:mt-4 md:mt-6 leading-snug">YOUR STAY DESERVES TO BE UNFORGETTABLE</span>
           </h1>
-          <p className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 max-w-3xl mx-auto leading-relaxed px-2 sm:px-4">
-            Immerse yourself in luxury accommodations across Morocco&apos;s most 
-            enchanting destinations. From traditional riads to modern villas.
-          </p>
+
         </motion.div>
 
         {/* Search Form */}
