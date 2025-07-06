@@ -32,8 +32,8 @@ export default defineType({
       title: 'Biography',
       type: 'text',
       rows: 4,
-      validation: Rule => Rule.required().min(50).max(300),
-      description: 'Brief professional biography'
+      validation: Rule => Rule.required().min(20),
+      description: 'Professional biography'
     }),
     defineField({
       name: 'tip',
