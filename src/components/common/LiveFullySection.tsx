@@ -81,7 +81,7 @@ export default function LiveFullySection() {
               className="group h-full"
             >
               <a
-                href="mailto:concierge@daralkhayma.com"
+                href="mailto:hello@daralkhayma.com"
                 className="flex flex-col items-center justify-center p-6 h-full min-h-[200px] bg-white/10 hover:bg-white/20 rounded-2xl backdrop-blur-sm transition-all duration-300 border border-white/20 hover:border-white/40"
               >
                 <div className="w-12 h-12 bg-blue-500 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
