@@ -39,16 +39,11 @@ export default {
       type: 'array',
       of: [
         {
-          type: 'object',
+          type: 'image',
+          options: {
+            hotspot: true,
+          },
           fields: [
-            {
-              name: 'asset',
-              title: 'Image',
-              type: 'image',
-              options: {
-                hotspot: true,
-              },
-            },
             {
               name: 'alt',
               title: 'Alt text',
@@ -254,7 +249,7 @@ export default {
     select: {
       title: 'title',
       subtitle: 'location.city',
-      media: 'images.0.asset'
+      media: 'images.0'
     }
   }
 }
