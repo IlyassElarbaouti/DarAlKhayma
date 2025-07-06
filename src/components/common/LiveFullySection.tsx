@@ -60,7 +60,7 @@ export default function LiveFullySection() {
               className="group"
             >
               <a
-                href="https://wa.me/212600000000"
+                href="https://wa.me/212774214018"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex flex-col items-center p-6 bg-white/10 hover:bg-white/20 rounded-2xl backdrop-blur-sm transition-all duration-300 border border-white/20 hover:border-white/40"

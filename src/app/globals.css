@@ -25,6 +25,24 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Mobile font size optimization */
+@media (max-width: 475px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+/* Ensure minimum touch target sizes on mobile */
+@media (max-width: 640px) {
+  button, a {
+    min-height: 44px;
+  }
+  
+  input, select, textarea {
+    min-height: 40px;
+  }
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;

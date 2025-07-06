@@ -49,8 +49,8 @@ export default function WhyChooseUsSection() {
           className="text-center mb-16"
         >
           <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-neutral-800 mb-6">
-            Why Choose
-            <span className="block text-primary-600">Dar Al Khayma?</span>
+           What Makes 
+            <span className="block text-primary-600">Us Different?</span>
           </h2>
           <p className="text-lg text-neutral-600 max-w-3xl mx-auto">
             At Dar Al Khayma we take care to select each of our homes according to high standards of quality and design to ensure a unique stay in any property and any destination where we are present.

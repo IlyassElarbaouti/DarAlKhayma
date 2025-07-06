@@ -152,13 +152,6 @@ export default function ServicesSection() {
                     </span>
                   </div>
 
-                  {/* CTA */}
-                  <div className="flex items-center justify-between">
-                    <span className="text-accent-600 font-semibold">
-                      Get Started
-                    </span>
-                    <ArrowRight className="w-5 h-5 text-neutral-400 group-hover:text-accent-600 group-hover:translate-x-1 transition-all duration-300" />
-                  </div>
                 </div>
               </div>
             </Link>
