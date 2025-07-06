@@ -55,10 +55,7 @@ export default function NewsletterSection() {
               JOIN THE DAR AL KHAYMA CLUB
             </h2>
             <p className="text-lg text-white/90 mb-4 leading-relaxed">
-              Want to rent your exceptional property?
-            </p>
-            <p className="text-lg text-white/90 mb-8 leading-relaxed">
-              We would love to know more.
+              Want to rent your exceptional property? We would love to know more.
             </p>
 
             {/* Benefits */}

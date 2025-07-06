@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Award, Wrench, MapPin, Clock, Star } from "lucide-react";
+import Link from "next/link";
 
 const features = [
   {
@@ -135,13 +136,14 @@ export default function WhyChooseUsSection() {
           <h3 className="text-2xl md:text-3xl font-bold text-neutral-800 mb-4">
             JOIN THE DAR AL KHAYMA CLUB
           </h3>
-          <p className="text-lg text-neutral-600 mb-8">
-            Unlock exclusive benefits and become part of our luxury hospitality community. 
-            Experience curated properties, personalized service, and insider access to Morocco's finest accommodations.
+          <p className="text-lg text-neutral-600 mb-4">
+            Want to rent your exceptional property? We would love to know more.
           </p>
+          <Link href={"/contact"}>
           <button className="bg-accent-500 hover:bg-accent-600 text-neutral-800 px-10 py-5 rounded-xl font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
-            Join The Club
+            REQUEST INFORMATION
           </button>
+          </Link>
         </motion.div>
       </div>
     </section>

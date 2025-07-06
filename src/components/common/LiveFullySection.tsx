@@ -38,11 +38,11 @@ export default function LiveFullySection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
               viewport={{ once: true }}
-              className="group"
+              className="group h-full"
             >
               <Link
                 href="/contact"
-                className="flex flex-col items-center p-6 bg-white/10 hover:bg-white/20 rounded-2xl backdrop-blur-sm transition-all duration-300 border border-white/20 hover:border-white/40"
+                className="flex flex-col items-center justify-center p-6 h-full min-h-[200px] bg-white/10 hover:bg-white/20 rounded-2xl backdrop-blur-sm transition-all duration-300 border border-white/20 hover:border-white/40"
               >
                 <div className="w-12 h-12 bg-accent-400 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
                   <MessageCircle className="w-6 h-6 text-neutral-800" />
@@ -57,13 +57,13 @@ export default function LiveFullySection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
-              className="group"
+              className="group h-full"
             >
               <a
                 href="https://wa.me/212774214018"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex flex-col items-center p-6 bg-white/10 hover:bg-white/20 rounded-2xl backdrop-blur-sm transition-all duration-300 border border-white/20 hover:border-white/40"
+                className="flex flex-col items-center justify-center p-6 h-full min-h-[200px] bg-white/10 hover:bg-white/20 rounded-2xl backdrop-blur-sm transition-all duration-300 border border-white/20 hover:border-white/40"
               >
                 <div className="w-12 h-12 bg-green-500 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
                   <Phone className="w-6 h-6 text-white" />
@@ -78,11 +78,11 @@ export default function LiveFullySection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
               viewport={{ once: true }}
-              className="group"
+              className="group h-full"
             >
               <a
                 href="mailto:concierge@daralkhayma.com"
-                className="flex flex-col items-center p-6 bg-white/10 hover:bg-white/20 rounded-2xl backdrop-blur-sm transition-all duration-300 border border-white/20 hover:border-white/40"
+                className="flex flex-col items-center justify-center p-6 h-full min-h-[200px] bg-white/10 hover:bg-white/20 rounded-2xl backdrop-blur-sm transition-all duration-300 border border-white/20 hover:border-white/40"
               >
                 <div className="w-12 h-12 bg-blue-500 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
                   <Mail className="w-6 h-6 text-white" />
