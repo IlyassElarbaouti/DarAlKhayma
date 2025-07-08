@@ -6,7 +6,13 @@ export const client = createClient({
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'uekmuuz9',
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
   apiVersion: process.env.NEXT_PUBLIC_SANITY_API_VERSION || '2025-05-24',
-  useCdn: true, // Set to false if statically generating pages, using ISR or tag-based revalidation
+  useCdn: false, // Disable CDN caching for fresh content
+  perspective: 'published', // Only fetch published content
+  stega: false, // Disable stega for better performance
+  ignoreBrowserTokenWarning: true, // Suppress browser token warnings
+  
+  // Add token for authenticated requests if available
+  token: process.env.SANITY_API_TOKEN,
 })
 
 // Image URL builder
@@ -29,7 +35,7 @@ export const queries = {
       _key,
       alt,
       caption,
-      "url": asset.asset->url
+      "url": asset->url
     },
     location-> {
       _id,
@@ -82,7 +88,7 @@ export const queries = {
       _key,
       alt,
       caption,
-      "url": asset.asset->url
+      "url": asset->url
     },
     location-> {
       _id,
@@ -135,7 +141,7 @@ export const queries = {
       _key,
       alt,
       caption,
-      "url": asset.asset->url
+      "url": asset->url
     },
     location-> {
       _id,
@@ -188,7 +194,7 @@ export const queries = {
       _key,
       alt,
       caption,
-      "url": asset.asset->url
+      "url": asset->url
     },
     location-> {
       _id,

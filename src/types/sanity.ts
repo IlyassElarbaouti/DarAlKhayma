@@ -1,9 +1,19 @@
 // Sanity-based types for the application
 export interface SanityImage {
   _key?: string;
-  url: string;
+  url?: string;
   alt: string;
   caption?: string;
+  asset?: {
+    _id: string;
+    url: string;
+    metadata?: {
+      dimensions?: {
+        width: number;
+        height: number;
+      };
+    };
+  };
 }
 
 export interface SanityProperty {
@@ -132,8 +142,8 @@ export function transformSanityProperty(sanityProperty: SanityProperty): Propert
     description: sanityProperty.description,
     shortDescription: sanityProperty.shortDescription,    images: sanityProperty.images?.map((img, index) => ({
       id: img._key || `img-${index}`,
-      url: img.url || '',
-      alt: img.alt || '',
+      url: img.url || img.asset?.url || '',
+      alt: img.alt || sanityProperty.title || '',
       caption: img.caption || '',
       order: index + 1
     })).filter(img => img.url) || [],
@@ -171,7 +181,7 @@ export function transformSanityDestination(sanityDestination: SanityDestination)
     name: sanityDestination.name,
     slug: sanityDestination.slug.current,
     description: sanityDestination.description,
-    image: sanityDestination.image.url,
+    image: sanityDestination.image.url || sanityDestination.image.asset?.url || '',
     propertyCount: sanityDestination.propertyCount || 0,
     featured: sanityDestination.featured,
     region: sanityDestination.region,
