@@ -1,14 +1,20 @@
 import { NextResponse } from 'next/server';
 import { client } from '@/lib/sanity';
 
+// ISR settings for this route
+export const dynamic = 'force-dynamic';
+export const revalidate = 30; // Revalidate every 30 seconds
+
 export async function GET() {
   try {
     // Fetch all destinations with property counts
     const destinations = await client.fetch(`
       *[_type == "destination"] {
         _id,
+        name,
         city,
         region,
+        slug,
         coordinates {
           lat,
           lng
@@ -28,13 +34,15 @@ export async function GET() {
 
     // Transform data for frontend
     const transformedDestinations = destinations.map((destination: any) => ({
-      id: destination._id,
+      _id: destination._id,
+      name: destination.name,
       city: destination.city,
       region: destination.region,
+      slug: destination.slug,
       coordinates: destination.coordinates || { lat: 0, lng: 0 },
       image: {
         url: destination.image?.asset?.url,
-        alt: destination.image?.alt || destination.city
+        alt: destination.image?.alt || destination.name
       },
       description: destination.description,
       highlights: destination.highlights || [],

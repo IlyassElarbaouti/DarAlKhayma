@@ -1,10 +1,11 @@
-"use client";
-
 import { PageWithHeaderPadding } from "@/components/layout/PageLayout";
 import { Heart, Award, Users, MapPin, Star, Building } from "lucide-react";
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { getAllTeamMembers } from "@/lib/sanityService";
 import { TeamMember } from "@/types/sanity";
+
+// Add ISR support for fresh data
+export const revalidate = 60;
 
 const values = [
   {
@@ -29,42 +30,6 @@ const values = [
   }
 ];
 
-const team = [
-  {
-    id: "team-1",
-    name: "Ahmed Khalil Azakoun",
-    role: "Founder & CEO",
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-    bio: "I was born in Agadir, but my passion for hospitality started early when I began managing guest stays and refining every part of the experience. After launching Dar Al Khayma, I now lead the company across Multiple Cities in Morocco making sure both guests and property owners receive a seamless, high-level service every time.",
-    tip: "I love walking through the old medina of Marrakech at sunset, it's full of energy, colors, and little hidden cafés that feel like a world of their own.",
-    destination: "The Moroccan coast, from Agadir to Essaouira. There's something about the mix of ocean, culture, and calm that's unforgettable.",
-    items: ["My phone", "sunglasses", "a notebook"],
-    itemsDescription: "I'm always planning the next move."
-  },
-  {
-    id: "team-2",
-    name: "Youssef Gouhmid",
-    role: "Creative Director",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-    bio: "I was born and raised in Casablanca, a city that blends energy, design, and culture on every corner. I've always been drawn to visual storytelling, which led me to take on the artistic direction at Dar Al Khayma. From branding to photography, I shape how our properties and our identity come to life.",
-    tip: "The rooftop at La Sqala for a calm lunch away from the city buzz, classic Casablanca atmosphere and great views.",
-    destination: "The Atlas Mountains, there's something honest and inspiring about the raw landscapes and quiet villages.",
-    items: ["My camera", "sketchbook", "a playlist for every mood"],
-    itemsDescription: ""
-  },
-  {
-    id: "team-3",
-    name: "Abdelwali",
-    role: "Customer Experience",
-    image: "https://images.unsplash.com/photo-1494790108755-2616b612b5bc?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-    bio: "I was born in Agadir, a city where hospitality is second nature. Growing up here taught me how much the little things matter. At Dar Al Khayma, I handle customer experience on the ground making sure each guest feels welcome, supported, and at ease throughout their stay.",
-    tip: "Visit the marina in the early morning. It's quiet, fresh, and the perfect place to start the day with a coffee and ocean breeze.",
-    destination: "The Draa Valley it's a completely different side of Morocco. Peaceful, wild, and full of history.",
-    items: ["My charger", "shirt", "my favorite watch"],
-    itemsDescription: ""
-  }
-];
-
 const stats = [
   { label: "Stays Handpicked with Care", value: "100+" },
   { label: "Cities Across Morocco", value: "8" },
@@ -73,40 +38,16 @@ const stats = [
   { label: "Properties Curated", value: "5+" }
 ];
 
-export default function AboutPage() {
-  const [teamMembers, setTeamMembers] = useState<TeamMember[]>([]);
-  const [_loading, setLoading] = useState(true);
+export default async function AboutPage() {
+  // Fetch team members from Sanity
+  let teamMembers: TeamMember[] = [];
+  try {
+    teamMembers = await getAllTeamMembers();
+  } catch (error) {
+    console.error('Error fetching team members:', error);
+  }
 
-  useEffect(() => {
-    const fetchTeamMembers = async () => {
-      try {
-        const response = await fetch('/api/team');
-        const data = await response.json();
-        
-        if (data.success && data.data.length > 0) {
-          // Map Sanity data to use fallback images since we don't have images yet
-          const teamWithImages = data.data.map((member: any, index: number) => ({
-            ...member,
-            image: member.image || team[index]?.image || team[0].image
-          }));
-          setTeamMembers(teamWithImages);
-        } else {
-          // Use fallback team data
-          setTeamMembers(team);
-        }
-      } catch (error) {
-        console.error('Error fetching team members:', error);
-        // Use fallback team data
-        setTeamMembers(team);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchTeamMembers();
-  }, []);
-
-  const displayTeam = teamMembers.length > 0 ? teamMembers : team;
+  const displayTeam = teamMembers.length > 0 ? teamMembers : [];
   return (
     <PageWithHeaderPadding>
       {/* Hero Section */}

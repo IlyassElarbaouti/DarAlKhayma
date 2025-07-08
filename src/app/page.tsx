@@ -11,6 +11,10 @@ import LiveFullySection from "@/components/common/LiveFullySection";
 import NewsletterSection from "@/components/common/NewsletterSection";
 import Footer from "@/components/layout/Footer";
 
+// ISR settings
+export const dynamic = 'force-dynamic';
+export const revalidate = 30;
+
 export default function Home() {
   return (
     <div className="min-h-screen bg-white">

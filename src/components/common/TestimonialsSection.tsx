@@ -196,7 +196,7 @@ export default function TestimonialsSection() {
             Ready to experience Morocco like never before? Let us help you plan the perfect stay with our premium properties and personalized service.
           </p>
           <p className="text-lg text-neutral-600 mb-8">
-            <strong>Contact us:</strong> +212 6 XX XX XX XX
+            <strong>Contact us:</strong> +212774214018
           </p>
           <button className="bg-primary-600 hover:bg-primary-700 text-white px-10 py-5 rounded-xl font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
             Contact Us Today

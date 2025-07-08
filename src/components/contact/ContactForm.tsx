@@ -239,7 +239,7 @@ export default function ContactForm() {
               onChange={handleInputChange}
               required={isPropertyApplication}
               className="w-full p-3 border border-neutral-200 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent text-sm md:text-base"
-              placeholder="+212 xxx xxx xxx"
+              placeholder="+212 774 214 018"
             />
           </div>
 

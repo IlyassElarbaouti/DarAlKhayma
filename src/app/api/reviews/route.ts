@@ -3,6 +3,10 @@ import { client } from "@/lib/sanity";
 import { queries } from "@/lib/sanity";
 import { SanityReview, transformSanityReview } from "@/types/sanity";
 
+// ISR settings for this route
+export const dynamic = 'force-dynamic';
+export const revalidate = 30; // Revalidate every 30 seconds
+
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);

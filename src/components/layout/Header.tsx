@@ -18,10 +18,10 @@ export default function Header() {
   const { destinations, loading } = useDestinations();
 
   const navigation = [
-    { name: "List Your Home", href: "/join-us" },
+    { name: "Properties", href: "/properties" },
     { name: "About Us", href: "/about" },
     { name: "Companies", href: "/corporate" },
-    { name: "Owners", href: "/join-us" },
+    { name: "List Your Home", href: "/join-us" },
     { name: "Contact", href: "/contact" },
   ];
 
