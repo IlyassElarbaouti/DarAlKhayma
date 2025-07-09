@@ -194,7 +194,7 @@ export default async function AboutPage() {
                   alt={member.name}
                   width={96}
                   height={96}
-                  className="w-24 h-24 rounded-full mx-auto mb-6"
+                  className="w-24 h-24 rounded-full mx-auto mb-6 object-cover"
                 />
                 <h3 className="text-xl font-display font-semibold text-neutral-900 mb-2 text-center">
                   {member.name}

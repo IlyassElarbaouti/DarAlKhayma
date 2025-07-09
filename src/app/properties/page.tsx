@@ -9,6 +9,10 @@ export const metadata = {
   description: "Discover our collection of luxury properties across Morocco. Find your perfect rental in Marrakech, Casablanca, Fes, and other premier destinations.",
 };
 
+// Force dynamic rendering and disable caching
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export default async function PropertiesPage() {
   // Fetch properties from Sanity with error handling
   let properties: Property[] = [];

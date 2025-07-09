@@ -1,0 +1,1879 @@
+[
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "min",
+                "constraint": 10
+              },
+              {
+                "flag": "max",
+                "constraint": 100
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "options": {
+          "source": "title",
+          "maxLength": 96
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "slug",
+        "type": "slug"
+      },
+      {
+        "rows": 4,
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "min",
+                "constraint": 50
+              },
+              {
+                "flag": "max",
+                "constraint": 500
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "description",
+        "type": "text"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 150
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "shortDescription",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "min",
+                "constraint": 1
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "of": [
+          {
+            "options": {
+              "hotspot": true
+            },
+            "fields": [
+              {
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      }
+                    ],
+                    "level": "error"
+                  }
+                ],
+                "name": "alt",
+                "type": "string",
+                "title": "Alt text"
+              },
+              {
+                "name": "caption",
+                "type": "string"
+              }
+            ],
+            "type": "image"
+          }
+        ],
+        "name": "images",
+        "type": "array"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "to": [
+          {
+            "type": "location"
+          }
+        ],
+        "name": "location",
+        "type": "reference"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "fields": [
+          {
+            "validation": [
+              {
+                "rules": [
+                  {
+                    "flag": "presence",
+                    "constraint": "required"
+                  },
+                  {
+                    "flag": "min",
+                    "constraint": 0
+                  }
+                ],
+                "level": "error"
+              }
+            ],
+            "name": "amount",
+            "type": "number"
+          },
+          {
+            "options": {
+              "list": [
+                {
+                  "title": "Moroccan Dirham (MAD)",
+                  "value": "MAD"
+                },
+                {
+                  "title": "Euro (EUR)",
+                  "value": "EUR"
+                },
+                {
+                  "title": "US Dollar (USD)",
+                  "value": "USD"
+                }
+              ]
+            },
+            "initialValue": "MAD",
+            "validation": [
+              {
+                "rules": [
+                  {
+                    "flag": "valid",
+                    "constraint": [
+                      "MAD",
+                      "EUR",
+                      "USD"
+                    ]
+                  },
+                  {
+                    "flag": "presence",
+                    "constraint": "required"
+                  }
+                ],
+                "level": "error"
+              }
+            ],
+            "name": "currency",
+            "type": "string"
+          },
+          {
+            "options": {
+              "list": [
+                {
+                  "title": "Per Night",
+                  "value": "night"
+                },
+                {
+                  "title": "Per Week",
+                  "value": "week"
+                },
+                {
+                  "title": "Per Month",
+                  "value": "month"
+                }
+              ]
+            },
+            "initialValue": "night",
+            "validation": [
+              {
+                "rules": [
+                  {
+                    "flag": "valid",
+                    "constraint": [
+                      "night",
+                      "week",
+                      "month"
+                    ]
+                  },
+                  {
+                    "flag": "presence",
+                    "constraint": "required"
+                  }
+                ],
+                "level": "error"
+              }
+            ],
+            "name": "period",
+            "type": "string"
+          }
+        ],
+        "name": "price",
+        "type": "object"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "fields": [
+          {
+            "validation": [
+              {
+                "rules": [
+                  {
+                    "flag": "presence",
+                    "constraint": "required"
+                  },
+                  {
+                    "flag": "min",
+                    "constraint": 0
+                  },
+                  {
+                    "flag": "max",
+                    "constraint": 20
+                  }
+                ],
+                "level": "error"
+              }
+            ],
+            "name": "bedrooms",
+            "type": "number"
+          },
+          {
+            "validation": [
+              {
+                "rules": [
+                  {
+                    "flag": "presence",
+                    "constraint": "required"
+                  },
+                  {
+                    "flag": "min",
+                    "constraint": 0
+                  },
+                  {
+                    "flag": "max",
+                    "constraint": 20
+                  }
+                ],
+                "level": "error"
+              }
+            ],
+            "name": "bathrooms",
+            "type": "number"
+          },
+          {
+            "validation": [
+              {
+                "rules": [
+                  {
+                    "flag": "presence",
+                    "constraint": "required"
+                  },
+                  {
+                    "flag": "min",
+                    "constraint": 1
+                  },
+                  {
+                    "flag": "max",
+                    "constraint": 50
+                  }
+                ],
+                "level": "error"
+              }
+            ],
+            "name": "guests",
+            "type": "number",
+            "title": "Max Guests"
+          },
+          {
+            "validation": [
+              {
+                "rules": [
+                  {
+                    "flag": "min",
+                    "constraint": 10
+                  }
+                ],
+                "level": "error"
+              }
+            ],
+            "name": "area",
+            "type": "number",
+            "title": "Area (m²)"
+          }
+        ],
+        "name": "specifications",
+        "type": "object"
+      },
+      {
+        "of": [
+          {
+            "to": [
+              {
+                "type": "amenity"
+              }
+            ],
+            "type": "reference",
+            "title": "Reference to amenity"
+          }
+        ],
+        "name": "amenities",
+        "type": "array"
+      },
+      {
+        "of": [
+          {
+            "fields": [
+              {
+                "options": {
+                  "list": [
+                    {
+                      "title": "Airbnb",
+                      "value": "airbnb"
+                    },
+                    {
+                      "title": "Booking.com",
+                      "value": "booking"
+                    },
+                    {
+                      "title": "VRBO",
+                      "value": "vrbo"
+                    },
+                    {
+                      "title": "Direct Booking",
+                      "value": "direct"
+                    }
+                  ]
+                },
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "valid",
+                        "constraint": [
+                          "airbnb",
+                          "booking",
+                          "vrbo",
+                          "direct"
+                        ]
+                      },
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      }
+                    ],
+                    "level": "error"
+                  }
+                ],
+                "name": "platform",
+                "type": "string"
+              },
+              {
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "uri",
+                        "constraint": {
+                          "options": {
+                            "scheme": [
+                              "/^http$/",
+                              "/^https$/"
+                            ],
+                            "allowRelative": false,
+                            "relativeOnly": false,
+                            "allowCredentials": false
+                          }
+                        }
+                      },
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      }
+                    ],
+                    "level": "error"
+                  }
+                ],
+                "name": "url",
+                "type": "url",
+                "title": "URL"
+              },
+              {
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      }
+                    ],
+                    "level": "error"
+                  }
+                ],
+                "name": "label",
+                "type": "string"
+              }
+            ],
+            "type": "object"
+          }
+        ],
+        "name": "bookingLinks",
+        "type": "array"
+      },
+      {
+        "initialValue": false,
+        "name": "featured",
+        "type": "boolean",
+        "title": "Featured Property"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "Riad",
+              "value": "riad"
+            },
+            {
+              "title": "Villa",
+              "value": "villa"
+            },
+            {
+              "title": "Apartment",
+              "value": "apartment"
+            },
+            {
+              "title": "House",
+              "value": "house"
+            },
+            {
+              "title": "Resort",
+              "value": "resort"
+            },
+            {
+              "title": "Hotel",
+              "value": "hotel"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "valid",
+                "constraint": [
+                  "riad",
+                  "villa",
+                  "apartment",
+                  "house",
+                  "resort",
+                  "hotel"
+                ]
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "category",
+        "type": "string"
+      },
+      {
+        "fields": [
+          {
+            "initialValue": true,
+            "name": "available",
+            "type": "boolean"
+          },
+          {
+            "name": "nextAvailable",
+            "type": "date",
+            "title": "Next Available Date"
+          }
+        ],
+        "name": "availability",
+        "type": "object"
+      },
+      {
+        "fields": [
+          {
+            "validation": [
+              {
+                "rules": [
+                  {
+                    "flag": "min",
+                    "constraint": 0
+                  },
+                  {
+                    "flag": "max",
+                    "constraint": 5
+                  }
+                ],
+                "level": "error"
+              }
+            ],
+            "name": "average",
+            "type": "number",
+            "title": "Average Rating"
+          },
+          {
+            "validation": [
+              {
+                "rules": [
+                  {
+                    "flag": "min",
+                    "constraint": 0
+                  }
+                ],
+                "level": "error"
+              }
+            ],
+            "name": "count",
+            "type": "number",
+            "title": "Number of Reviews"
+          }
+        ],
+        "name": "rating",
+        "type": "object"
+      }
+    ],
+    "name": "property",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "city",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "region",
+        "type": "string"
+      },
+      {
+        "initialValue": "Morocco",
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "country",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "fields": [
+          {
+            "validation": [
+              {
+                "rules": [
+                  {
+                    "flag": "presence",
+                    "constraint": "required"
+                  },
+                  {
+                    "flag": "min",
+                    "constraint": -90
+                  },
+                  {
+                    "flag": "max",
+                    "constraint": 90
+                  }
+                ],
+                "level": "error"
+              }
+            ],
+            "name": "lat",
+            "type": "number",
+            "title": "Latitude"
+          },
+          {
+            "validation": [
+              {
+                "rules": [
+                  {
+                    "flag": "presence",
+                    "constraint": "required"
+                  },
+                  {
+                    "flag": "min",
+                    "constraint": -180
+                  },
+                  {
+                    "flag": "max",
+                    "constraint": 180
+                  }
+                ],
+                "level": "error"
+              }
+            ],
+            "name": "lng",
+            "type": "number",
+            "title": "Longitude"
+          }
+        ],
+        "name": "coordinates",
+        "type": "object"
+      },
+      {
+        "name": "neighborhood",
+        "type": "string"
+      },
+      {
+        "rows": 3,
+        "name": "description",
+        "type": "text"
+      }
+    ],
+    "name": "location",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "name",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Emoji or icon name",
+        "name": "icon",
+        "type": "string"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "Basics",
+              "value": "basics"
+            },
+            {
+              "title": "Features",
+              "value": "features"
+            },
+            {
+              "title": "Location",
+              "value": "location"
+            },
+            {
+              "title": "Safety",
+              "value": "safety"
+            },
+            {
+              "title": "Entertainment",
+              "value": "entertainment"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "valid",
+                "constraint": [
+                  "basics",
+                  "features",
+                  "location",
+                  "safety",
+                  "entertainment"
+                ]
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "category",
+        "type": "string"
+      },
+      {
+        "rows": 2,
+        "name": "description",
+        "type": "text"
+      }
+    ],
+    "name": "amenity",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "name",
+        "type": "string"
+      },
+      {
+        "options": {
+          "source": "name",
+          "maxLength": 96
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "slug",
+        "type": "slug"
+      },
+      {
+        "rows": 4,
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "description",
+        "type": "text"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 150
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "shortDescription",
+        "type": "string"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "image",
+        "type": "image",
+        "title": "Hero Image"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": false,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Optional video URL for the destination (MP4 format recommended)",
+        "name": "videoUrl",
+        "type": "url",
+        "title": "Video URL"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "region",
+        "type": "string"
+      },
+      {
+        "fields": [
+          {
+            "validation": [
+              {
+                "rules": [
+                  {
+                    "flag": "presence",
+                    "constraint": "required"
+                  },
+                  {
+                    "flag": "min",
+                    "constraint": -90
+                  },
+                  {
+                    "flag": "max",
+                    "constraint": 90
+                  }
+                ],
+                "level": "error"
+              }
+            ],
+            "name": "lat",
+            "type": "number",
+            "title": "Latitude"
+          },
+          {
+            "validation": [
+              {
+                "rules": [
+                  {
+                    "flag": "presence",
+                    "constraint": "required"
+                  },
+                  {
+                    "flag": "min",
+                    "constraint": -180
+                  },
+                  {
+                    "flag": "max",
+                    "constraint": 180
+                  }
+                ],
+                "level": "error"
+              }
+            ],
+            "name": "lng",
+            "type": "number",
+            "title": "Longitude"
+          }
+        ],
+        "name": "coordinates",
+        "type": "object"
+      },
+      {
+        "initialValue": false,
+        "name": "featured",
+        "type": "boolean",
+        "title": "Featured Destination"
+      },
+      {
+        "description": "Key highlights of this destination",
+        "of": [
+          {
+            "type": "string"
+          }
+        ],
+        "name": "highlights",
+        "type": "array"
+      },
+      {
+        "of": [
+          {
+            "fields": [
+              {
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      }
+                    ],
+                    "level": "error"
+                  }
+                ],
+                "name": "name",
+                "type": "string"
+              },
+              {
+                "options": {
+                  "list": [
+                    "Historical Site",
+                    "Museum",
+                    "Park",
+                    "Market",
+                    "Religious Site",
+                    "Cultural Site",
+                    "Natural Landmark",
+                    "Entertainment"
+                  ]
+                },
+                "name": "type",
+                "type": "string"
+              },
+              {
+                "rows": 2,
+                "name": "description",
+                "type": "text"
+              }
+            ],
+            "type": "object"
+          }
+        ],
+        "name": "attractions",
+        "type": "array"
+      },
+      {
+        "description": "Popular activities in this destination",
+        "of": [
+          {
+            "type": "string"
+          }
+        ],
+        "name": "activities",
+        "type": "array"
+      },
+      {
+        "fields": [
+          {
+            "name": "airport",
+            "type": "string",
+            "title": "Airport Information"
+          },
+          {
+            "name": "trainStation",
+            "type": "string",
+            "title": "Train Station Information"
+          },
+          {
+            "name": "carRental",
+            "type": "string",
+            "title": "Car Rental Information"
+          }
+        ],
+        "name": "transportation",
+        "type": "object"
+      },
+      {
+        "fields": [
+          {
+            "name": "bestTimeToVisit",
+            "type": "string",
+            "title": "Best Time to Visit"
+          },
+          {
+            "name": "averageTemp",
+            "type": "string",
+            "title": "Average Temperature"
+          },
+          {
+            "of": [
+              {
+                "type": "string"
+              }
+            ],
+            "name": "rainyMonths",
+            "type": "array"
+          }
+        ],
+        "name": "weather",
+        "type": "object",
+        "title": "Weather Information"
+      }
+    ],
+    "name": "destination",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "name",
+        "type": "string",
+        "title": "Full Name"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "email",
+        "type": "string",
+        "title": "Email Address"
+      },
+      {
+        "name": "phone",
+        "type": "string",
+        "title": "Phone Number"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "General Inquiry",
+              "value": "general"
+            },
+            {
+              "title": "Booking Support",
+              "value": "booking"
+            },
+            {
+              "title": "Property Application",
+              "value": "property-application"
+            },
+            {
+              "title": "Press & Media",
+              "value": "media"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "valid",
+                "constraint": [
+                  "general",
+                  "booking",
+                  "property-application",
+                  "media"
+                ]
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "inquiryType",
+        "type": "string"
+      },
+      {
+        "name": "subject",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "message",
+        "type": "text"
+      },
+      {
+        "fields": [
+          {
+            "name": "propertyName",
+            "type": "string"
+          },
+          {
+            "options": {
+              "list": [
+                {
+                  "title": "Riad",
+                  "value": "riad"
+                },
+                {
+                  "title": "Villa",
+                  "value": "villa"
+                },
+                {
+                  "title": "Apartment",
+                  "value": "apartment"
+                },
+                {
+                  "title": "House",
+                  "value": "house"
+                },
+                {
+                  "title": "Resort",
+                  "value": "resort"
+                },
+                {
+                  "title": "Hotel",
+                  "value": "hotel"
+                }
+              ]
+            },
+            "name": "propertyType",
+            "type": "string"
+          },
+          {
+            "name": "location",
+            "type": "string"
+          },
+          {
+            "name": "bedrooms",
+            "type": "number",
+            "title": "Number of Bedrooms"
+          },
+          {
+            "name": "guests",
+            "type": "number",
+            "title": "Maximum Guests"
+          },
+          {
+            "name": "priceRange",
+            "type": "string",
+            "title": "Price Range (MAD/night)"
+          },
+          {
+            "name": "description",
+            "type": "text",
+            "title": "Property Description"
+          },
+          {
+            "of": [
+              {
+                "type": "string"
+              }
+            ],
+            "name": "features",
+            "type": "array",
+            "title": "Special Features"
+          },
+          {
+            "of": [
+              {
+                "options": {
+                  "hotspot": true
+                },
+                "type": "image"
+              }
+            ],
+            "name": "images",
+            "type": "array",
+            "title": "Property Images"
+          },
+          {
+            "name": "contactPerson",
+            "type": "string"
+          },
+          {
+            "name": "contactPhone",
+            "type": "string"
+          },
+          {
+            "validation": [
+              {
+                "rules": [
+                  {
+                    "flag": "min",
+                    "constraint": 0
+                  },
+                  {
+                    "flag": "max",
+                    "constraint": 50
+                  }
+                ],
+                "level": "error"
+              }
+            ],
+            "name": "preferredCommission",
+            "type": "number",
+            "title": "Preferred Commission (%)"
+          }
+        ],
+        "hidden": "conditional",
+        "name": "propertyDetails",
+        "type": "object"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "New",
+              "value": "new"
+            },
+            {
+              "title": "In Progress",
+              "value": "in-progress"
+            },
+            {
+              "title": "Resolved",
+              "value": "resolved"
+            },
+            {
+              "title": "Closed",
+              "value": "closed"
+            }
+          ]
+        },
+        "initialValue": "new",
+        "name": "status",
+        "type": "string"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "Low",
+              "value": "low"
+            },
+            {
+              "title": "Medium",
+              "value": "medium"
+            },
+            {
+              "title": "High",
+              "value": "high"
+            },
+            {
+              "title": "Urgent",
+              "value": "urgent"
+            }
+          ]
+        },
+        "initialValue": "medium",
+        "name": "priority",
+        "type": "string"
+      },
+      {
+        "description": "Internal notes for team members",
+        "name": "notes",
+        "type": "text",
+        "title": "Internal Notes"
+      },
+      {
+        "name": "submittedAt",
+        "type": "datetime"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "Website Contact Form",
+              "value": "website"
+            },
+            {
+              "title": "Email",
+              "value": "email"
+            },
+            {
+              "title": "Phone Call",
+              "value": "phone"
+            },
+            {
+              "title": "Social Media",
+              "value": "social"
+            },
+            {
+              "title": "Referral",
+              "value": "referral"
+            },
+            {
+              "title": "Other",
+              "value": "other"
+            }
+          ]
+        },
+        "initialValue": "website",
+        "name": "source",
+        "type": "string"
+      }
+    ],
+    "name": "contact",
+    "type": "document",
+    "title": "Contact Submissions"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "name",
+        "type": "string",
+        "title": "Guest Name"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "e.g. \"Paris, France\"",
+        "name": "location",
+        "type": "string",
+        "title": "Guest Location"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "avatar",
+        "type": "image",
+        "title": "Guest Photo"
+      },
+      {
+        "initialValue": 5,
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "min",
+                "constraint": 1
+              },
+              {
+                "flag": "max",
+                "constraint": 5
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "rating",
+        "type": "number"
+      },
+      {
+        "rows": 4,
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "min",
+                "constraint": 50
+              },
+              {
+                "flag": "max",
+                "constraint": 500
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "text",
+        "type": "text",
+        "title": "Review Text"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Name of the property they stayed at",
+        "name": "property",
+        "type": "string",
+        "title": "Property Stayed At"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "Airbnb Guest",
+              "value": "Airbnb Guest"
+            },
+            {
+              "title": "Booking.com Guest",
+              "value": "Booking.com Guest"
+            },
+            {
+              "title": "Direct Booking",
+              "value": "Direct Booking"
+            },
+            {
+              "title": "Google Reviews",
+              "value": "Google Reviews"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "valid",
+                "constraint": [
+                  "Airbnb Guest",
+                  "Booking.com Guest",
+                  "Direct Booking",
+                  "Google Reviews"
+                ]
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "source",
+        "type": "string",
+        "title": "Review Source"
+      },
+      {
+        "initialValue": false,
+        "description": "Show this review prominently on the homepage",
+        "name": "featured",
+        "type": "boolean",
+        "title": "Featured Review"
+      },
+      {
+        "initialValue": 0,
+        "description": "Lower numbers appear first",
+        "name": "order",
+        "type": "number",
+        "title": "Display Order"
+      },
+      {
+        "initialValue": true,
+        "description": "Mark as verified/authentic review",
+        "name": "verified",
+        "type": "boolean",
+        "title": "Verified Review"
+      }
+    ],
+    "name": "review",
+    "type": "document",
+    "title": "Reviews & Testimonials"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "name",
+        "type": "string",
+        "title": "Full Name"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "role",
+        "type": "string",
+        "title": "Job Title/Role"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "image",
+        "type": "image",
+        "title": "Profile Photo"
+      },
+      {
+        "rows": 4,
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "min",
+                "constraint": 20
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Professional biography",
+        "name": "bio",
+        "type": "text",
+        "title": "Biography"
+      },
+      {
+        "rows": 2,
+        "description": "Personal recommendation or local insight",
+        "name": "tip",
+        "type": "text",
+        "title": "Local Tip"
+      },
+      {
+        "description": "Their favorite place in Morocco",
+        "name": "destination",
+        "type": "string",
+        "title": "Favorite Destination"
+      },
+      {
+        "options": {
+          "layout": "tags"
+        },
+        "description": "List of items they always carry",
+        "of": [
+          {
+            "type": "string"
+          }
+        ],
+        "name": "items",
+        "type": "array",
+        "title": "Essential Items"
+      },
+      {
+        "description": "Brief explanation about their essential items",
+        "name": "itemsDescription",
+        "type": "string"
+      },
+      {
+        "name": "email",
+        "type": "string",
+        "title": "Email Address"
+      },
+      {
+        "name": "phone",
+        "type": "string",
+        "title": "Phone Number"
+      },
+      {
+        "options": {
+          "collapsible": true,
+          "collapsed": true
+        },
+        "fields": [
+          {
+            "validation": [
+              {
+                "rules": [
+                  {
+                    "flag": "uri",
+                    "constraint": {
+                      "options": {
+                        "scheme": [
+                          "/^http$/",
+                          "/^https$/"
+                        ],
+                        "allowRelative": false,
+                        "relativeOnly": false,
+                        "allowCredentials": false
+                      }
+                    }
+                  }
+                ],
+                "level": "error"
+              }
+            ],
+            "name": "linkedin",
+            "type": "url",
+            "title": "LinkedIn URL"
+          },
+          {
+            "validation": [
+              {
+                "rules": [
+                  {
+                    "flag": "uri",
+                    "constraint": {
+                      "options": {
+                        "scheme": [
+                          "/^http$/",
+                          "/^https$/"
+                        ],
+                        "allowRelative": false,
+                        "relativeOnly": false,
+                        "allowCredentials": false
+                      }
+                    }
+                  }
+                ],
+                "level": "error"
+              }
+            ],
+            "name": "instagram",
+            "type": "url",
+            "title": "Instagram URL"
+          },
+          {
+            "validation": [
+              {
+                "rules": [
+                  {
+                    "flag": "uri",
+                    "constraint": {
+                      "options": {
+                        "scheme": [
+                          "/^http$/",
+                          "/^https$/"
+                        ],
+                        "allowRelative": false,
+                        "relativeOnly": false,
+                        "allowCredentials": false
+                      }
+                    }
+                  }
+                ],
+                "level": "error"
+              }
+            ],
+            "name": "twitter",
+            "type": "url",
+            "title": "Twitter URL"
+          }
+        ],
+        "name": "socialMedia",
+        "type": "object"
+      },
+      {
+        "initialValue": 0,
+        "description": "Lower numbers appear first",
+        "name": "order",
+        "type": "number",
+        "title": "Display Order"
+      },
+      {
+        "initialValue": false,
+        "description": "Show prominently on about page",
+        "name": "featured",
+        "type": "boolean",
+        "title": "Featured Team Member"
+      },
+      {
+        "initialValue": true,
+        "description": "Currently active team member",
+        "name": "isActive",
+        "type": "boolean",
+        "title": "Active Team Member"
+      }
+    ],
+    "name": "teamMember",
+    "type": "document",
+    "title": "Team Members"
+  }
+]

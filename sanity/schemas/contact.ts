@@ -44,7 +44,7 @@ export default defineType({
       name: 'message',
       title: 'Message',
       type: 'text',
-      validation: (Rule) => Rule.required(),
+      // Message is optional for property applications since they have property description
     }),
     // Property application specific fields
     defineField({
@@ -147,6 +147,29 @@ export default defineType({
       title: 'Internal Notes',
       type: 'text',
       description: 'Internal notes for tracking communication',
+    }),
+    // Technical metadata fields
+    defineField({
+      name: 'userAgent',
+      title: 'User Agent',
+      type: 'string',
+      description: 'Browser/device information',
+      hidden: true, // Hide from the studio UI
+    }),
+    defineField({
+      name: 'ipAddress',
+      title: 'IP Address',
+      type: 'string',
+      description: 'Client IP address',
+      hidden: true, // Hide from the studio UI
+    }),
+    defineField({
+      name: 'source',
+      title: 'Source',
+      type: 'string',
+      description: 'Where the submission came from',
+      initialValue: 'website',
+      hidden: true, // Hide from the studio UI
     }),
   ],
   preview: {

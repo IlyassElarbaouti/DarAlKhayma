@@ -1,14 +1,13 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { MapPin, Users, Bed, Bath, Star, Heart, Camera } from "lucide-react";
 import { Property } from "@/types";
 import { cn, formatPrice, formatRating } from "@/lib/utils";
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import ImageGallery from "@/components/common/ImageGallery";
+import PropertyCarousel from "@/components/common/PropertyCarousel";
 
 interface PropertyCardProps {
   property: Property;
@@ -16,7 +15,6 @@ interface PropertyCardProps {
 }
 
 export default function PropertyCard({ property, index = 0 }: PropertyCardProps) {
-  const router = useRouter();
   const [currentImage, setCurrentImage] = useState(0);
   const [isLiked, setIsLiked] = useState(false);
   const [showGallery, setShowGallery] = useState(false);
@@ -32,27 +30,10 @@ export default function PropertyCard({ property, index = 0 }: PropertyCardProps)
     allImages: property.images.map(img => ({ id: img.id, url: img.url }))
   });
 
-  const handleImageChange = (direction: "next" | "prev") => {
-    if (direction === "next") {
-      setCurrentImage((prev) => 
-        prev === property.images.length - 1 ? 0 : prev + 1
-      );
-    } else {
-      setCurrentImage((prev) => 
-        prev === 0 ? property.images.length - 1 : prev - 1
-      );
-    }
-  };
-
-  const openGallery = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
+  const openGallery = useCallback((index: number) => {
+    setCurrentImage(index);
     setShowGallery(true);
-  };
-
-  const handleCardClick = () => {
-    router.push(`/properties/${property.slug}`);
-  };
+  }, []);
 
   return (
     <motion.div
@@ -63,85 +44,26 @@ export default function PropertyCard({ property, index = 0 }: PropertyCardProps)
       className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300"
     >
       {/* Image Gallery */}
-      <div className="relative h-64 md:h-72 overflow-hidden cursor-pointer">
-        <div 
-          onClick={handleCardClick}
-          className="w-full h-full"
-        >
-          {property.images.length > 0 && property.images[currentImage]?.url ? (
-            <Image
-              src={property.images[currentImage].url}
-              alt={property.images[currentImage]?.alt || property.title}
-              fill
-              className="object-cover group-hover:scale-105 transition-transform duration-300"
-              onError={(e) => {
-                console.error('Image failed to load:', property.images[currentImage]?.url);
-                // Hide the image on error
-                e.currentTarget.style.display = 'none';
-              }}
-            />
-          ) : (
-            <div className="w-full h-full bg-gradient-to-br from-neutral-200 to-neutral-300 flex items-center justify-center">
-              <div className="text-neutral-500 text-center">
-                <Camera className="w-12 h-12 mx-auto mb-2 opacity-50" />
-                <p className="text-sm">No Image Available</p>
-              </div>
-            </div>
-          )}
-        </div>
+      <div className="relative">
+        <PropertyCarousel
+          images={property.images.map(img => ({
+            id: img.id,
+            url: img.url,
+            alt: img.alt || property.title
+          }))}
+          propertyTitle={property.title}
+          onImageClick={openGallery}
+          priority={index === 0}
+          className="cursor-pointer"
+        />
 
-        {/* Image Navigation */}
-        {property.images.length > 1 && (
-          <>
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                handleImageChange("prev");
-              }}
-              className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
-            >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-            </button>
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                handleImageChange("next");
-              }}
-              className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
-            >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
-          </>
-        )}
-
-        {/* Image Indicators */}
-        {property.images.length > 1 && (
-          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-1">
-            {property.images.map((_, idx) => (
-              <button
-                key={idx}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setCurrentImage(idx);
-                }}
-                className={cn(
-                  "w-2 h-2 rounded-full transition-all duration-200",
-                  currentImage === idx ? "bg-white" : "bg-white/50"
-                )}
-              />
-            ))}
-          </div>
-        )}        {/* Like Button */}
+        {/* Like Button */}
         <button
           onClick={(e) => {
             e.stopPropagation();
             setIsLiked(!isLiked);
           }}
-          className="absolute top-4 right-4 bg-white/90 hover:bg-white rounded-full p-2 transition-colors duration-200"
+          className="absolute top-4 right-4 bg-white/90 hover:bg-white rounded-full p-2 transition-colors duration-200 z-20"
         >
           <Heart
             className={cn(
@@ -156,9 +78,9 @@ export default function PropertyCard({ property, index = 0 }: PropertyCardProps)
           <button
             onClick={(e) => {
               e.stopPropagation();
-              openGallery(e);
+              openGallery(currentImage);
             }}
-            className="absolute top-4 right-16 bg-white/90 hover:bg-white rounded-full p-2 transition-colors duration-200"
+            className="absolute top-4 right-16 bg-white/90 hover:bg-white rounded-full p-2 transition-colors duration-200 z-20"
           >
             <Camera className="w-4 h-4 text-neutral-600" />
           </button>
@@ -166,13 +88,13 @@ export default function PropertyCard({ property, index = 0 }: PropertyCardProps)
 
         {/* Featured Badge */}
         {property.featured && (
-          <div className="absolute top-4 left-4 bg-gradient-to-r from-primary-600 to-secondary-600 text-white px-3 py-1 rounded-full text-sm font-medium">
+          <div className="absolute top-4 left-4 bg-gradient-to-r from-primary-600 to-secondary-600 text-white px-3 py-1 rounded-full text-sm font-medium z-20">
             Featured
           </div>
         )}
 
         {/* Category Badge */}
-        <div className="absolute bottom-4 right-4 bg-black/50 text-white px-2 py-1 rounded text-sm capitalize">
+        <div className="absolute bottom-4 right-4 bg-black/50 text-white px-2 py-1 rounded text-sm capitalize z-20">
           {property.category}
         </div>
       </div>

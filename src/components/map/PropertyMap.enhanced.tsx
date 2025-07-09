@@ -224,7 +224,7 @@ export default function PropertyMap({
                 <MapPin className="w-8 h-8 text-white animate-pulse" />
               </div>
             </div>
-            <p className="text-lg font-medium font-playfair">Chargement de la carte...</p>
+            <p className="text-lg font-medium font-playfair">Loading map...</p>
             <p className="text-sm text-primary-600 mt-2">Discover our exceptional properties</p>
           </div>
         </div>
@@ -310,7 +310,7 @@ export default function PropertyMap({
                         }
                       </p>
                       <div className="bg-gradient-to-r from-primary-500 to-primary-600 text-white px-3 py-1 rounded-lg text-sm font-semibold inline-block">
-                        {property.price.amount} {property.price.currency} / nuit
+                        {property.price.amount} {property.price.currency} / night
                       </div>
                     </div>
                   </div>
@@ -320,7 +320,7 @@ export default function PropertyMap({
                     className="w-full mt-3 bg-gradient-to-r from-accent-400 to-accent-500 hover:from-accent-500 hover:to-accent-600 text-primary-800 font-medium py-2 px-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-2"
                   >
                     <Home className="w-4 h-4" />
-                    Voir la propriété
+                    View Property
                   </button>
                 </div>
               </Popup>
@@ -336,9 +336,9 @@ export default function PropertyMap({
             <MapPin className="w-4 h-4 text-primary-800" />
           </div>
           <div>
-            <p className="font-semibold">{properties.length} propriétés</p>
+            <p className="font-semibold">{properties.length} properties</p>
             <p className="text-xs text-primary-200">
-              {viewMode === 'detailed' ? 'Vue détaillée' : 'Vue d\'ensemble'}
+              {viewMode === 'detailed' ? 'Detailed View' : 'Overview'}
             </p>
           </div>
         </div>

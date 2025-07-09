@@ -330,6 +330,7 @@ export default function PropertiesClient({ properties }: PropertiesClientProps) 
                 properties={sortedProperties.map(property => ({
                   id: property.id,
                   title: property.title,
+                  slug: property.slug,
                   location: property.location,
                   price: property.price,
                   images: property.images,

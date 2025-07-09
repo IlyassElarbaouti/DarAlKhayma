@@ -1,10 +1,11 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Star, Quote } from "lucide-react";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { Review } from "@/types/sanity";
+import { ELEGANT_PLACEHOLDER } from "@/lib/imagePlaceholders";
 
 // Fallback testimonials in case Sanity data is not available
 const fallbackTestimonials: Review[] = [
@@ -88,6 +89,8 @@ export default function TestimonialsSection() {
     return () => clearInterval(timer);
   }, [testimonials.length]);
 
+  const currentTestimonial = testimonials[currentIndex];
+
   return (
     <section className="py-20 bg-gradient-to-br from-neutral-50 to-primary-50/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -108,62 +111,72 @@ export default function TestimonialsSection() {
           </p>
         </motion.div>
 
-        {/* Testimonials Carousel */}
+        {/* Testimonials Carousel - Optimized with Framer Motion */}
         <div className="relative">
           <div className="overflow-hidden rounded-3xl">
-            <motion.div
-              className="flex transition-transform duration-500 ease-in-out"
-              style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-            >
-              {testimonials.map((testimonial) => (
-                <div key={testimonial.id} className="w-full flex-shrink-0">
-                  <div className="bg-white rounded-3xl p-8 md:p-12 shadow-xl mx-4">
-                    <div className="max-w-4xl mx-auto text-center">
-                      {/* Content */}
-                      <div>
-                        <Quote className="w-12 h-12 text-primary-200 mb-6 mx-auto" />
-                        
-                        {/* Rating */}
-                        <div className="flex items-center justify-center mb-6">
-                          {[...Array(Math.max(1, Math.min(5, testimonial.rating || 5)))].map((_, i) => (
-                            <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
-                          ))}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={currentIndex}
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -50 }}
+                transition={{
+                  duration: 0.4,
+                  ease: [0.25, 0.1, 0.25, 1] // Smooth easing for 60fps
+                }}
+                className="w-full"
+              >
+                <div className="bg-white rounded-3xl p-8 md:p-12 shadow-xl mx-4">
+                  <div className="max-w-4xl mx-auto text-center">
+                    {/* Content */}
+                    <div>
+                      <Quote className="w-12 h-12 text-primary-200 mb-6 mx-auto" />
+                      
+                      {/* Rating */}
+                      <div className="flex items-center justify-center mb-6">
+                        {[...Array(Math.max(1, Math.min(5, currentTestimonial.rating || 5)))].map((_, i) => (
+                          <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
+                        ))}
+                      </div>
+
+                      {/* Testimonial Text */}
+                      <blockquote className="text-lg md:text-xl text-neutral-700 leading-relaxed mb-8 font-medium">
+                        &ldquo;{currentTestimonial.text}&rdquo;
+                      </blockquote>
+
+                      {/* Property Info */}
+                      <div className="text-sm text-primary-600 font-medium mb-6">
+                        Stayed at: {currentTestimonial.property}
+                      </div>
+
+                      {/* Author Info */}
+                      <div className="flex items-center justify-center">
+                        <div className="relative w-12 h-12 rounded-full overflow-hidden mr-4">
+                          <Image
+                            src={currentTestimonial.avatar}
+                            alt={currentTestimonial.name}
+                            fill
+                            className="object-cover"
+                            sizes="48px"
+                            priority={currentIndex === 0} // Prioritize first testimonial image
+                            placeholder="blur"
+                            blurDataURL={ELEGANT_PLACEHOLDER}
+                          />
                         </div>
-
-                        {/* Testimonial Text */}                        <blockquote className="text-lg md:text-xl text-neutral-700 leading-relaxed mb-8 font-medium">
-                          &ldquo;{testimonial.text}&rdquo;
-                        </blockquote>
-
-                        {/* Property Info */}
-                        <div className="text-sm text-primary-600 font-medium mb-6">
-                          Stayed at: {testimonial.property}
-                        </div>
-
-                        {/* Author Info */}
-                        <div className="flex items-center justify-center">
-                          <div className="relative w-12 h-12 rounded-full overflow-hidden mr-4">
-                            <Image
-                              src={testimonial.avatar}
-                              alt={testimonial.name}
-                              fill
-                              className="object-cover"
-                            />
+                        <div className="text-center">
+                          <div className="font-semibold text-neutral-800">
+                            {currentTestimonial.name}
                           </div>
-                          <div className="text-center">
-                            <div className="font-semibold text-neutral-800">
-                              {testimonial.name}
-                            </div>
-                            <div className="text-sm text-neutral-600">
-                              {testimonial.location}
-                            </div>
+                          <div className="text-sm text-neutral-600">
+                            {currentTestimonial.location}
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              ))}
-            </motion.div>
+              </motion.div>
+            </AnimatePresence>
           </div>
 
           {/* Navigation Dots */}

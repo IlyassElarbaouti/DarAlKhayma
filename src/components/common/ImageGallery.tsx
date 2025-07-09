@@ -4,7 +4,9 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
+import { VisuallyHidden } from "@/components/ui/visually-hidden";
+import { ELEGANT_PLACEHOLDER } from "@/lib/imagePlaceholders";
 import Image from "next/image";
 
 interface ImageGalleryProps {
@@ -39,6 +41,13 @@ export default function ImageGallery({
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-7xl w-full h-[90vh] p-0 bg-black">
+        {/* Accessible title for screen readers */}
+        <VisuallyHidden>
+          <DialogTitle>
+            {title || "Image Gallery"} - {currentIndex + 1} of {images.length}
+          </DialogTitle>
+        </VisuallyHidden>
+        
         <div className="relative w-full h-full flex flex-col">
           {/* Header */}
           <div className="absolute top-0 left-0 right-0 z-20 bg-gradient-to-b from-black/80 to-transparent p-6">
@@ -68,17 +77,42 @@ export default function ImageGallery({
               <motion.div
                 key={currentIndex}
                 className="w-full h-full relative"
-                initial={{ opacity: 0, scale: 0.9 }}
+                initial={{ opacity: 0, scale: 1.02 }}
                 animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.3 }}
+                exit={{ opacity: 0, scale: 0.98 }}
+                transition={{ 
+                  duration: 0.4, 
+                  ease: [0.25, 0.1, 0.25, 1] // Smooth cubic-bezier
+                }}
               >
                 <Image
                   src={images[currentIndex]}
                   alt={`${title || 'Image'} ${currentIndex + 1}`}
                   fill
                   className="object-contain"
+                  priority
+                  quality={90}
+                  placeholder="blur"
+                  blurDataURL={ELEGANT_PLACEHOLDER}
                 />
+                
+                {/* Preload adjacent images for smoother navigation */}
+                {images.length > 1 && (
+                  <>
+                    <link
+                      rel="preload"
+                      as="image"
+                      href={images[(currentIndex + 1) % images.length]}
+                    />
+                    {currentIndex > 0 && (
+                      <link
+                        rel="preload"
+                        as="image"
+                        href={images[currentIndex - 1]}
+                      />
+                    )}
+                  </>
+                )}
               </motion.div>
             </AnimatePresence>
 

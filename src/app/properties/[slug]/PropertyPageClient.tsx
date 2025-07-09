@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import { Property } from "@/types";
 import { 
   MapPin, 
@@ -12,84 +11,50 @@ import {
   Heart,
   Share2,
   ExternalLink,
-  ChevronLeft,
-  ChevronRight,
   Wifi
 } from "lucide-react";
 import { motion } from "framer-motion";
+import AdvancedCarousel from "@/components/common/AdvancedCarousel";
 
 interface PropertyPageClientProps {
   property: Property;
 }
 
 export default function PropertyPageClient({ property }: PropertyPageClientProps) {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isLiked, setIsLiked] = useState(false);
 
-  const nextImage = () => {
-    setCurrentImageIndex((prev) => 
-      prev === property.images.length - 1 ? 0 : prev + 1
-    );
-  };
-
-  const prevImage = () => {
-    setCurrentImageIndex((prev) => 
-      prev === 0 ? property.images.length - 1 : prev - 1
-    );
-  };
+  // Convert property images to carousel format
+  const carouselImages = property.images.map(img => ({
+    id: img.id,
+    url: img.url,
+    alt: img.alt || property.title,
+    caption: img.caption || `${property.title} - Image`
+  }));
 
   return (
     <>
-      {/* Image Gallery */}
-      <div className="relative h-96 md:h-[500px] bg-gray-900">
-        {property.images.length > 0 && (
-          <Image
-            src={property.images[currentImageIndex].url}
-            alt={property.images[currentImageIndex].alt}
-            fill
-            className="object-cover"
-            priority
-          />
-        )}
-        
-        {/* Gallery Controls */}
-        {property.images.length > 1 && (
-          <>
-            <button
-              onClick={prevImage}
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/70 transition-colors"
-            >
-              <ChevronLeft className="w-6 h-6" />
-            </button>
-            <button
-              onClick={nextImage}
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/70 transition-colors"
-            >
-              <ChevronRight className="w-6 h-6" />
-            </button>
+      {/* Enhanced Image Gallery with AdvancedCarousel */}
+      <div className="relative">
+        <AdvancedCarousel
+          images={carouselImages}
+          height="500px"
+          autoPlay={false}
+          showThumbnails={true}
+          showCounter={true}
+          showFullscreenButton={true}
+          enableSwipe={true}
+          priority={true}
+          className="rounded-none md:rounded-2xl"
+        />
 
-            {/* Image Counter */}
-            <div className="absolute bottom-4 left-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm">
-              {currentImageIndex + 1} / {property.images.length}
-            </div>
-          </>
-        )}
-
-        {/* Gallery Button */}
-        {property.images.length > 1 && (
-          <button className="absolute bottom-4 right-4 bg-white text-neutral-900 px-4 py-2 rounded-lg font-medium hover:bg-neutral-100 transition-colors">
-            View all {property.images.length} photos
-          </button>
-        )}
-
-        {/* Action Buttons */}
-        <div className="absolute top-4 right-4 flex space-x-2">
-          <button className="bg-white/90 p-2 rounded-full hover:bg-white transition-colors">
+        {/* Action Buttons Overlay */}
+        <div className="absolute top-4 right-4 flex space-x-2 z-30">
+          <button className="bg-white/90 hover:bg-white p-2 rounded-full transition-colors shadow-lg">
             <Share2 className="w-5 h-5 text-neutral-700" />
           </button>
           <button 
             onClick={() => setIsLiked(!isLiked)}
-            className="bg-white/90 p-2 rounded-full hover:bg-white transition-colors"
+            className="bg-white/90 hover:bg-white p-2 rounded-full transition-colors shadow-lg"
           >
             <Heart className={`w-5 h-5 ${isLiked ? 'text-red-500 fill-current' : 'text-neutral-700'}`} />
           </button>

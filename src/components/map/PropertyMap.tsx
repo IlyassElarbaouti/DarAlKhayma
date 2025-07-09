@@ -4,6 +4,7 @@ import { useState, useCallback, useEffect } from "react";
 import { MapPin, Home, Eye, Maximize2 } from "lucide-react";
 import dynamic from "next/dynamic";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 // Import leaflet only on client side
 let L: any;
@@ -25,6 +26,7 @@ interface PropertyMapProps {
   properties: Array<{
     id: string;
     title: string;
+    slug?: string;
     location: {
       coordinates: { lat: number; lng: number };
       city?: string;
@@ -149,6 +151,7 @@ export default function PropertyMap({
 }: PropertyMapProps) {  const [isClient, setIsClient] = useState(false);
   const [mapInstance, setMapInstance] = useState<L.Map | null>(null);
   const [viewMode, setViewMode] = useState<'overview' | 'detailed'>('overview');
+  const router = useRouter();
 
   // Ensure component only renders on client side
   useEffect(() => {
@@ -173,6 +176,10 @@ export default function PropertyMap({
   const handleMarkerClick = useCallback((propertyId: string) => {
     onPropertySelect?.(propertyId);
   }, [onPropertySelect]);
+
+  const handleViewProperty = useCallback((property: PropertyMapProps['properties'][0]) => {
+    router.push(`/properties/${property.slug}`);
+  }, [router]);
 
   // Fit bounds to show all properties
   const fitBounds = useCallback(() => {
@@ -223,7 +230,7 @@ export default function PropertyMap({
                 <MapPin className="w-8 h-8 text-white animate-pulse" />
               </div>
             </div>
-            <p className="text-lg font-medium font-playfair">Chargement de la carte...</p>
+            <p className="text-lg font-medium font-playfair">Loading map...</p>
             <p className="text-sm text-primary-600 mt-2">Discover our exceptional properties</p>
           </div>
         </div>
@@ -242,7 +249,7 @@ export default function PropertyMap({
           className="bg-white/95 backdrop-blur-sm border border-primary-200 rounded-xl px-4 py-2 text-sm font-medium text-primary-700 hover:bg-primary-50 hover:border-primary-300 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center gap-2"
         >
           <Eye className="w-4 h-4" />
-          Vue d&apos;ensemble
+          Overview
         </button>
         {selectedProperty && (
           <button
@@ -250,7 +257,7 @@ export default function PropertyMap({
             className="bg-accent-500/95 backdrop-blur-sm border border-accent-600 rounded-xl px-4 py-2 text-sm font-medium text-primary-700 hover:bg-accent-400 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center gap-2"
           >
             <Maximize2 className="w-4 h-4" />
-            Tout voir
+            Show All
           </button>
         )}
       </div>      <MapContainer
@@ -310,17 +317,21 @@ export default function PropertyMap({
                         }
                       </p>
                       <div className="bg-gradient-to-r from-primary-500 to-primary-600 text-white px-3 py-1 rounded-lg text-sm font-semibold inline-block">
-                        {property.price.amount} {property.price.currency} / nuit
+                        {property.price.amount} {property.price.currency} / night
                       </div>
                     </div>
                   </div>
                   
                   <button
-                    onClick={() => handleMarkerClick(property.id)}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      handleViewProperty(property);
+                    }}
                     className="w-full mt-3 bg-gradient-to-r from-accent-400 to-accent-500 hover:from-accent-500 hover:to-accent-600 text-primary-800 font-medium py-2 px-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-2"
                   >
                     <Home className="w-4 h-4" />
-                    see the property
+                    View Property
                   </button>
                 </div>
               </Popup>
@@ -336,9 +347,9 @@ export default function PropertyMap({
             <MapPin className="w-4 h-4 text-primary-800" />
           </div>
           <div>
-            <p className="font-semibold">{properties.length} propriétés</p>
+            <p className="font-semibold">{properties.length} properties</p>
             <p className="text-xs text-primary-200">
-              {viewMode === 'detailed' ? 'Vue détaillée' : 'Vue d\'ensemble'}
+              {viewMode === 'detailed' ? 'Detailed View' : 'Overview'}
             </p>
           </div>
         </div>

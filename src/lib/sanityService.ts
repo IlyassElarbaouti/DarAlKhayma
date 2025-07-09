@@ -22,11 +22,15 @@ export async function getAllProperties(): Promise<Property[]> {
   try {
     // Add timeout and better error handling for build time
     const sanityProperties: SanityProperty[] = await Promise.race([
-      client.fetch(queries.allProperties),
+      client.fetch(queries.allProperties, {}, { 
+        cache: 'no-store',
+        next: { revalidate: 0 }
+      }),
       new Promise<never>((_, reject) => 
         setTimeout(() => reject(new Error('Sanity fetch timeout')), 10000)
       )
     ]);
+    console.log(`Fetched ${sanityProperties.length} properties at ${new Date().toISOString()}`);
     return sanityProperties.map(transformSanityProperty);
   } catch (error) {
     console.error('Error fetching properties:', error);

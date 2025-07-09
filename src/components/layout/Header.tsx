@@ -181,11 +181,6 @@ export default function Header() {
                                   <div className="text-sm text-neutral-500 truncate">
                                     {destination.region}
                                   </div>
-                                  {destination.propertyCount && (
-                                    <div className="text-xs text-primary-600 font-medium">
-                                      {destination.propertyCount} properties
-                                    </div>
-                                  )}
                                 </div>
                               </Link>
                             ))}
