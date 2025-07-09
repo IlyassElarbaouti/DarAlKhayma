@@ -34,30 +34,38 @@ export default function PropertyPageClient({ property }: PropertyPageClientProps
   return (
     <>
       {/* Enhanced Image Gallery with AdvancedCarousel */}
-      <div className="relative">
-        <AdvancedCarousel
-          images={carouselImages}
-          height="500px"
-          autoPlay={false}
-          showThumbnails={true}
-          showCounter={true}
-          showFullscreenButton={true}
-          enableSwipe={true}
-          priority={true}
-          className="rounded-none md:rounded-2xl"
-        />
+      <div className="relative mb-6 md:mb-8">
+        <div className="carousel-responsive">
+          <AdvancedCarousel
+            images={carouselImages}
+            height="100%"
+            autoPlay={false}
+            showThumbnails={true}
+            showCounter={true}
+            showFullscreenButton={true}
+            enableSwipe={true}
+            priority={true}
+            className="rounded-lg md:rounded-2xl shadow-xl"
+          />
+        </div>
 
-        {/* Action Buttons Overlay */}
-        <div className="absolute top-4 right-4 flex space-x-2 z-30">
-          <button className="bg-white/90 hover:bg-white p-2 rounded-full transition-colors shadow-lg">
-            <Share2 className="w-5 h-5 text-neutral-700" />
-          </button>
-          <button 
-            onClick={() => setIsLiked(!isLiked)}
-            className="bg-white/90 hover:bg-white p-2 rounded-full transition-colors shadow-lg"
+        {/* Action Buttons Overlay - Repositioned for better mobile UX */}
+        <div className="absolute top-2 md:top-4 right-12 md:right-16 flex space-x-2 z-30">
+          <motion.button 
+            className="bg-white/90 hover:bg-white p-2 rounded-full transition-all duration-300 shadow-lg backdrop-blur-sm carousel-button"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
           >
-            <Heart className={`w-5 h-5 ${isLiked ? 'text-red-500 fill-current' : 'text-neutral-700'}`} />
-          </button>
+            <Share2 className="w-4 h-4 md:w-5 md:h-5 text-neutral-700" />
+          </motion.button>
+          <motion.button 
+            onClick={() => setIsLiked(!isLiked)}
+            className="bg-white/90 hover:bg-white p-2 rounded-full transition-all duration-300 shadow-lg backdrop-blur-sm carousel-button"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <Heart className={`w-4 h-4 md:w-5 md:h-5 transition-colors ${isLiked ? 'text-red-500 fill-current' : 'text-neutral-700'}`} />
+          </motion.button>
         </div>
       </div>
 

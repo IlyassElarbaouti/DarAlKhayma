@@ -165,3 +165,36 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+/* Carousel enhancements */
+.carousel-responsive {
+  min-height: 300px;
+  height: clamp(300px, 50vh, 500px);
+}
+
+@media (max-width: 768px) {
+  .carousel-responsive {
+    min-height: 250px;
+    height: clamp(250px, 40vh, 350px);
+  }
+}
+
+.carousel-button {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.carousel-button:hover {
+  transform: scale(1.05);
+}
+
+.carousel-button:active {
+  transform: scale(0.95);
+}
+
+/* Improved touch targets for mobile */
+@media (max-width: 768px) {
+  .carousel-nav-button {
+    min-width: 44px;
+    min-height: 44px;
+  }
+}

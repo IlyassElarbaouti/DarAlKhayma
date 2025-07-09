@@ -49,18 +49,28 @@ export default function AdvancedCarousel({
   const [dragConstraints, setDragConstraints] = useState({ left: 0, right: 0 });
   const [touchStart, setTouchStart] = useState(0);
   const [touchEnd, setTouchEnd] = useState(0);
+  const [imageErrors, setImageErrors] = useState<Set<string>>(new Set());
   
   const containerRef = useRef<HTMLDivElement>(null);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Handle image loading errors
+  const handleImageError = useCallback((imageId: string) => {
+    setImageErrors(prev => new Set(prev).add(imageId));
+    setIsLoading(false);
+  }, []);
+
+  // Filter out errored images or provide fallback - use original images for now
+  const displayImages = images.length > 0 ? images : [];
 
   // Memoize for potential future use
   const _imageAspectRatio = useMemo(() => "16/9", []);
 
   // Auto-play functionality
   useEffect(() => {
-    if (isPlaying && !isFullscreen && images.length > 1) {
+    if (isPlaying && !isFullscreen && displayImages.length > 1) {
       intervalRef.current = setInterval(() => {
-        setCurrentIndex((prev) => (prev + 1) % images.length);
+        setCurrentIndex((prev) => (prev + 1) % displayImages.length);
       }, autoPlayInterval);
     } else {
       if (intervalRef.current) {
@@ -73,7 +83,7 @@ export default function AdvancedCarousel({
         clearInterval(intervalRef.current);
       }
     };
-  }, [isPlaying, isFullscreen, images.length, autoPlayInterval]);
+  }, [isPlaying, isFullscreen, displayImages.length, autoPlayInterval]);
 
   // Update drag constraints based on container width
   useEffect(() => {
@@ -81,7 +91,7 @@ export default function AdvancedCarousel({
       if (containerRef.current) {
         const containerWidth = containerRef.current.offsetWidth;
         const imageWidth = containerWidth;
-        const totalWidth = imageWidth * images.length;
+        const totalWidth = imageWidth * displayImages.length;
         setDragConstraints({
           left: -(totalWidth - containerWidth),
           right: 0
@@ -92,20 +102,20 @@ export default function AdvancedCarousel({
     updateConstraints();
     window.addEventListener('resize', updateConstraints);
     return () => window.removeEventListener('resize', updateConstraints);
-  }, [images.length]);
+  }, [displayImages.length]);
 
   // Navigation functions
   const goToNext = useCallback(() => {
-    const nextIndex = (currentIndex + 1) % images.length;
+    const nextIndex = (currentIndex + 1) % displayImages.length;
     setCurrentIndex(nextIndex);
     onImageChange?.(nextIndex);
-  }, [currentIndex, images.length, onImageChange]);
+  }, [currentIndex, displayImages.length, onImageChange]);
 
   const goToPrevious = useCallback(() => {
-    const prevIndex = (currentIndex - 1 + images.length) % images.length;
+    const prevIndex = (currentIndex - 1 + displayImages.length) % displayImages.length;
     setCurrentIndex(prevIndex);
     onImageChange?.(prevIndex);
-  }, [currentIndex, images.length, onImageChange]);
+  }, [currentIndex, displayImages.length, onImageChange]);
 
   const goToIndex = useCallback((index: number) => {
     setCurrentIndex(index);
@@ -175,7 +185,7 @@ export default function AdvancedCarousel({
     setIsPlaying(prev => !prev);
   }, []);
 
-  if (!images || images.length === 0) {
+  if (!displayImages || displayImages.length === 0) {
     return (
       <div className={`relative bg-gradient-to-br from-slate-50 via-slate-100 to-slate-200 rounded-xl flex items-center justify-center ${className}`} style={{ height }}>
         <div className="text-slate-400 text-center">
@@ -192,14 +202,14 @@ export default function AdvancedCarousel({
     );
   }
 
-  const currentImage = images[currentIndex];
+  const currentImage = displayImages[currentIndex];
 
   return (
     <>
       {/* Main Carousel */}
       <div 
         ref={containerRef}
-        className={`relative overflow-hidden rounded-xl bg-neutral-900 ${className}`}
+        className={`relative overflow-hidden rounded-xl bg-gradient-to-br from-neutral-100 to-neutral-200 shadow-lg ${className}`}
         style={{ height }}
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
@@ -211,40 +221,46 @@ export default function AdvancedCarousel({
             <motion.div
               key={currentIndex}
               custom={currentIndex}
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
+              initial={{ opacity: 0, scale: 1.05 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
               transition={{
-                duration: 0.25,
-                ease: [0.25, 0.1, 0.25, 1], // Optimized easing for 60fps
-                opacity: { duration: 0.2 }
+                duration: 0.4,
+                ease: [0.25, 0.1, 0.25, 1],
+                opacity: { duration: 0.3 },
+                scale: { duration: 0.4 }
               }}
               drag={enableSwipe ? "x" : false}
               dragConstraints={dragConstraints}
-              dragElastic={0.02}
+              dragElastic={0.1}
               onDragEnd={handleDragEnd}
               className="absolute inset-0 cursor-grab active:cursor-grabbing"
             >
-              <Image
-                src={currentImage.url}
-                alt={currentImage.alt}
-                fill
-                className="object-cover"
-                priority={priority && currentIndex <= 2} // Prioritize first 3 images
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
-                quality={90} // Higher quality for main carousel
-                placeholder="blur"
-                blurDataURL={ELEGANT_PLACEHOLDER}
-                onLoad={() => setIsLoading(false)}
-                onError={() => setIsLoading(false)}
-              />
+              <div className="relative w-full h-full bg-gradient-to-br from-neutral-100 to-neutral-200">
+                <Image
+                  src={currentImage.url}
+                  alt={currentImage.alt}
+                  fill
+                  className="object-cover transition-transform duration-500 hover:scale-105"
+                  priority={priority && currentIndex <= 2}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
+                  quality={95}
+                  placeholder="blur"
+                  blurDataURL={ELEGANT_PLACEHOLDER}
+                  onLoad={() => setIsLoading(false)}
+                  onError={() => handleImageError(currentImage.id)}
+                />
+                
+                {/* Subtle overlay for better text readability */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-black/10" />
+              </div>
               
               {/* Preload next and previous images for instant transitions */}
-              {images.length > 1 && (
+              {displayImages.length > 1 && (
                 <>
                   {/* Preload next image */}
                   <Image
-                    src={images[(currentIndex + 1) % images.length]?.url}
+                    src={displayImages[(currentIndex + 1) % displayImages.length]?.url}
                     alt="preload"
                     width={1}
                     height={1}
@@ -254,7 +270,7 @@ export default function AdvancedCarousel({
                   {/* Preload previous image */}
                   {currentIndex > 0 && (
                     <Image
-                      src={images[(currentIndex - 1 + images.length) % images.length]?.url}
+                      src={displayImages[(currentIndex - 1 + displayImages.length) % displayImages.length]?.url}
                       alt="preload"
                       width={1}
                       height={1}
@@ -273,107 +289,120 @@ export default function AdvancedCarousel({
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="absolute inset-0 bg-gradient-to-br from-slate-50 via-slate-100 to-slate-200 flex items-center justify-center overflow-hidden"
+              className="absolute inset-0 bg-gradient-to-br from-neutral-100 via-neutral-50 to-neutral-200 flex items-center justify-center overflow-hidden"
             >
               <div className="relative">
                 {/* Premium loading spinner */}
-                <div className="w-10 h-10 relative">
-                  <div className="absolute inset-0 border-3 border-slate-200 rounded-full"></div>
-                  <div className="absolute inset-0 border-3 border-slate-500 border-t-transparent rounded-full animate-spin"></div>
+                <div className="w-12 h-12 relative">
+                  <div className="absolute inset-0 border-4 border-neutral-200 rounded-full"></div>
+                  <div className="absolute inset-0 border-4 border-primary-600 border-t-transparent rounded-full animate-spin"></div>
                 </div>
                 {/* Subtle shimmer effect */}
-                <div className="absolute inset-0 -skew-x-12 bg-gradient-to-r from-transparent via-white/50 to-transparent animate-pulse"></div>
+                <div className="absolute inset-0 -skew-x-12 bg-gradient-to-r from-transparent via-white/60 to-transparent animate-pulse"></div>
               </div>
               
               {/* Background pattern */}
-              <div className="absolute inset-0 opacity-20">
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-pulse" 
+              <div className="absolute inset-0 opacity-30">
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent animate-pulse" 
                      style={{ animationDelay: '0.7s', animationDuration: '2s' }}></div>
               </div>
             </motion.div>
           )}
 
-          {/* Gradient overlays for better UI visibility */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-black/20 pointer-events-none" />
+          {/* Gradient overlays removed for cleaner look */}
         </div>
 
-        {/* Navigation Buttons */}
-        {images.length > 1 && (
+        {/* Enhanced Navigation Buttons */}
+        {displayImages.length > 1 && (
           <>
-            <button
+            <motion.button
               onClick={goToPrevious}
-              className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full transition-all duration-200 backdrop-blur-sm z-10"
+              className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-neutral-800 p-2 md:p-3 rounded-full transition-all duration-300 backdrop-blur-sm z-20 shadow-lg hover:shadow-xl group carousel-nav-button"
               aria-label="Previous image"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
             >
-              <ChevronLeft className="w-5 h-5" />
-            </button>
-            <button
+              <ChevronLeft className="w-4 h-4 md:w-5 md:h-5 group-hover:-translate-x-0.5 transition-transform" />
+            </motion.button>
+            <motion.button
               onClick={goToNext}
-              className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full transition-all duration-200 backdrop-blur-sm z-10"
+              className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-neutral-800 p-2 md:p-3 rounded-full transition-all duration-300 backdrop-blur-sm z-20 shadow-lg hover:shadow-xl group carousel-nav-button"
               aria-label="Next image"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
             >
-              <ChevronRight className="w-5 h-5" />
-            </button>
+              <ChevronRight className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-0.5 transition-transform" />
+            </motion.button>
           </>
         )}
 
-        {/* Top Controls */}
-        <div className="absolute top-4 left-4 right-4 flex justify-between items-center z-10">
+        {/* Enhanced Top Controls */}
+        <div className="absolute top-2 md:top-4 left-2 md:left-4 right-2 md:right-4 flex justify-between items-center z-20">
           {/* Counter */}
-          {showCounter && images.length > 1 && (
-            <div className="bg-black/50 text-white px-3 py-1 rounded-full text-sm backdrop-blur-sm">
-              {currentIndex + 1} / {images.length}
+          {showCounter && displayImages.length > 1 && (
+            <div className="bg-white/90 text-neutral-800 px-3 py-1.5 rounded-full text-sm font-medium backdrop-blur-sm shadow-lg">
+              {currentIndex + 1} / {displayImages.length}
             </div>
           )}
 
           {/* Control buttons */}
           <div className="flex gap-2">
             {/* Play/Pause */}
-            {showPlayPause && images.length > 1 && (
-              <button
+            {showPlayPause && displayImages.length > 1 && (
+              <motion.button
                 onClick={togglePlayPause}
-                className="bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-all duration-200 backdrop-blur-sm"
+                className="bg-white/90 hover:bg-white text-neutral-800 p-2 rounded-full transition-all duration-300 backdrop-blur-sm shadow-lg"
                 aria-label={isPlaying ? "Pause slideshow" : "Play slideshow"}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
               >
                 {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
-              </button>
+              </motion.button>
             )}
 
             {/* Fullscreen */}
             {showFullscreenButton && (
-              <button
+              <motion.button
                 onClick={() => setIsFullscreen(true)}
-                className="bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-all duration-200 backdrop-blur-sm"
+                className="bg-white/90 hover:bg-white text-neutral-800 p-2 rounded-full transition-all duration-300 backdrop-blur-sm shadow-lg"
                 aria-label="View fullscreen"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
               >
                 <Maximize2 className="w-4 h-4" />
-              </button>
+              </motion.button>
             )}
           </div>
         </div>
 
-        {/* Bottom Controls */}
-        <div className="absolute bottom-4 left-4 right-4 z-10">
+        {/* Enhanced Bottom Controls */}
+        <div className="absolute bottom-2 md:bottom-4 left-2 md:left-4 right-2 md:right-4 z-20">
           {/* Image Caption */}
           {currentImage.caption && (
-            <div className="bg-black/50 text-white px-4 py-2 rounded-lg text-sm backdrop-blur-sm mb-4">
+            <motion.div 
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="bg-white/90 text-neutral-800 px-4 py-2 rounded-lg text-sm backdrop-blur-sm mb-3 shadow-lg"
+            >
               {currentImage.caption}
-            </div>
+            </motion.div>
           )}
 
-          {/* Thumbnail Navigation */}
-          {showThumbnails && images.length > 1 && (
+          {/* Enhanced Thumbnail Navigation */}
+          {showThumbnails && displayImages.length > 1 && (
             <div className="flex justify-center">
-              <div className="flex gap-2 bg-black/50 p-2 rounded-lg backdrop-blur-sm overflow-x-auto max-w-full">
-                {images.map((image, index) => (
-                  <button
+              <div className="flex gap-1.5 md:gap-2 bg-white/90 p-2 rounded-lg backdrop-blur-sm overflow-x-auto max-w-full shadow-lg">
+                {displayImages.map((image, index) => (
+                  <motion.button
                     key={image.id}
                     onClick={() => goToIndex(index)}
-                    className={`relative w-12 h-8 rounded overflow-hidden border-2 transition-all duration-200 flex-shrink-0 ${
+                    className={`relative w-10 h-7 md:w-12 md:h-8 rounded overflow-hidden border-2 transition-all duration-300 flex-shrink-0 ${
                       index === currentIndex
-                        ? 'border-white scale-110'
-                        : 'border-white/30 hover:border-white/60'
+                        ? 'border-primary-600 shadow-md scale-110'
+                        : 'border-neutral-300 hover:border-primary-400'
                     }`}
+                    whileHover={{ scale: index === currentIndex ? 1.1 : 1.05 }}
+                    whileTap={{ scale: 0.95 }}
                   >
                     <Image
                       src={image.url}
@@ -382,25 +411,30 @@ export default function AdvancedCarousel({
                       className="object-cover"
                       sizes="48px"
                     />
-                  </button>
+                    {index === currentIndex && (
+                      <div className="absolute inset-0 bg-primary-600/20" />
+                    )}
+                  </motion.button>
                 ))}
               </div>
             </div>
           )}
 
-          {/* Dot indicators (alternative to thumbnails) */}
-          {!showThumbnails && images.length > 1 && (
+          {/* Enhanced Dot indicators */}
+          {!showThumbnails && displayImages.length > 1 && (
             <div className="flex justify-center gap-2">
-              {images.map((_, index) => (
-                <button
+              {displayImages.map((_, index) => (
+                <motion.button
                   key={index}
                   onClick={() => goToIndex(index)}
-                  className={`w-2 h-2 rounded-full transition-all duration-200 ${
+                  className={`h-2 rounded-full transition-all duration-300 ${
                     index === currentIndex
-                      ? 'bg-white w-6'
-                      : 'bg-white/50 hover:bg-white/75'
+                      ? 'bg-primary-600 w-8'
+                      : 'bg-white/60 hover:bg-white/80 w-2'
                   }`}
                   aria-label={`Go to image ${index + 1}`}
+                  whileHover={{ scale: 1.2 }}
+                  whileTap={{ scale: 0.9 }}
                 />
               ))}
             </div>
@@ -438,7 +472,7 @@ export default function AdvancedCarousel({
             </div>
 
             {/* Fullscreen navigation */}
-            {images.length > 1 && (
+            {displayImages.length > 1 && (
               <>
                 <button
                   onClick={goToPrevious}
@@ -459,14 +493,14 @@ export default function AdvancedCarousel({
 
             {/* Fullscreen counter */}
             <div className="absolute top-6 left-6 bg-black/50 text-white px-4 py-2 rounded-lg text-lg backdrop-blur-sm">
-              {currentIndex + 1} / {images.length}
+              {currentIndex + 1} / {displayImages.length}
             </div>
 
             {/* Fullscreen thumbnails */}
-            {images.length > 1 && (
+            {displayImages.length > 1 && (
               <div className="absolute bottom-6 left-1/2 -translate-x-1/2">
                 <div className="flex gap-2 bg-black/50 p-3 rounded-lg backdrop-blur-sm overflow-x-auto max-w-screen-sm">
-                  {images.map((image, index) => (
+                  {displayImages.map((image, index) => (
                     <button
                       key={image.id}
                       onClick={() => goToIndex(index)}
