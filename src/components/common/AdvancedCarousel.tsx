@@ -49,19 +49,17 @@ export default function AdvancedCarousel({
   const [dragConstraints, setDragConstraints] = useState({ left: 0, right: 0 });
   const [touchStart, setTouchStart] = useState(0);
   const [touchEnd, setTouchEnd] = useState(0);
-  const [imageErrors, setImageErrors] = useState<Set<string>>(new Set());
   
   const containerRef = useRef<HTMLDivElement>(null);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   // Handle image loading errors
-  const handleImageError = useCallback((imageId: string) => {
-    setImageErrors(prev => new Set(prev).add(imageId));
+  const handleImageError = useCallback(() => {
     setIsLoading(false);
   }, []);
 
-  // Filter out errored images or provide fallback - use original images for now
-  const displayImages = images.length > 0 ? images : [];
+  // Use images directly
+  const displayImages = images;
 
   // Memoize for potential future use
   const _imageAspectRatio = useMemo(() => "16/9", []);
@@ -248,7 +246,7 @@ export default function AdvancedCarousel({
                   placeholder="blur"
                   blurDataURL={ELEGANT_PLACEHOLDER}
                   onLoad={() => setIsLoading(false)}
-                  onError={() => handleImageError(currentImage.id)}
+                  onError={handleImageError}
                 />
                 
                 {/* Subtle overlay for better text readability */}
