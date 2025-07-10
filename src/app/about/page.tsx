@@ -93,8 +93,8 @@ export default async function AboutPage() {
             </div>
             <div className="relative">
               <Image
-                src="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
-                alt="Traditional Moroccan riad"
+                src="/about-hero-interior.png"
+                alt="Modern luxury living room interior"
                 width={2070}
                 height={1380}
                 className="rounded-2xl shadow-xl"

@@ -18,6 +18,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import PropertyCard from "@/components/property/PropertyCard";
 import { SanityDestination, Property } from "@/types/sanity";
+import { urlFor } from "@/lib/sanity";
 
 interface DestinationClientProps {
   destination: SanityDestination;
@@ -26,16 +27,16 @@ interface DestinationClientProps {
 
 export default function DestinationClient({ destination, properties }: DestinationClientProps) {
   const [selectedTab, setSelectedTab] = useState<'overview' | 'attractions' | 'properties'>('overview');
-  // Create gallery array from destination image (for now, just use the main image)
-  // In future, you might want to add a gallery field to the destination schema
-  const gallery = destination.image ? [destination.image.url] : [];
+  // Create gallery array from destination image with proper URL generation
+  const gallery = destination.image ? [urlFor(destination.image).width(1920).height(800).quality(90).url()] : [];
 
   return (
     <>
       {/* Hero Gallery Section */}
       <div className="relative h-96 lg:h-[500px]">
         <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"          style={{
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
             backgroundImage: gallery.length > 0 ? `url('${gallery[0]}')` : 'none',
             backgroundColor: gallery.length === 0 ? '#f3f4f6' : 'transparent'
           }}
