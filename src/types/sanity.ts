@@ -306,6 +306,11 @@ export interface SanityReview {
   text: string;
   property: string;
   source: string;
+  reviewType: 'guest' | 'corporate' | 'property-owner';
+  companyName?: string;
+  jobTitle?: string;
+  propertyOwned?: string;
+  ownershipDuration?: string;
   featured: boolean;
   verified: boolean;
   _createdAt: string;
@@ -320,6 +325,11 @@ export interface Review {
   text: string;
   property: string;
   source: string;
+  reviewType: 'guest' | 'corporate' | 'property-owner';
+  companyName?: string;
+  jobTitle?: string;
+  propertyOwned?: string;
+  ownershipDuration?: string;
   featured?: boolean;
   verified?: boolean;
   createdAt?: string;
@@ -379,6 +389,11 @@ export function transformSanityReview(sanityReview: SanityReview): Review {
     text: sanityReview.text,
     property: sanityReview.property,
     source: sanityReview.source,
+    reviewType: sanityReview.reviewType,
+    companyName: sanityReview.companyName,
+    jobTitle: sanityReview.jobTitle,
+    propertyOwned: sanityReview.propertyOwned,
+    ownershipDuration: sanityReview.ownershipDuration,
     featured: sanityReview.featured,
     verified: sanityReview.verified,
     createdAt: sanityReview._createdAt

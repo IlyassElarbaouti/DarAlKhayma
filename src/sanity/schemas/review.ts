@@ -49,6 +49,50 @@ export default defineType({
       description: 'Name of the property they stayed at',
       validation: Rule => Rule.required()
     }),
+    // Corporate-specific fields
+    defineField({
+      name: 'companyName',
+      title: 'Company Name',
+      type: 'string',
+      description: 'Name of the company (for corporate reviews)',
+      hidden: ({ document }) => document?.reviewType !== 'corporate'
+    }),
+    defineField({
+      name: 'jobTitle',
+      title: 'Job Title/Role',
+      type: 'string',
+      description: 'Professional title of the reviewer',
+      hidden: ({ document }) => document?.reviewType !== 'corporate'
+    }),
+    // Property owner specific fields
+    defineField({
+      name: 'propertyOwned',
+      title: 'Property Owned',
+      type: 'string',
+      description: 'Name of the property they own',
+      hidden: ({ document }) => document?.reviewType !== 'property-owner'
+    }),
+    defineField({
+      name: 'ownershipDuration',
+      title: 'Partnership Duration',
+      type: 'string',
+      description: 'How long they\'ve been working with us',
+      hidden: ({ document }) => document?.reviewType !== 'property-owner'
+    }),
+    defineField({
+      name: 'reviewType',
+      title: 'Review Type',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Guest Review', value: 'guest' },
+          { title: 'Corporate Review', value: 'corporate' },
+          { title: 'Property Owner Review', value: 'property-owner' }
+        ]
+      },
+      validation: Rule => Rule.required(),
+      initialValue: 'guest'
+    }),
     defineField({
       name: 'source',
       title: 'Review Source',
@@ -58,7 +102,9 @@ export default defineType({
           { title: 'Airbnb Guest', value: 'Airbnb Guest' },
           { title: 'Booking.com Guest', value: 'Booking.com Guest' },
           { title: 'Direct Booking', value: 'Direct Booking' },
-          { title: 'Google Reviews', value: 'Google Reviews' }
+          { title: 'Google Reviews', value: 'Google Reviews' },
+          { title: 'Corporate Client', value: 'Corporate Client' },
+          { title: 'Property Owner', value: 'Property Owner' }
         ]
       },
       validation: Rule => Rule.required()

@@ -11,13 +11,21 @@ export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
     const featured = searchParams.get("featured");
+    const reviewType = searchParams.get("type") as 'guest' | 'corporate' | 'property-owner' | null;
     const limit = searchParams.get("limit");
 
     let query = queries.allReviews;
+    const queryParams: any = {};
     
     // If featured filter is requested
     if (featured === "true") {
       query = queries.featuredReviews;
+    }
+    
+    // If review type filter is requested
+    if (reviewType && ['guest', 'corporate', 'property-owner'].includes(reviewType)) {
+      query = queries.reviewsByType;
+      queryParams.reviewType = reviewType;
     }
 
     // If limit is specified, add it to the query
@@ -25,7 +33,7 @@ export async function GET(request: NextRequest) {
       query = query.replace("] | order", `][0...${limit}] | order`);
     }
 
-    const sanityReviews: SanityReview[] = await client.fetch(query);
+    const sanityReviews: SanityReview[] = await client.fetch(query, queryParams);
 
     const reviews = sanityReviews.map(transformSanityReview);
 

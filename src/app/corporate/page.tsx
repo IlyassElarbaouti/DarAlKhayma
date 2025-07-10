@@ -9,12 +9,12 @@ import {
   Phone,
   Mail,
   CheckCircle,
-  ArrowRight,
-  Star
+  ArrowRight
 } from "lucide-react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
+import CorporateTestimonials from "@/components/common/CorporateTestimonials";
 
 const benefits = [
   {
@@ -105,7 +105,7 @@ const packages = [
   }
 ];
 
-const testimonials = [
+const _testimonials = [
   {
     name: "Sarah Johnson",
     company: "TechGlobal Inc.",
@@ -475,58 +475,16 @@ export default function CorporatePage() {
             ))}
           </div>
         </div>
-      </div>      {/* Testimonials Section */}
-      <div className="py-20 bg-gradient-to-br from-neutral-50 to-accent-50/20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-display font-bold text-neutral-900 mb-4">
-              What Our Corporate Clients Say
-            </h2>
-            <p className="text-neutral-600">
-              Real feedback from businesses that trust us with their accommodation needs.
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.2 }}
-                viewport={{ once: true }}
-                className="bg-white p-8 rounded-2xl shadow-lg"
-              >
-                <div className="flex items-center mb-4">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
-                  ))}
-                </div>
-                <blockquote className="text-neutral-700 mb-6 leading-relaxed">
-                  "{testimonial.content}"
-                </blockquote>
-                <div className="flex items-center">
-                  <Image
-                    src={testimonial.image}
-                    alt={testimonial.name}
-                    width={48}
-                    height={48}
-                    className="w-12 h-12 rounded-full mr-4"
-                  />
-                  <div>
-                    <div className="font-semibold text-neutral-900">
-                      {testimonial.name}
-                    </div>
-                    <div className="text-sm text-neutral-600">
-                      {testimonial.role} at {testimonial.company}
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </div>      {/* Contact Section */}
+      </div>
+
+      {/* Testimonials Section */}
+      <CorporateTestimonials 
+        title="What Our Corporate Clients Say"
+        subtitle="Real feedback from businesses that trust us with their accommodation needs."
+        className="bg-gradient-to-br from-neutral-50 to-accent-50/20"
+      />
+
+      {/* Contact Section */}
       <div id="contact" className="py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-gradient-to-r from-primary-50 to-accent-50 rounded-2xl p-12 text-center">

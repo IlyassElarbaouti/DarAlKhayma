@@ -365,6 +365,11 @@ export const queries = {
     text,
     property,
     source,
+    reviewType,
+    companyName,
+    jobTitle,
+    propertyOwned,
+    ownershipDuration,
     featured,
     verified,
     _createdAt
@@ -380,6 +385,31 @@ export const queries = {
     text,
     property,
     source,
+    reviewType,
+    companyName,
+    jobTitle,
+    propertyOwned,
+    ownershipDuration,
+    featured,
+    verified,
+    _createdAt
+  }`,
+
+  // Get reviews by type
+  reviewsByType: `*[_type == "review" && reviewType == $reviewType] | order(order asc, _createdAt desc) {
+    _id,
+    name,
+    location,
+    "avatar": avatar.asset->url,
+    rating,
+    text,
+    property,
+    source,
+    reviewType,
+    companyName,
+    jobTitle,
+    propertyOwned,
+    ownershipDuration,
     featured,
     verified,
     _createdAt

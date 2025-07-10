@@ -19,6 +19,7 @@ const sampleReviews = [
     text: 'Absolutely perfect stay! The apartment was exactly as shown in photos, impeccably clean and beautifully designed. The location in Marrakech medina was ideal for exploring. Ilyass and his team were incredibly responsive and helpful throughout our stay.',
     property: 'Luxury Riad in Marrakech Medina',
     source: 'Airbnb Guest',
+    reviewType: 'guest',
     featured: true,
     verified: true,
     order: 1
@@ -30,6 +31,7 @@ const sampleReviews = [
     text: 'Outstanding experience from start to finish. The property exceeded all expectations - modern amenities in a traditional setting. The 24/7 support was invaluable, and the local recommendations were spot on. Will definitely return!',
     property: 'Traditional Riad with Modern Amenities',
     source: 'Airbnb Guest',
+    reviewType: 'guest',
     featured: true,
     verified: true,
     order: 2
@@ -41,6 +43,7 @@ const sampleReviews = [
     text: 'This was our first time in Morocco and Dar Al Khayma made it unforgettable. Every detail was thought of - from the welcome amenities to the perfectly equipped kitchen. The team\'s hospitality is unmatched. Highly recommended!',
     property: 'Boutique Apartment in Casablanca',
     source: 'Booking.com Guest',
+    reviewType: 'guest',
     featured: true,
     verified: true,
     order: 3
@@ -52,6 +55,7 @@ const sampleReviews = [
     text: 'Professional service and stunning property. The design is simply beautiful - authentic Moroccan style with luxury finishes. Location was perfect for both business and leisure. The team went above and beyond to ensure our comfort.',
     property: 'Executive Suite in Rabat',
     source: 'Direct Booking',
+    reviewType: 'guest',
     featured: true,
     verified: true,
     order: 4
@@ -63,6 +67,7 @@ const sampleReviews = [
     text: 'Incredible experience in Essaouira! The ocean view riad was breathtaking, and the team arranged everything from airport transfer to local tours. True Moroccan hospitality at its finest.',
     property: 'Ocean View Riad in Essaouira',
     source: 'Airbnb Guest',
+    reviewType: 'guest',
     featured: false,
     verified: true,
     order: 5
@@ -74,9 +79,68 @@ const sampleReviews = [
     text: 'Perfect for our business trip to Casablanca. The apartment was modern, well-located, and the team was extremely professional. Exceeded all our expectations for corporate accommodation.',
     property: 'Business Apartment in Casablanca',
     source: 'Direct Booking',
+    reviewType: 'guest',
     featured: false,
     verified: true,
     order: 6
+  },
+  // Corporate reviews
+  {
+    name: 'Sarah Johnson',
+    location: 'Casablanca, Morocco',
+    rating: 5,
+    text: 'Dar Al Khayma provided exceptional accommodations for our 6-month project in Casablanca. The team was professional and the properties exceeded our expectations. The flexibility and attention to detail made managing our team\'s accommodation seamless.',
+    property: 'Executive Apartments',
+    source: 'Corporate Client',
+    reviewType: 'corporate',
+    companyName: 'TechGlobal Inc.',
+    jobTitle: 'HR Director',
+    featured: true,
+    verified: true,
+    order: 7
+  },
+  {
+    name: 'Marcus Weber',
+    location: 'Marrakech, Morocco',
+    rating: 5,
+    text: 'The flexibility and quality of service made our extended stay in Marrakech seamless. Highly recommended for any corporate housing needs. The properties were exactly what we needed for our consulting team.',
+    property: 'Business Suites',
+    source: 'Corporate Client',
+    reviewType: 'corporate',
+    companyName: 'Consulting Partners',
+    jobTitle: 'Managing Partner',
+    featured: true,
+    verified: true,
+    order: 8
+  },
+  // Property owner reviews
+  {
+    name: 'Fatima Al-Zahra',
+    location: 'Marrakech, Morocco',
+    rating: 5,
+    text: 'Joining Dar Al Khayma was the best decision for my riad. The professional service and premium guests have exceeded my expectations. My revenue increased by 65% in the first year, and the property is always maintained to the highest standards.',
+    property: 'Traditional Riad',
+    source: 'Property Owner',
+    reviewType: 'property-owner',
+    propertyOwned: 'Traditional Riad in Medina',
+    ownershipDuration: '2 years partnership',
+    featured: true,
+    verified: true,
+    order: 9
+  },
+  {
+    name: 'Hassan Benali',
+    location: 'Casablanca, Morocco',
+    rating: 5,
+    text: 'The team\'s attention to detail and guest care has been exceptional. My property is always well-maintained and guests leave glowing reviews. Our occupancy rate reached 80% consistently.',
+    property: 'Modern Villa',
+    source: 'Property Owner',
+    reviewType: 'property-owner',
+    propertyOwned: 'Modern Villa in Anfa',
+    ownershipDuration: '1.5 years partnership',
+    featured: true,
+    verified: true,
+    order: 10
   }
 ];
 
@@ -156,6 +220,11 @@ async function populateReviewsAndTeam() {
         text: review.text,
         property: review.property,
         source: review.source,
+        reviewType: review.reviewType,
+        companyName: review.companyName,
+        jobTitle: review.jobTitle,
+        propertyOwned: review.propertyOwned,
+        ownershipDuration: review.ownershipDuration,
         featured: review.featured,
         verified: review.verified,
         order: review.order

@@ -133,6 +133,16 @@ export async function getFeaturedReviews(): Promise<Review[]> {
   }
 }
 
+export async function getReviewsByType(reviewType: 'guest' | 'corporate' | 'property-owner'): Promise<Review[]> {
+  try {
+    const sanityReviews: SanityReview[] = await client.fetch(queries.reviewsByType, { reviewType });
+    return sanityReviews.map(transformSanityReview);
+  } catch (error) {
+    console.error('Error fetching reviews by type:', error);
+    return [];
+  }
+}
+
 // Team member services
 export async function getAllTeamMembers(): Promise<TeamMember[]> {
   try {

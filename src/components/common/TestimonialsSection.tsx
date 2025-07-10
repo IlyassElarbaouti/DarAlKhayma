@@ -17,7 +17,8 @@ const fallbackTestimonials: Review[] = [
     rating: 5,
     text: "Absolutely perfect stay! The apartment was exactly as shown in photos, impeccably clean and beautifully designed. The location in Marrakech medina was ideal for exploring. Ilyass and his team were incredibly responsive and helpful throughout our stay.",
     property: "Luxury Riad in Marrakech Medina",
-    source: "Airbnb Guest"
+    source: "Airbnb Guest",
+    reviewType: "guest"
   },
   {
     id: "fallback-2",
@@ -27,7 +28,8 @@ const fallbackTestimonials: Review[] = [
     rating: 5,
     text: "Outstanding experience from start to finish. The property exceeded all expectations - modern amenities in a traditional setting. The 24/7 support was invaluable, and the local recommendations were spot on. Will definitely return!",
     property: "Traditional Riad with Modern Amenities",
-    source: "Airbnb Guest"
+    source: "Airbnb Guest",
+    reviewType: "guest"
   },
   {
     id: "fallback-3",
@@ -37,7 +39,8 @@ const fallbackTestimonials: Review[] = [
     rating: 5,
     text: "This was our first time in Morocco and Dar Al Khayma made it unforgettable. Every detail was thought of - from the welcome amenities to the perfectly equipped kitchen. The team's hospitality is unmatched. Highly recommended!",
     property: "Boutique Apartment in Casablanca",
-    source: "Airbnb Guest"
+    source: "Airbnb Guest",
+    reviewType: "guest"
   },
   {
     id: "fallback-4",
@@ -47,7 +50,8 @@ const fallbackTestimonials: Review[] = [
     rating: 5,
     text: "Professional service and stunning property. The design is simply beautiful - authentic Moroccan style with luxury finishes. Location was perfect for both business and leisure. The team went above and beyond to ensure our comfort.",
     property: "Executive Suite in Rabat",
-    source: "Airbnb Guest"
+    source: "Airbnb Guest",
+    reviewType: "guest"
   }
 ];
 
