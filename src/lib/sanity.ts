@@ -68,6 +68,7 @@ export const queries = {
       label
     },
     featured,
+    tags,
     category,
     rating {
       average,
@@ -121,6 +122,7 @@ export const queries = {
       label
     },
     featured,
+    tags,
     category,
     rating {
       average,
@@ -174,6 +176,7 @@ export const queries = {
       label
     },
     featured,
+    tags,
     category,
     rating {
       average,
@@ -227,6 +230,7 @@ export const queries = {
       label
     },
     featured,
+    tags,
     category,
     rating {
       average,
@@ -449,5 +453,59 @@ export const queries = {
     socialMedia,
     featured,
     _createdAt
+  }`,
+
+  // Get properties by tag
+  propertiesByTag: `*[_type == "property" && $tag in tags] | order(_createdAt desc) {
+    _id,
+    title,
+    slug,
+    description,
+    shortDescription,
+    images[] {
+      _key,
+      alt,
+      caption,
+      "url": asset->url
+    },
+    location-> {
+      _id,
+      city,
+      region,
+      country,
+      coordinates,
+      neighborhood
+    },
+    price {
+      amount,
+      currency,
+      period
+    },
+    specifications {
+      bedrooms,
+      bathrooms,
+      guests,
+      area
+    },
+    amenities[]-> {
+      _id,
+      name,
+      icon,
+      category
+    },
+    bookingLinks[] {
+      platform,
+      url,
+      label
+    },
+    featured,
+    tags,
+    category,
+    rating {
+      average,
+      count
+    },
+    _createdAt,
+    _updatedAt
   }`
 }

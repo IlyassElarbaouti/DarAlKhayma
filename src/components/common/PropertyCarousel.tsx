@@ -248,9 +248,9 @@ export default function PropertyCarousel({
       {/* Dot Indicators */}
       {images.length > 1 && (
         <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-1 z-10">
-          {images.map((_, idx) => (
+          {images.map((image, idx) => (
             <button
-              key={idx}
+              key={`${image.id || image.url}-${idx}`}
               onClick={(e) => goToIndex(idx, e)}
               className={`w-2 h-2 rounded-full transition-all duration-200 ${
                 currentIndex === idx ? "bg-white w-6" : "bg-white/60 hover:bg-white/80"

@@ -20,6 +20,7 @@ export interface Property {
   amenities: Amenity[];
   bookingLinks: BookingLink[];
   featured: boolean;
+  tags?: string[]; // New tags field: 'featured', 'superior-collection', 'new-addition'
   category: PropertyCategory;
   availability?: {
     available: boolean;

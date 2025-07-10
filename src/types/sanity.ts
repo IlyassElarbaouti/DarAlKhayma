@@ -39,6 +39,7 @@ export interface SanityProperty {
   };  amenities: SanityAmenity[] | null;
   bookingLinks: BookingLink[] | null;
   featured: boolean;
+  tags?: string[] | null;
   category: PropertyCategory;
   availability?: {
     available: boolean;
@@ -164,6 +165,7 @@ export function transformSanityProperty(sanityProperty: SanityProperty): Propert
     })) || [],
     bookingLinks: sanityProperty.bookingLinks || [],
     featured: sanityProperty.featured,
+    tags: sanityProperty.tags || [],
     category: sanityProperty.category,
     availability: sanityProperty.availability ? {
       available: sanityProperty.availability.available,
@@ -212,6 +214,7 @@ export interface Property {
   amenities: Amenity[];
   bookingLinks: BookingLink[];
   featured: boolean;
+  tags?: string[];
   category: PropertyCategory;
   availability?: {
     available: boolean;

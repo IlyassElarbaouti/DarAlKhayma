@@ -186,10 +186,30 @@ export default {
       ]
     },
     {
+      name: 'tags',
+      title: 'Property Tags',
+      type: 'array',
+      of: [
+        {
+          type: 'string',
+          options: {
+            list: [
+              { title: 'Featured', value: 'featured' },
+              { title: 'Superior Collection', value: 'superior-collection' },
+              { title: 'New Addition', value: 'new-addition' }
+            ]
+          }
+        }
+      ],
+      description: 'Select applicable tags for this property'
+    },
+    {
       name: 'featured',
-      title: 'Featured Property',
+      title: 'Featured Property (Legacy)',
       type: 'boolean',
-      initialValue: false
+      initialValue: false,
+      description: 'Legacy field - use Tags instead',
+      hidden: true
     },
     {
       name: 'category',

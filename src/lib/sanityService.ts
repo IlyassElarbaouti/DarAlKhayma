@@ -54,7 +54,61 @@ export async function getPropertiesByCity(city: string): Promise<Property[]> {
 
 export async function getFeaturedProperties(): Promise<Property[]> {
   try {
-    const sanityProperties: SanityProperty[] = await client.fetch(queries.featuredProperties);
+    // Get properties that are either marked as featured (legacy) or have the 'featured' tag
+    const query = `*[_type == "property" && (featured == true || "featured" in tags)] | order(_createdAt desc) {
+      _id,
+      title,
+      slug,
+      description,
+      shortDescription,
+      images[] {
+        _key,
+        alt,
+        caption,
+        "url": asset->url
+      },
+      location-> {
+        _id,
+        city,
+        region,
+        country,
+        coordinates,
+        neighborhood
+      },
+      price {
+        amount,
+        currency,
+        period
+      },
+      specifications {
+        bedrooms,
+        bathrooms,
+        guests,
+        area
+      },
+      amenities[]-> {
+        _id,
+        name,
+        icon,
+        category
+      },
+      bookingLinks[] {
+        platform,
+        url,
+        label
+      },
+      featured,
+      tags,
+      category,
+      rating {
+        average,
+        count
+      },
+      _createdAt,
+      _updatedAt
+    }`;
+    
+    const sanityProperties: SanityProperty[] = await client.fetch(query);
     return sanityProperties.map(transformSanityProperty);
   } catch (error) {
     console.error('Error fetching featured properties:', error);
@@ -294,4 +348,76 @@ export async function searchProperties(searchParams: {
     console.error('Error searching properties:', error);
     return [];
   }
+}
+
+export async function getPropertiesByTag(tag: string): Promise<Property[]> {
+  try {
+    const query = `*[_type == "property" && $tag in tags] | order(_createdAt desc) {
+      _id,
+      title,
+      slug,
+      description,
+      shortDescription,
+      images[] {
+        _key,
+        alt,
+        caption,
+        "url": asset->url
+      },
+      location-> {
+        _id,
+        city,
+        region,
+        country,
+        coordinates,
+        neighborhood
+      },
+      price {
+        amount,
+        currency,
+        period
+      },
+      specifications {
+        bedrooms,
+        bathrooms,
+        guests,
+        area
+      },
+      amenities[]-> {
+        _id,
+        name,
+        icon,
+        category
+      },
+      bookingLinks[] {
+        platform,
+        url,
+        label
+      },
+      featured,
+      tags,
+      category,
+      rating {
+        average,
+        count
+      },
+      _createdAt,
+      _updatedAt
+    }`;
+    
+    // @ts-expect-error - temporary workaround for Sanity client typing issue
+    const sanityProperties: SanityProperty[] = await client.fetch(query, { tag });
+    return sanityProperties.map(transformSanityProperty);
+  } catch (error) {
+    console.error('Error fetching properties by tag:', error);
+    return [];
+  }
+}
+
+export async function getSuperiorCollectionProperties(): Promise<Property[]> {
+  return getPropertiesByTag('superior-collection');
+}
+
+export async function getNewAdditionProperties(): Promise<Property[]> {
+  return getPropertiesByTag('new-addition');
 }

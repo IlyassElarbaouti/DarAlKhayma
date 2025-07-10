@@ -35,6 +35,32 @@ export default function PropertyCard({ property, index = 0 }: PropertyCardProps)
     setShowGallery(true);
   }, []);
 
+  // Function to get tag display information
+  const getTagInfo = (tag: string) => {
+    switch (tag) {
+      case 'featured':
+        return {
+          label: 'Featured',
+          className: 'bg-gradient-to-r from-primary-600 to-secondary-600 text-white'
+        };
+      case 'superior-collection':
+        return {
+          label: 'Superior Collection',
+          className: 'bg-gradient-to-r from-amber-500 to-orange-500 text-white'
+        };
+      case 'new-addition':
+        return {
+          label: 'New Addition',
+          className: 'bg-gradient-to-r from-green-500 to-emerald-500 text-white'
+        };
+      default:
+        return {
+          label: tag,
+          className: 'bg-gray-500 text-white'
+        };
+    }
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -86,12 +112,35 @@ export default function PropertyCard({ property, index = 0 }: PropertyCardProps)
           </button>
         )}
 
-        {/* Featured Badge */}
-        {property.featured && (
-          <div className="absolute top-4 left-4 bg-gradient-to-r from-primary-600 to-secondary-600 text-white px-3 py-1 rounded-full text-sm font-medium z-20">
-            Featured
-          </div>
-        )}
+        {/* Property Tags */}
+        <div className="absolute top-4 left-4 flex flex-col gap-2 z-20">
+          {/* Legacy featured badge */}
+          {property.featured && (!property.tags || !property.tags.includes('featured')) && (
+            <div className="bg-gradient-to-r from-primary-600 to-secondary-600 text-white px-3 py-1 rounded-full text-sm font-medium">
+              Featured
+            </div>
+          )}
+          
+          {/* New tags system */}
+          {property.tags && property.tags.length > 0 && (
+            <>
+              {property.tags.map((tag) => {
+                const tagInfo = getTagInfo(tag);
+                return (
+                  <div
+                    key={tag}
+                    className={cn(
+                      "px-3 py-1 rounded-full text-sm font-medium",
+                      tagInfo.className
+                    )}
+                  >
+                    {tagInfo.label}
+                  </div>
+                );
+              })}
+            </>
+          )}
+        </div>
 
         {/* Category Badge */}
         <div className="absolute bottom-4 right-4 bg-black/50 text-white px-2 py-1 rounded text-sm capitalize z-20">
