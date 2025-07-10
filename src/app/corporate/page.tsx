@@ -62,6 +62,8 @@ const services = [
   }
 ];
 
+// Corporate packages data - commented out until pricing is decided
+/*
 const packages = [
   {
     title: "Business Essential",
@@ -104,6 +106,7 @@ const packages = [
     priceRange: "Custom pricing"
   }
 ];
+*/
 
 const _testimonials = [
   {
@@ -169,7 +172,7 @@ export default function CorporatePage() {
                 <ArrowRight className="ml-3 w-6 h-6 group-hover:translate-x-1 transition-transform" />
               </Link>
               <a 
-                href="mailto:corporate@daralkhayma.com"
+                href="mailto:hello@daralkhayma.com"
                 className="group px-10 py-5 border-2 border-white hover:bg-white hover:text-primary-900 text-white rounded-xl font-semibold transition-all duration-300 flex items-center justify-center backdrop-blur-sm"
               >
                 Get Quote
@@ -404,7 +407,8 @@ export default function CorporatePage() {
             ))}
           </div>
         </div>
-      </div>      {/* Packages Section */}
+      </div>      {/* Packages Section - Commented out until pricing is decided */}
+      {/*
       <div id="packages" className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -476,6 +480,7 @@ export default function CorporatePage() {
           </div>
         </div>
       </div>
+      */}
 
       {/* Testimonials Section */}
       <CorporateTestimonials 
@@ -501,7 +506,7 @@ export default function CorporatePage() {
                 <Mail className="w-6 h-6 text-primary-600" />
                 <div>
                   <div className="font-semibold text-neutral-900">Email</div>
-                  <div className="text-neutral-600">corporate@daralkhayma.com</div>
+                  <div className="text-neutral-600">hello@daralkhayma.com</div>
                 </div>
               </div>
               <div className="flex items-center justify-center space-x-3">
@@ -520,7 +525,7 @@ export default function CorporatePage() {
                 <ArrowRight className="w-5 h-5 ml-2" />
               </Link>
               <a
-                href="mailto:corporate@daralkhayma.com"
+                href="mailto:hello@daralkhayma.com"
                 className="inline-flex items-center px-8 py-4 border-2 border-primary-600 text-primary-600 font-semibold rounded-lg hover:bg-primary-600 hover:text-white transition-colors"
               >
                 <Mail className="w-5 h-5 mr-2" />

@@ -151,7 +151,7 @@ import InteractiveMapboxMap from '@/components/map/InteractiveMapboxMap';
 ### **2. Environment Variables Required:**
 ```env
 NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN=your_mapbox_token
-ADMIN_EMAIL=admin@daralkhayma.com
+ADMIN_EMAIL=hello@daralkhayma.com
 ```
 
 ### **3. Language Integration:**

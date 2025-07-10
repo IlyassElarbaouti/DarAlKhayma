@@ -485,7 +485,7 @@ export default function JoinUsPage() {
                 <ArrowRight className="ml-3 w-6 h-6 group-hover:translate-x-1 transition-transform" />
               </Link>
               <a
-                href="mailto:partners@daralkhayma.com"
+                href="mailto:hello@daralkhayma.com"
                 className="inline-flex items-center px-8 py-4 border-2 border-primary-600 text-primary-600 font-semibold rounded-lg hover:bg-primary-600 hover:text-white transition-colors"
               >
                 <Send className="w-5 h-5 mr-2" />

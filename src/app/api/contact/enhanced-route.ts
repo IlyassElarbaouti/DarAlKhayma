@@ -156,7 +156,7 @@ async function sendAdminNotification(data: any): Promise<void> {
   try {
     // TODO: Implement with SendGrid, Resend, or other email service
     console.log('Admin notification would be sent:', {
-      to: process.env.ADMIN_EMAIL || 'admin@daralkhayma.com',
+      to: process.env.ADMIN_EMAIL || 'hello@daralkhayma.com',
       subject: `New Contact: ${data.subject || getDefaultSubject(data.inquiryType)}`,
       from: data.email,
       type: data.inquiryType,
