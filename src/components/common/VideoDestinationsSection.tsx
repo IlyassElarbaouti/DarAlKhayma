@@ -173,11 +173,35 @@ export default function VideoDestinationsSection() {
     return url.includes('youtube.com') || url.includes('youtu.be');
   };
 
-  // Convert YouTube URL to embed URL
+  // Convert YouTube URL to embed URL with timestamp support
   const getYouTubeEmbedUrl = (url: string) => {
-    const videoIdMatch = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\n?#]+)/);
-    if (videoIdMatch) {
-      return `https://www.youtube.com/embed/${videoIdMatch[1]}?autoplay=1&mute=1&loop=1&playlist=${videoIdMatch[1]}&controls=0&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1`;
+    let videoId = '';
+    let startTime = '';
+    
+    // Handle youtube.com/watch?v= format
+    if (url.includes('youtube.com/watch')) {
+      const urlObj = new URL(url);
+      videoId = urlObj.searchParams.get('v') || '';
+      const t = urlObj.searchParams.get('t');
+      if (t) {
+        startTime = `&start=${t}`;
+      }
+    }
+    // Handle youtu.be/ format
+    else if (url.includes('youtu.be/')) {
+      const match = url.match(/youtu\.be\/([^?]+)/);
+      if (match) {
+        videoId = match[1];
+        // Extract timestamp from youtu.be URLs (e.g., ?t=180)
+        const timeMatch = url.match(/[?&]t=(\d+)/);
+        if (timeMatch) {
+          startTime = `&start=${timeMatch[1]}`;
+        }
+      }
+    }
+    
+    if (videoId) {
+      return `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1${startTime}`;
     }
     return url;
   };
