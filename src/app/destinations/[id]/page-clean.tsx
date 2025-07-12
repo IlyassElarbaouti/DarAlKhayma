@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import Script from "next/script";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import { getDestinationBySlug, getPropertiesByCity } from "@/lib/sanityService";
+import { getDestinationBySlug, getPropertiesByCity, getAllDestinations } from "@/lib/sanityService";
 import DestinationClient from "./DestinationClient";
 
 interface DestinationPageProps {
@@ -10,6 +10,11 @@ interface DestinationPageProps {
     id: string;
   }>;
 }
+
+// Enable ISR for new destinations
+export const dynamic = 'force-static';
+export const dynamicParams = true;
+export const revalidate = 3600; // Revalidate every hour
 
 export default async function DestinationPage({ params }: DestinationPageProps) {
   const { id } = await params;
@@ -85,14 +90,24 @@ export default async function DestinationPage({ params }: DestinationPageProps) 
   );
 }
 
-// Generate static params for destinations (we'll fetch from Sanity in production)
+// Generate static params for destinations
 export async function generateStaticParams() {
-  // For now, return common destination slugs
-  // In production, this should fetch from Sanity
-  return [
-    { id: 'marrakech' },
-    { id: 'casablanca' },
-    { id: 'fes' },
-    { id: 'rabat' },
-  ];
+  try {
+    // Fetch all destinations from Sanity
+    const destinations = await getAllDestinations();
+    return destinations
+      .filter((destination) => destination.slug)
+      .map((destination) => ({
+        id: destination.slug,
+      }));
+  } catch (error) {
+    console.error('Error generating static params for destinations:', error);
+    // Fallback to common destination slugs
+    return [
+      { id: 'marrakech' },
+      { id: 'casablanca' },
+      { id: 'fes' },
+      { id: 'rabat' },
+    ];
+  }
 }
