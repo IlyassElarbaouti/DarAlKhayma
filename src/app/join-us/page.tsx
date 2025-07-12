@@ -575,7 +575,7 @@ export default function JoinUsPage() {
             >
               <div className="relative rounded-3xl overflow-hidden shadow-2xl">
                 <Image
-                  src="https://images.unsplash.com/photo-1600607687644-aac4c3eac7f4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2053&q=80"
+                  src="/interior.jpg"
                   alt="Luxury property interior designed by Dar Al Khayma"
                   width={600}
                   height={500}
