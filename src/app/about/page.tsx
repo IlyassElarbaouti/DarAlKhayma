@@ -5,7 +5,7 @@ import { getAllTeamMembers } from "@/lib/sanityService";
 import { TeamMember } from "@/types/sanity";
 
 // Add ISR support for fresh data
-export const revalidate = 60;
+export const revalidate = 300; // Revalidate every 5 minutes
 
 const values = [
   {

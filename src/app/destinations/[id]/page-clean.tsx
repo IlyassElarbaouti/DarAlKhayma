@@ -14,7 +14,7 @@ interface DestinationPageProps {
 // Enable ISR for new destinations
 export const dynamic = 'force-static';
 export const dynamicParams = true;
-export const revalidate = 3600; // Revalidate every hour
+export const revalidate = 300; // Revalidate every 5 minutes
 
 export default async function DestinationPage({ params }: DestinationPageProps) {
   const { id } = await params;

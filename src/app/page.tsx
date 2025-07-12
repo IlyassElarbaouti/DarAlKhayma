@@ -13,7 +13,7 @@ import Footer from "@/components/layout/Footer";
 
 // ISR settings
 export const dynamic = 'force-dynamic';
-export const revalidate = 30;
+export const revalidate = 300; // Revalidate every 5 minutes
 
 export default function Home() {
   return (

@@ -4,7 +4,7 @@ import { getPropertyBySlug, getAllProperties } from "@/lib/sanityService";
 import PropertyPageClient from "./PropertyPageClient";
 
 // Enable faster revalidation for fresh images
-export const revalidate = 30;
+export const revalidate = 300; // Revalidate every 5 minutes
 // Force dynamic rendering for updated content
 export const dynamic = 'force-dynamic';
 

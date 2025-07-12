@@ -3,7 +3,7 @@ import { client } from '@/lib/sanity';
 
 // ISR settings for this route
 export const dynamic = 'force-dynamic';
-export const revalidate = 30; // Revalidate every 30 seconds
+export const revalidate = 300; // Revalidate every 5 minutes
 
 export async function GET() {
   try {

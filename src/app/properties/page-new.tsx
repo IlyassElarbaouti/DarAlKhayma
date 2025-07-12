@@ -11,7 +11,7 @@ export const metadata = {
 };
 
 // Add ISR support for fresh data
-export const revalidate = 60; // revalidate every 60 seconds
+export const revalidate = 300; // Revalidate every 5 minutes
 export const dynamic = 'force-dynamic';
 
 export default async function PropertiesPage() {
