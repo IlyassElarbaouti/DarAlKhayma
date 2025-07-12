@@ -150,6 +150,7 @@ export default function ServicesSection() {
                     <span className="text-accent-600 font-semibold">
                       → Learn More
                     </span>
+                    <ArrowRight className="w-5 h-5 text-neutral-400 group-hover:text-accent-600 group-hover:translate-x-1 transition-all duration-300" />
                   </div>
 
                 </div>

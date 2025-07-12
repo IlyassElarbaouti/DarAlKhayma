@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Car, Utensils, Sparkles, ArrowRight, Shirt, Heart } from "lucide-react";
+import Link from "next/link";
 
 const services = [
   {
@@ -89,10 +90,12 @@ export default function ExtraServicesSection() {
           viewport={{ once: true }}
           className="text-center"
         >
-          <button className="inline-flex items-center px-8 py-4 bg-primary-600 hover:bg-primary-700 text-white font-semibold rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl">
-            DISCOVER OUR SERVICES
-            <ArrowRight className="w-5 h-5 ml-2" />
-          </button>
+          <Link href="/contact">
+            <button className="inline-flex items-center px-8 py-4 bg-primary-600 hover:bg-primary-700 text-white font-semibold rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl">
+              DISCOVER OUR SERVICES
+              <ArrowRight className="w-5 h-5 ml-2" />
+            </button>
+          </Link>
         </motion.div>
       </div>
     </section>
