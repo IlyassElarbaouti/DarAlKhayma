@@ -146,6 +146,123 @@
     "mission": "Our Mission",
     "values": "Our Values"
   },
+  "privacy": {
+    "title": "Privacy Policy",
+    "subtitle": "Your privacy is important to us. Learn how we collect, use, and protect your personal information.",
+    "lastUpdated": "Last Updated",
+    "introduction": {
+      "title": "Introduction",
+      "content": "At Dar Al Khayma, we are committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy explains how we collect, use, share, and safeguard your information when you use our website, book our properties, or interact with our services, including our WhatsApp bot."
+    },
+    "sections": {
+      "informationWeCollect": {
+        "title": "Information We Collect",
+        "items": [
+          "Personal Information: When you make a reservation, contact us, or use our services",
+          "Property Preferences: Information about your accommodation preferences and travel patterns",
+          "Communication Records: Records of your communications with us through various channels",
+          "Website Usage Data: Information about how you use our website",
+          "Device Information: Technical information about your device and browser"
+        ]
+      },
+      "howWeUse": {
+        "title": "How We Use Your Information",
+        "items": [
+          "Provide Services: To process bookings and deliver accommodation services",
+          "Customer Support: To respond to inquiries and provide customer service",
+          "Communication: To send booking confirmations and service updates",
+          "Service Improvement: To analyze usage patterns and improve our services",
+          "Marketing: With your consent, to send promotional offers",
+          "Legal Compliance: To comply with applicable laws and regulations"
+        ]
+      },
+      "whatsappBot": {
+        "title": "WhatsApp Bot Integration",
+        "items": [
+          "Automated Responses: Our WhatsApp bot provides automated responses to common inquiries",
+          "Booking Assistance: The bot helps facilitate the booking process",
+          "Message Storage: Conversations are stored to improve service quality",
+          "Opt-Out: You can stop receiving WhatsApp messages at any time",
+          "Human Oversight: Human staff review important conversations"
+        ]
+      },
+      "dataSharing": {
+        "title": "Information Sharing",
+        "items": [
+          "Service Providers: We share information with trusted third-party service providers",
+          "Property Partners: Information is shared with property owners for your stay",
+          "Legal Requirements: We may disclose information when required by law",
+          "Business Transfers: Information may be transferred in business transactions",
+          "Consent: We share information with your explicit consent"
+        ]
+      },
+      "dataSecurity": {
+        "title": "Data Security",
+        "items": [
+          "Encryption: We use industry-standard encryption to protect your information",
+          "Access Controls: Access is restricted to authorized personnel only",
+          "Regular Audits: We regularly review our security practices",
+          "Secure Storage: Data is stored on secure servers with appropriate safeguards",
+          "Incident Response: We have procedures for security incidents"
+        ]
+      },
+      "dataRetention": {
+        "title": "Data Retention",
+        "items": [
+          "Booking Records: Retained for accounting and legal purposes (typically 7 years)",
+          "Communication Records: Kept for customer service purposes (up to 3 years)",
+          "Marketing Preferences: Kept until you change them or close your account",
+          "Website Analytics: Anonymous usage data retained for up to 2 years",
+          "Legal Requirements: Some information retained longer if required by law"
+        ]
+      },
+      "yourRights": {
+        "title": "Your Rights",
+        "items": [
+          "Access: Request access to your personal information",
+          "Correction: Request correction of inaccurate information",
+          "Deletion: Request deletion of your personal information",
+          "Portability: Receive your information in a portable format",
+          "Objection: Object to certain types of processing",
+          "Withdraw Consent: Withdraw consent for processing activities"
+        ]
+      },
+      "internationalTransfers": {
+        "title": "International Transfers",
+        "items": [
+          "Global Services: Information may be transferred internationally",
+          "Adequate Protection: Transfers are protected by appropriate safeguards",
+          "Third-Party Services: Service providers maintain adequate protection standards",
+          "Legal Compliance: All transfers comply with data protection laws"
+        ]
+      }
+    },
+    "contact": {
+      "title": "Contact Us About Privacy",
+      "description": "If you have questions about this Privacy Policy or want to exercise your rights, please contact us:",
+      "email": "Email",
+      "phone": "Phone",
+      "address": "Address",
+      "responseTime": "Response Time",
+      "responseTimeText": "We will respond to your privacy inquiries within 30 days."
+    },
+    "facebookIntegration": {
+      "title": "WhatsApp & Facebook Integration",
+      "description": "Our WhatsApp bot service is powered by Meta (Facebook) technologies. By using our WhatsApp service, you acknowledge that your messages may be processed according to WhatsApp's and Meta's privacy policies in addition to our own.",
+      "whatsappPolicy": "WhatsApp Privacy Policy",
+      "metaPolicy": "Meta Privacy Policy"
+    },
+    "policyUpdates": {
+      "title": "Policy Updates",
+      "description": "We may update this Privacy Policy from time to time. We will notify you of material changes by:",
+      "methods": [
+        "Posting the updated policy on our website",
+        "Sending an email notification to registered users",
+        "Displaying a notice on our website or app"
+      ],
+      "continued": "Your continued use of our services after any changes indicates your acceptance of the updated Privacy Policy."
+    }
+  },
   "errors": {
     "404": {
       "title": "Page Not Found",

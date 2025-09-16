@@ -146,6 +146,123 @@
     "mission": "Notre Mission",
     "values": "Nos Valeurs"
   },
+  "privacy": {
+    "title": "Politique de Confidentialité",
+    "subtitle": "Votre vie privée est importante pour nous. Découvrez comment nous collectons, utilisons et protégeons vos informations personnelles.",
+    "lastUpdated": "Dernière Mise à Jour",
+    "introduction": {
+      "title": "Introduction",
+      "content": "Chez Dar Al Khayma, nous nous engageons à protéger votre vie privée et à assurer la sécurité de vos informations personnelles. Cette Politique de Confidentialité explique comment nous collectons, utilisons, partageons et protégeons vos informations lorsque vous utilisez notre site web, réservez nos propriétés ou interagissez avec nos services, y compris notre bot WhatsApp."
+    },
+    "sections": {
+      "informationWeCollect": {
+        "title": "Informations que Nous Collectons",
+        "items": [
+          "Informations Personnelles : Lorsque vous effectuez une réservation, nous contactez ou utilisez nos services",
+          "Préférences de Propriété : Informations sur vos préférences d'hébergement et habitudes de voyage",
+          "Enregistrements de Communication : Enregistrements de vos communications avec nous via divers canaux",
+          "Données d'Utilisation du Site Web : Informations sur la façon dont vous utilisez notre site web",
+          "Informations sur l'Appareil : Informations techniques sur votre appareil et navigateur"
+        ]
+      },
+      "howWeUse": {
+        "title": "Comment Nous Utilisons Vos Informations",
+        "items": [
+          "Fournir des Services : Pour traiter les réservations et fournir des services d'hébergement",
+          "Support Client : Pour répondre aux demandes et fournir un service client",
+          "Communication : Pour envoyer des confirmations de réservation et des mises à jour de service",
+          "Amélioration du Service : Pour analyser les modèles d'utilisation et améliorer nos services",
+          "Marketing : Avec votre consentement, pour envoyer des offres promotionnelles",
+          "Conformité Légale : Pour se conformer aux lois et réglementations applicables"
+        ]
+      },
+      "whatsappBot": {
+        "title": "Intégration du Bot WhatsApp",
+        "items": [
+          "Réponses Automatisées : Notre bot WhatsApp fournit des réponses automatisées aux demandes courantes",
+          "Assistance à la Réservation : Le bot aide à faciliter le processus de réservation",
+          "Stockage des Messages : Les conversations sont stockées pour améliorer la qualité du service",
+          "Désabonnement : Vous pouvez arrêter de recevoir des messages WhatsApp à tout moment",
+          "Supervision Humaine : Le personnel humain examine les conversations importantes"
+        ]
+      },
+      "dataSharing": {
+        "title": "Partage d'Informations",
+        "items": [
+          "Fournisseurs de Services : Nous partageons des informations avec des fournisseurs de services tiers de confiance",
+          "Partenaires de Propriété : Les informations sont partagées avec les propriétaires pour votre séjour",
+          "Exigences Légales : Nous pouvons divulguer des informations lorsque la loi l'exige",
+          "Transferts d'Entreprise : Les informations peuvent être transférées lors de transactions commerciales",
+          "Consentement : Nous partageons des informations avec votre consentement explicite"
+        ]
+      },
+      "dataSecurity": {
+        "title": "Sécurité des Données",
+        "items": [
+          "Chiffrement : Nous utilisons un chiffrement standard de l'industrie pour protéger vos informations",
+          "Contrôles d'Accès : L'accès est limité au personnel autorisé uniquement",
+          "Audits Réguliers : Nous révisons régulièrement nos pratiques de sécurité",
+          "Stockage Sécurisé : Les données sont stockées sur des serveurs sécurisés avec des garanties appropriées",
+          "Réponse aux Incidents : Nous avons des procédures pour les incidents de sécurité"
+        ]
+      },
+      "dataRetention": {
+        "title": "Conservation des Données",
+        "items": [
+          "Dossiers de Réservation : Conservés à des fins comptables et légales (généralement 7 ans)",
+          "Enregistrements de Communication : Conservés à des fins de service client (jusqu'à 3 ans)",
+          "Préférences Marketing : Conservées jusqu'à ce que vous les changiez ou fermiez votre compte",
+          "Analyses du Site Web : Données d'utilisation anonymes conservées jusqu'à 2 ans",
+          "Exigences Légales : Certaines informations conservées plus longtemps si requis par la loi"
+        ]
+      },
+      "yourRights": {
+        "title": "Vos Droits",
+        "items": [
+          "Accès : Demander l'accès à vos informations personnelles",
+          "Correction : Demander la correction d'informations inexactes",
+          "Suppression : Demander la suppression de vos informations personnelles",
+          "Portabilité : Recevoir vos informations dans un format portable",
+          "Objection : S'opposer à certains types de traitement",
+          "Retrait du Consentement : Retirer le consentement pour les activités de traitement"
+        ]
+      },
+      "internationalTransfers": {
+        "title": "Transferts Internationaux",
+        "items": [
+          "Services Globaux : Les informations peuvent être transférées internationalement",
+          "Protection Adéquate : Les transferts sont protégés par des garanties appropriées",
+          "Services Tiers : Les fournisseurs de services maintiennent des normes de protection adéquates",
+          "Conformité Légale : Tous les transferts respectent les lois de protection des données"
+        ]
+      }
+    },
+    "contact": {
+      "title": "Nous Contacter à Propos de la Confidentialité",
+      "description": "Si vous avez des questions sur cette Politique de Confidentialité ou souhaitez exercer vos droits, veuillez nous contacter :",
+      "email": "Email",
+      "phone": "Téléphone",
+      "address": "Adresse",
+      "responseTime": "Temps de Réponse",
+      "responseTimeText": "Nous répondrons à vos demandes de confidentialité dans un délai de 30 jours."
+    },
+    "facebookIntegration": {
+      "title": "Intégration WhatsApp et Facebook",
+      "description": "Notre service de bot WhatsApp est alimenté par les technologies Meta (Facebook). En utilisant notre service WhatsApp, vous reconnaissez que vos messages peuvent être traités selon les politiques de confidentialité de WhatsApp et Meta en plus de la nôtre.",
+      "whatsappPolicy": "Politique de Confidentialité WhatsApp",
+      "metaPolicy": "Politique de Confidentialité Meta"
+    },
+    "policyUpdates": {
+      "title": "Mises à Jour de la Politique",
+      "description": "Nous pouvons mettre à jour cette Politique de Confidentialité de temps en temps. Nous vous informerons des changements importants par :",
+      "methods": [
+        "Publication de la politique mise à jour sur notre site web",
+        "Envoi d'une notification par email aux utilisateurs enregistrés",
+        "Affichage d'un avis sur notre site web ou application"
+      ],
+      "continued": "Votre utilisation continue de nos services après tout changement indique votre acceptation de la Politique de Confidentialité mise à jour."
+    }
+  },
   "errors": {
     "404": {
       "title": "Page Non Trouvée",
